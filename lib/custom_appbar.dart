@@ -135,20 +135,30 @@ class CustomAppbar extends StatelessWidget {
       ),
     );
 
-    return SafeArea(
-      child: Stack(
-        children: [
-//TODO: hacer un index para cambiar entre las diferentes pantallas
-          // CorrectionStack(),
-          //BookClass(),
-          opacityContainer,
-          HomePage(),
-          allAppbar,
-
-          //  test,
-        ],
+    Widget backgroundImage = Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("lib/assets/images/purple_paper.jpg"),
+          fit: BoxFit.cover,
+        ),
       ),
-      minimum: EdgeInsets.all(25.0),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            //TODO: hacer un index para cambiar entre las diferentes pantallas
+            // CorrectionStack(),
+            //BookClass(),
+            opacityContainer,
+            HomePage(),
+            allAppbar,
+
+            //  test,
+          ],
+        ),
+        minimum: EdgeInsets.all(25.0),
+      ),
     );
+
+    return backgroundImage;
   }
 }

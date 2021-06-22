@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: CustomAppbar(),
-        backgroundColor: Colors.blueAccent[700],
       ),
     );
   }
