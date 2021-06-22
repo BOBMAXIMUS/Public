@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:pagina_web/progress_bar.dart';
 
 class HomePage extends StatelessWidget {
-  TextStyle myStyle = TextStyle(
+  final TextStyle myStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 12.0,
     color: Colors.black,

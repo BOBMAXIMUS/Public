@@ -68,10 +68,10 @@ class BookClass extends StatelessWidget {
       ),
     );
 
+    //FIXME: Todos los ROW de los containers tiran un error con el mal uso del Flex
+
     Widget firstRow = Container(
-      margin: EdgeInsets.only(
-        top: 25.0,
-      ),
+      margin: EdgeInsets.only(top: 25.0),
       child: Row(
         children: [
           Expanded(
@@ -186,10 +186,6 @@ class BookClass extends StatelessWidget {
           ),
         ],
       ),
-    );
-
-    Widget somthing = Container(
-      child: null,
     );
 
     return Padding(

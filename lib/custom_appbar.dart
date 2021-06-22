@@ -81,10 +81,9 @@ class CustomAppbar extends StatelessWidget {
     );
 
     Container allBanner = Container(
-      // color: Colors.white,
       padding: EdgeInsets.only(
         top: 30.0,
-        bottom: 25.0,
+        bottom: 28.0,
       ),
       child: Flexible(
         flex: 1,

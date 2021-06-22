@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class ProgressBar extends StatelessWidget {
-  Icon arrow = Icon(
+  final Icon arrow = Icon(
     Icons.arrow_forward_ios_rounded,
     color: Colors.green.shade400,
   );
 
-  EdgeInsets myPadding = EdgeInsets.only(
+  final EdgeInsets myPadding = EdgeInsets.only(
     left: 15.0,
     bottom: 2.5,
     top: 2.5,
     right: 5.0,
   );
 
-  SizedBox littleBox = SizedBox(
+  final SizedBox littleBox = SizedBox(
     width: 8.0,
   );
   @override
