@@ -188,6 +188,10 @@ class BookClass extends StatelessWidget {
       ),
     );
 
+    Widget somthing = Container(
+      child: null,
+    );
+
     return Padding(
       padding: EdgeInsets.only(top: 89.0),
       child: ListView(
