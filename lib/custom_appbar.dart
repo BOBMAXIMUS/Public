@@ -13,18 +13,13 @@ class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget aroLogo = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      color: Colors.brown,
-      child: Row(
-        children: [
-          Text(
-            "ARO",
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+      margin: EdgeInsets.only(right: 30.0),
+      child: Text(
+        "ARO",
+        style: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
 
@@ -86,32 +81,54 @@ class CustomAppbar extends StatelessWidget {
     );
 
     Container allBanner = Container(
-      color: Colors.white,
+      // color: Colors.white,
       padding: EdgeInsets.only(
         top: 30.0,
         bottom: 25.0,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          aroLogo,
-          clickCorrect,
-          myClassNow,
-          avis,
-          search,
-          comments,
-          settings
-        ],
+      child: Flexible(
+        flex: 1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 2,
+              child: SizedBox(),
+            ),
+            //TODO: Hacer un expanded  para cuando cambien de tamaño la pantalla?
+            aroLogo,
+            clickCorrect,
+            myClassNow,
+            avis,
+            search,
+            comments,
+            settings,
+            Expanded(
+              flex: 2,
+              child: SizedBox(),
+            ),
+          ],
+        ),
       ),
     );
 
     Row underLine = Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
+          flex: 2,
+          child: SizedBox(),
+        ),
+        Expanded(
+          flex: 4,
           child: Container(
             color: Colors.pink.shade900,
             height: 1.5,
           ),
+        ),
+        Expanded(
+          flex: 2,
+          child: SizedBox(),
         ),
       ],
     );
@@ -122,7 +139,7 @@ class CustomAppbar extends StatelessWidget {
     );
 
     Widget opacityContainer = Opacity(
-      opacity: 0.5,
+      opacity: 0.9,
       child: Expanded(
         child: Container(
           color: Colors.white,
@@ -140,21 +157,14 @@ class CustomAppbar extends StatelessWidget {
       child: SafeArea(
         child: Stack(
           children: [
-            //TODO: hacer un index para cambiar entre las diferentes pantallas
             // CorrectionStack(),
-            Flexible(
-              child: opacityContainer,
-              flex: 1,
-            ),
-            Flexible(
-              child: HomePage(),
-              flex: 1,
-            ),
-            //BookClass(),
-            Flexible(
-              child: allAppbar,
-              flex: 1,
-            ),
+            opacityContainer,
+//TODO: hacer un index para cambiar entre las diferentes pantallas
+            //HomePage(),
+
+            BookClass(),
+
+            allAppbar,
 
             //  test,
           ],

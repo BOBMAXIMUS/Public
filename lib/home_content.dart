@@ -3,11 +3,32 @@ import 'package:flutter/rendering.dart';
 import 'package:pagina_web/progress_bar.dart';
 
 class HomePage extends StatelessWidget {
+  TextStyle myStyle = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12.0,
+    color: Colors.black,
+  );
   @override
   Widget build(BuildContext context) {
-    Widget text1 = Text("Understand maths.  Boost your results.");
-    Widget text2 = Text(
-      "Open doors",
+    Widget text1 = Container(
+      margin: EdgeInsets.symmetric(vertical: 11.0),
+      child: Text(
+        "Understand maths.  Boost your results.",
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.0,
+        ),
+      ),
+    );
+    Widget text2 = Container(
+      margin: EdgeInsets.only(bottom: 15.0),
+      child: Text(
+        "Open doors",
+        style: TextStyle(
+          fontWeight: FontWeight.w900,
+          fontSize: 22.0,
+        ),
+      ),
     );
 
     Widget uploadFile = Container(
@@ -16,19 +37,35 @@ class HomePage extends StatelessWidget {
         shape: BoxShape.rectangle,
         color: Colors.indigo.shade900,
       ),
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.symmetric(horizontal: 85.0, vertical: 23.0),
       child: Column(
         children: [
-          Text("Upload a file"),
-          Icon(Icons.upload_file),
+          Text(
+            "Upload a file",
+            style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 12.0,
+                color: Colors.white),
+          ),
+          Icon(
+            Icons.upload_file,
+            size: 60.0,
+            color: Colors.white,
+          ),
         ],
       ),
     );
 
-    Widget text3 = Text("Please make sure that your file follows these rules:");
+    Widget text3 = Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      child: Text(
+        "Please make sure that your file follows these rules:",
+        style: myStyle,
+      ),
+    );
 
     Column order = Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         text1,
         text2,
@@ -38,37 +75,130 @@ class HomePage extends StatelessWidget {
     );
 
     Container example1 = Container(
+      width: 400.0,
       color: Colors.white,
       padding: EdgeInsets.all(5.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Don'ts"),
-          Text("Text is unclear, blurry or crooked"),
-          Text("Formulas and questions cannot be read"),
-          Text("Some elements are cut off and not visible"),
           Container(
-            color: Colors.blue,
-            width: 100.0,
-            height: 100.0,
+            alignment: Alignment.topCenter,
+            child: Text(
+              "Don'ts",
+              textAlign: TextAlign.center,
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 30.0,
+              left: 15.0,
+              bottom: 5.0,
+            ),
+            child: Text(
+              "Text is unclear, blurry or crooked",
+              textAlign: TextAlign.start,
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5.0,
+              left: 15.0,
+              bottom: 5.0,
+            ),
+            child: Text(
+              "Formulas and questions cannot be read",
+              textAlign: TextAlign.start,
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5.0,
+              left: 15.0,
+              bottom: 20.0,
+            ),
+            child: Text(
+              "Some elements are cut off and not visible",
+              textAlign: TextAlign.start,
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              bottom: 10.0,
+            ),
+            alignment: Alignment.topCenter,
+            child: Container(
+              //foto de prueba
+              color: Colors.blue,
+              width: 100.0,
+              height: 100.0,
+            ),
           ),
         ],
       ),
     );
     Container example2 = Container(
+      width: 400.0,
       color: Colors.white,
       padding: EdgeInsets.all(5.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Do's"),
-          Text("Text is alignesm straight, clear and readable with margins"),
-          Text("Formulas and questions can be read"),
-          Text("The whole exercise is available with all necesary data"),
           Container(
-            color: Colors.blue,
-            width: 100.0,
-            height: 100.0,
+            alignment: Alignment.topCenter,
+            child: Text(
+              "Do's",
+              textAlign: TextAlign.center,
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 30.0,
+              left: 15.0,
+              bottom: 5.0,
+            ),
+            child: Text(
+              "Text is alignesm straight, clear and readable with margins",
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5.0,
+              left: 15.0,
+              bottom: 5.0,
+            ),
+            child: Text(
+              "Formulas and questions can be read",
+              style: myStyle,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5.0,
+              left: 15.0,
+              bottom: 20.0,
+            ),
+            child: Text(
+              "The whole exercise is available with all necesary data",
+              style: myStyle,
+            ),
+          ),
+          Container(
+            alignment: Alignment.topCenter,
+            child: Container(
+              margin: EdgeInsets.only(
+                bottom: 10.0,
+              ),
+              //foto de prueba
+              color: Colors.blue,
+              width: 100.0,
+              height: 100.0,
+            ),
           ),
         ],
       ),
@@ -82,13 +212,16 @@ class HomePage extends StatelessWidget {
       children: [example1, example2],
     );
 
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        ProgressBar(),
-        order,
-        adjuntExamples,
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 89.0),
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          ProgressBar(),
+          order,
+          adjuntExamples,
+        ],
+      ),
     );
   }
 }

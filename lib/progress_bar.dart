@@ -6,6 +6,13 @@ class ProgressBar extends StatelessWidget {
     color: Colors.green.shade400,
   );
 
+  EdgeInsets myPadding = EdgeInsets.only(
+    left: 15.0,
+    bottom: 2.5,
+    top: 2.5,
+    right: 5.0,
+  );
+
   SizedBox littleBox = SizedBox(
     width: 8.0,
   );
@@ -17,11 +24,18 @@ class ProgressBar extends StatelessWidget {
         shape: BoxShape.rectangle,
         color: Colors.green.shade600,
       ),
-      padding: EdgeInsets.all(5.0),
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(Icons.download_outlined), littleBox, Text("Upload")],
+      padding: myPadding,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Flexible(
+        flex: 1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.download_outlined, color: Colors.white, size: 34.0),
+            littleBox,
+            Text("Upload")
+          ],
+        ),
       ),
     );
 
@@ -31,15 +45,18 @@ class ProgressBar extends StatelessWidget {
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
-      padding: EdgeInsets.all(5.0),
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.credit_card_outlined),
-          littleBox,
-          Text("Checkout")
-        ],
+      padding: myPadding,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Flexible(
+        flex: 1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.credit_card_outlined, color: Colors.black, size: 34.0),
+            littleBox,
+            Text("Checkout")
+          ],
+        ),
       ),
     );
 
@@ -49,45 +66,42 @@ class ProgressBar extends StatelessWidget {
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
-      padding: EdgeInsets.all(5.0),
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.fact_check_outlined),
-          littleBox,
-          Text("Results!")
-        ],
+      padding: myPadding,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Flexible(
+        flex: 1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.fact_check_outlined, color: Colors.black, size: 34.0),
+            littleBox,
+            Text("Results!")
+          ],
+        ),
       ),
     );
 
     Container allBanner = Container(
-      margin: EdgeInsets.symmetric(vertical: 100.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Flexible(
-            child: uploadBaner,
-            flex: 1,
-          ),
+          uploadBaner,
           arrow,
-          Flexible(
-            child: checkoutBaner,
-            flex: 1,
-          ),
+          checkoutBaner,
           arrow,
-          Flexible(
-            child: resultsBaner,
-            flex: 1,
-          ),
+          resultsBaner,
         ],
       ),
     );
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        allBanner,
+        Container(
+          margin: EdgeInsets.only(
+            top: 10.0,
+          ),
+          child: allBanner,
+        ),
       ],
     );
   }
