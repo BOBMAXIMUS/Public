@@ -85,8 +85,8 @@ class CustomAppbar extends StatelessWidget {
         top: 30.0,
         bottom: 28.0,
       ),
-      child: Flexible(
-        flex: 1,
+      child: Expanded(
+        //FIXME:, El flexible esta mal implementado
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

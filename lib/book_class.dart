@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pagina_web/my_activities.dart';
 
 class BookClass extends StatelessWidget {
   @override
@@ -68,7 +69,7 @@ class BookClass extends StatelessWidget {
       ),
     );
 
-    //FIXME: Todos los ROW de los containers tiran un error con el mal uso del Flex
+    //FIXME: flutter run -d chrome --dart-define=FLUTTER_WEB_USE_SKIA=true
 
     Widget firstRow = Container(
       margin: EdgeInsets.only(top: 25.0),
@@ -143,51 +144,6 @@ class BookClass extends StatelessWidget {
       ),
     );
 
-    Widget fourtRow = Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Icon(
-                        Icons.colorize_rounded,
-                        color: Colors.black,
-                      ),
-                      Text("Mes Activites"),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(30.0),
-                    color: Colors.purple,
-                    width: 300,
-                    height: 300,
-                    child: null,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.purple,
-            width: 300,
-            height: 300,
-            child: Text(
-              "I'm a Table :D",
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-
     return Padding(
       padding: EdgeInsets.only(top: 89.0),
       child: ListView(
@@ -196,7 +152,7 @@ class BookClass extends StatelessWidget {
           firstRow,
           secondRow,
           thridRow,
-          fourtRow,
+          MyActivities(),
         ],
       ),
     );

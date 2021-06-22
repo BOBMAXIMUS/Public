@@ -26,8 +26,8 @@ class ProgressBar extends StatelessWidget {
       ),
       padding: myPadding,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
+      //FIXME: El flexible esta mal implementado
       child: Flexible(
-        flex: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -47,8 +47,8 @@ class ProgressBar extends StatelessWidget {
       ),
       padding: myPadding,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
+      //FIXME: El flexible esta mal implementado
       child: Flexible(
-        flex: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -68,8 +68,8 @@ class ProgressBar extends StatelessWidget {
       ),
       padding: myPadding,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
+      //FIXME: El flexible esta mal implementado
       child: Flexible(
-        flex: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
