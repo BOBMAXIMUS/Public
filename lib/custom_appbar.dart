@@ -87,7 +87,10 @@ class CustomAppbar extends StatelessWidget {
 
     Container allBanner = Container(
       color: Colors.white,
-      padding: EdgeInsets.only(top: 30.0, bottom: 25.0),
+      padding: EdgeInsets.only(
+        top: 30.0,
+        bottom: 25.0,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -106,26 +109,18 @@ class CustomAppbar extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            color: Colors.purple,
+            color: Colors.pink.shade900,
             height: 1.5,
           ),
         ),
       ],
     );
 
-    Column test = Column(
+    Column allAppbar = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [allBanner, underLine],
     );
 
-    Widget allAppbar = Container(
-      child: Stack(
-        children: [
-          /*  allBanner,
-          underLine,*/
-          test
-        ],
-      ),
-    );
     Widget opacityContainer = Opacity(
       opacity: 0.5,
       child: Expanded(
@@ -147,10 +142,19 @@ class CustomAppbar extends StatelessWidget {
           children: [
             //TODO: hacer un index para cambiar entre las diferentes pantallas
             // CorrectionStack(),
+            Flexible(
+              child: opacityContainer,
+              flex: 1,
+            ),
+            Flexible(
+              child: HomePage(),
+              flex: 1,
+            ),
             //BookClass(),
-            opacityContainer,
-            HomePage(),
-            allAppbar,
+            Flexible(
+              child: allAppbar,
+              flex: 1,
+            ),
 
             //  test,
           ],

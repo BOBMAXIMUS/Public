@@ -62,17 +62,9 @@ class BookClass extends StatelessWidget {
         ],
       ),
     );
-    return Row(
-      children: [
-        Flexible(
-          child: example1,
-          flex: 6,
-        ),
-        Flexible(
-          child: example2,
-          flex: 1,
-        ),
-      ],
+
+    return Container(
+      padding: EdgeInsets.all(25.0),
     );
   }
 }

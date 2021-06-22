@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: "Roboto"),
       home: Scaffold(
         body: CustomAppbar(),
       ),
