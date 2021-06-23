@@ -1,90 +1,132 @@
 import 'package:flutter/material.dart';
 
 class MyActivities extends StatelessWidget {
-  final card1 = Container(
-    padding: EdgeInsets.all(5.0),
-    margin: EdgeInsets.all(5.0),
+  final misActivities = Container(
+    color: Colors.yellow,
     child: Row(
       children: [
         Container(
-          margin: EdgeInsets.all(5.0),
-          padding: EdgeInsets.all(5.0),
-          child: Icon(Icons.perm_camera_mic),
+          color: Colors.orange,
+          margin: EdgeInsets.only(left: 50.0, right: 5.0),
+          child: Icon(
+            Icons.colorize_rounded,
+            color: Colors.black,
+            size: 30.0,
+          ),
         ),
-        Column(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Text(
-                "some text exdi",
-                textAlign: TextAlign.start,
-              ),
+        Container(
+          color: Colors.blue,
+          child: Text(
+            "Mes Activites",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 18.0,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Text("some other text lol"),
-            ),
-          ],
+          ),
         ),
       ],
     ),
   );
 
+  final listCard = Container(
+    color: Colors.green,
+    child: ListTile(
+      leading: Icon(Icons.ac_unit),
+      title: Text("something"),
+      subtitle: Text("Other something"),
+      dense: true,
+    ),
+  );
+
+  final boldText = TextStyle(
+      color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold);
+  final subText = TextStyle(
+      color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w300);
+
   @override
   Widget build(BuildContext context) {
+    //TODO: Una clase la cual reciba el Titulo y el Subtitulo
+    Widget rowIcon = Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      color: Colors.green,
+      child: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.only(right: 20.0),
+            child: Icon(Icons.ac_unit),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "awdaowidawd",
+                style: boldText,
+              ),
+              Text(
+                "awjdawdauwd",
+                style: subText,
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+
+    Widget rowText = Container(
+      color: Colors.orange,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            "awdaowidawd",
+            style: boldText,
+          ),
+          Text(
+            "awjdawdauwd",
+            style: subText,
+          )
+        ],
+      ),
+    );
+
+    Widget rowRow = Row(
+      children: [
+        rowIcon,
+        rowText,
+      ],
+    );
+
     Container example1 = Container(
-      width: 200.0,
-      color: Colors.white,
+      width: 400.0,
+      margin: EdgeInsets.all(10.0),
+      color: Colors.red,
       padding: EdgeInsets.all(5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                color: Colors.orange,
-                margin: EdgeInsets.only(left: 20.0, right: 5.0),
-                child: Icon(
-                  Icons.colorize_rounded,
-                  color: Colors.black,
-                ),
-              ),
-              Container(
-                color: Colors.blue,
-                child: Text("Mes Activites"),
-              ),
-            ],
-          ),
-          card1,
+          misActivities,
+          rowRow,
+          rowRow,
+          rowRow,
         ],
       ),
     );
+    //TODO: implementar la grafica
     Container example2 = Container(
-      width: 200.0,
-      color: Colors.white,
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      width: 400.0,
+      height: 200,
       padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        shape: BoxShape.rectangle,
+        color: Colors.grey,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 18.0,
-          ),
-          card1,
-        ],
-      ),
-    );
-    Container example3 = Container(
-      width: 200.0,
-      height: 200.0,
-      color: Colors.orange,
-      padding: EdgeInsets.all(10.0),
-      child: null,
-    );
-
-    Widget adjunt1 = Center(
-      child: Row(
-        children: [
-          example1,
+          Text("Holis"),
         ],
       ),
     );
@@ -93,7 +135,7 @@ class MyActivities extends StatelessWidget {
       direction: Axis.horizontal,
       alignment: WrapAlignment.center,
       runSpacing: 5.0, // separacion al momento de rodar
-      children: [adjunt1, example3],
+      children: [example1, example2],
     );
 
     return adjuntExamples;
