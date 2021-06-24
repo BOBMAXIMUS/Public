@@ -131,10 +131,18 @@ class HomePage extends StatelessWidget {
             ),
             alignment: Alignment.topCenter,
             child: Container(
-              //foto de prueba
-              color: Colors.blue,
-              width: 100.0,
-              height: 100.0,
+              width: 200.0,
+              height: 200.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                shape: BoxShape.rectangle,
+                // color: Colors.tealAccent.shade700,
+                image: DecorationImage(
+                  //FIXME:Arreglar las imagenes
+                  image: AssetImage("lib/assets/images/negative_do.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
         ],
@@ -191,13 +199,20 @@ class HomePage extends StatelessWidget {
           Container(
             alignment: Alignment.topCenter,
             child: Container(
+              width: 300.0,
+              height: 200.0,
               margin: EdgeInsets.only(
                 bottom: 10.0,
               ),
-              //foto de prueba
-              color: Colors.blue,
-              width: 100.0,
-              height: 100.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                shape: BoxShape.rectangle,
+                // color: Colors.tealAccent.shade700,
+                image: DecorationImage(
+                  image: AssetImage("lib/assets/images/afirmative_do.png"),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
           ),
         ],

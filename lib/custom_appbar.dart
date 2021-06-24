@@ -4,21 +4,45 @@ import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/home_content.dart';
 import 'package:pagina_web/progress_bar.dart';
 
-class CustomAppbar extends StatelessWidget {
+class CustomAppbar extends StatefulWidget {
+  @override
+  _CustomAppbarState createState() => _CustomAppbarState();
+}
+
+class _CustomAppbarState extends State<CustomAppbar> {
   final pinkTextStyle = TextStyle(
     color: Colors.pink.shade900,
     fontWeight: FontWeight.bold,
   );
 
+  int indexTap = 0;
+  final List<Widget> widgetsChildren = [
+    BookClass(),
+    HomePage(),
+    CorrectionStack(),
+  ];
+  void onTapTapped(int index) {
+    setState(() {
+      indexTap = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget aroLogo = Container(
       margin: EdgeInsets.only(right: 30.0),
-      child: Text(
-        "ARO",
-        style: TextStyle(
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold,
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            indexTap = 0;
+          });
+        },
+        child: Text(
+          "ARO",
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -27,9 +51,16 @@ class CustomAppbar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         children: [
-          Text(
-            "CLICK&CORRECT",
-            style: pinkTextStyle,
+          InkWell(
+            onTap: () {
+              setState(() {
+                indexTap = 1;
+              });
+            },
+            child: Text(
+              "CLICK&CORRECT",
+              style: pinkTextStyle,
+            ),
           ),
         ],
       ),
@@ -39,7 +70,17 @@ class CustomAppbar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         children: [
-          Text("MYCLASSNOW", style: pinkTextStyle),
+          InkWell(
+            onTap: () {
+              setState(() {
+                indexTap = 2;
+              });
+            },
+            child: Text(
+              "MYCLASSNOW",
+              style: pinkTextStyle,
+            ),
+          ),
         ],
       ),
     );
@@ -156,16 +197,9 @@ class CustomAppbar extends StatelessWidget {
       child: SafeArea(
         child: Stack(
           children: [
-            // CorrectionStack(),
             opacityContainer,
-//TODO: hacer un index para cambiar entre las diferentes pantallas
-            //HomePage(),
-
-            BookClass(),
-
+            widgetsChildren[indexTap],
             allAppbar,
-
-            //  test,
           ],
         ),
         minimum: EdgeInsets.all(25.0),

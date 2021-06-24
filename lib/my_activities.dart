@@ -132,7 +132,7 @@ class MyActivities extends StatelessWidget {
         ],
       ),
     );
-    //TODO: implementar la grafica
+
     Container example2 = Container(
       margin: EdgeInsets.symmetric(vertical: 10.0),
       width: 400.0,
@@ -141,7 +141,11 @@ class MyActivities extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         shape: BoxShape.rectangle,
-        color: Colors.tealAccent.shade700,
+        // color: Colors.tealAccent.shade700,
+        image: DecorationImage(
+          image: AssetImage("lib/assets/images/stats_board.png"),
+          fit: BoxFit.fill,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

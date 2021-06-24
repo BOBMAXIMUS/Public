@@ -256,7 +256,11 @@ class BookClass extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               shape: BoxShape.rectangle,
-              color: Colors.greenAccent,
+              // color: Colors.greenAccent,
+              image: DecorationImage(
+                image: AssetImage("lib/assets/images/dificulty_bar.png"),
+                fit: BoxFit.fill,
+              ),
             ),
             height: 25.0,
           ),
