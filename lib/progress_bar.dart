@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//FIXME: hacer que reciba parametros para el numero de containers, un icono y el texto
 class ProgressBar extends StatelessWidget {
   final Icon arrow = Icon(
     Icons.arrow_forward_ios_rounded,
