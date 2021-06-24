@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class MyActivities extends StatelessWidget {
   final misActivities = Container(
-    color: Colors.yellow,
+    // color: Colors.yellow,
     child: Row(
       children: [
         Container(
-          color: Colors.orange,
+          //   color: Colors.orange,
           margin: EdgeInsets.only(left: 50.0, right: 5.0),
           child: Icon(
             Icons.colorize_rounded,
@@ -15,7 +15,7 @@ class MyActivities extends StatelessWidget {
           ),
         ),
         Container(
-          color: Colors.blue,
+          //  color: Colors.blue,
           child: Text(
             "Mes Activites",
             style: TextStyle(
@@ -29,43 +29,37 @@ class MyActivities extends StatelessWidget {
     ),
   );
 
-  final listCard = Container(
-    color: Colors.green,
-    child: ListTile(
-      leading: Icon(Icons.ac_unit),
-      title: Text("something"),
-      subtitle: Text("Other something"),
-      dense: true,
-    ),
-  );
-
   final boldText = TextStyle(
-      color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold);
+    color: Colors.black,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+  );
   final subText = TextStyle(
       color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w300);
 
-  @override
-  Widget build(BuildContext context) {
-    //TODO: Una clase la cual reciba el Titulo y el Subtitulo
+  cardTileIcon(String title, String subTitle, IconData icon) {
     Widget rowIcon = Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      color: Colors.green,
+      margin: EdgeInsets.fromLTRB(10.0, 10.0, 30.0, 10.0),
+      // color: Colors.green,
+      width: 216.0,
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: 20.0),
-            child: Icon(Icons.ac_unit),
+            margin: EdgeInsets.only(right: 25.0),
+            child: Icon(icon, size: 40),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "awdaowidawd",
+                title,
                 style: boldText,
+                textAlign: TextAlign.center,
               ),
               Text(
-                "awjdawdauwd",
+                subTitle,
                 style: subText,
+                textAlign: TextAlign.center,
               )
             ],
           ),
@@ -73,42 +67,68 @@ class MyActivities extends StatelessWidget {
       ),
     );
 
+    return rowIcon;
+  }
+
+  cardTileText(String title, String subTitle) {
     Widget rowText = Container(
-      color: Colors.orange,
+      // color: Colors.orange,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            "awdaowidawd",
+            title,
             style: boldText,
+            textAlign: TextAlign.center,
           ),
           Text(
-            "awjdawdauwd",
+            subTitle,
             style: subText,
+            textAlign: TextAlign.center,
           )
         ],
       ),
     );
+    return rowText;
+  }
 
-    Widget rowRow = Row(
+  @override
+  Widget build(BuildContext context) {
+    //TODO: Una clase la cual reciba el Titulo y el Subtitulo
+
+    Widget rowRow1 = Row(
       children: [
-        rowIcon,
-        rowText,
+        cardTileIcon(
+            "Terminale S", "Subtitle text", Icons.person_outline_outlined),
+        cardTileText("Anglais", "Subtitle text"),
+      ],
+    );
+    Widget rowRow2 = Row(
+      children: [
+        cardTileIcon(
+            "8 cours particuliers", "Subtitle text", Icons.group_add_outlined),
+        cardTileText("2 heures", "Subtitle text"),
+      ],
+    );
+    Widget rowRow3 = Row(
+      children: [
+        cardTileIcon("6 corrections", "Subtitle text", Icons.search_rounded),
+        cardTileText("2 exercices", "Subtitle text"),
       ],
     );
 
     Container example1 = Container(
       width: 400.0,
       margin: EdgeInsets.all(10.0),
-      color: Colors.red,
+      // color: Colors.red,
       padding: EdgeInsets.all(5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           misActivities,
-          rowRow,
-          rowRow,
-          rowRow,
+          rowRow1,
+          rowRow2,
+          rowRow3,
         ],
       ),
     );
@@ -121,13 +141,11 @@ class MyActivities extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         shape: BoxShape.rectangle,
-        color: Colors.grey,
+        color: Colors.tealAccent.shade700,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Holis"),
-        ],
+        children: [],
       ),
     );
 
