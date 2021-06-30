@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pagina_web/book_class.dart';
 import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/home_content.dart';
-import 'package:pagina_web/progress_bar.dart';
 
 class CustomAppbar extends StatefulWidget {
   @override
@@ -30,7 +29,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
   @override
   Widget build(BuildContext context) {
     Widget aroLogo = Container(
-      margin: EdgeInsets.only(right: 30.0),
+      margin: EdgeInsets.only(top: 11.0),
       child: InkWell(
         onTap: () {
           setState(() {
@@ -48,94 +47,106 @@ class _CustomAppbarState extends State<CustomAppbar> {
     );
 
     Widget clickCorrect = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                indexTap = 1;
-              });
-            },
-            child: Text(
-              "CLICK&CORRECT",
-              style: pinkTextStyle,
-            ),
-          ),
-        ],
+      margin: EdgeInsets.only(top: 20.0),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            indexTap = 1;
+          });
+        },
+        child: Text(
+          "CLICK&CORRECT",
+          style: pinkTextStyle,
+        ),
       ),
     );
 
     Widget myClassNow = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: EdgeInsets.only(top: 20.0),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            indexTap = 2;
+          });
+        },
+        child: Text(
+          "MYCLASSNOW",
+          style: pinkTextStyle,
+        ),
+      ),
+    );
+
+    Widget avis = Container(
+      margin: EdgeInsets.only(top: 20.0),
+      child: Text("AVIS", style: pinkTextStyle),
+    );
+
+    Widget search = Container(
+      margin: EdgeInsets.only(top: 20.0),
+      child: Icon(
+        Icons.search,
+        color: Colors.pink.shade900,
+      ),
+    );
+
+    Widget comments = Container(
+      height: 50.0,
+      width: 50.0,
+      margin: EdgeInsets.only(top: 5.0),
+      child: Image(
+        image: AssetImage("lib/assets/images/messages.jpg"),
+        fit: BoxFit.fill,
+        color: Colors.pink.shade900,
+      ),
+    );
+
+    Widget settings = Container(
+      height: 50.0,
+      width: 50.0,
+      margin: EdgeInsets.only(top: 5.0),
+      child: Image(
+        image: AssetImage("lib/assets/images/settings.jpg"),
+        fit: BoxFit.fill,
+        color: Colors.pink.shade900,
+      ),
+    );
+
+    Widget underLine = Container(
+      margin: EdgeInsets.only(top: 18.0),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                indexTap = 2;
-              });
-            },
-            child: Text(
-              "MYCLASSNOW",
-              style: pinkTextStyle,
+          Expanded(
+            flex: 2,
+            child: SizedBox(),
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              color: Colors.pink.shade900,
+              height: 1.5,
             ),
+          ),
+          Expanded(
+            flex: 2,
+            child: SizedBox(),
           ),
         ],
       ),
     );
 
-    Widget avis = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          Text("AVIS", style: pinkTextStyle),
-        ],
-      ),
-    );
-
-    Widget search = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          Icon(Icons.search),
-        ],
-      ),
-    );
-
-    Widget comments = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          Icon(Icons.comment),
-        ],
-      ),
-    );
-
-    Widget settings = Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          Icon(Icons.settings),
-        ],
-      ),
-    );
-
-    Container allBanner = Container(
-      padding: EdgeInsets.only(
-        top: 30.0,
-        bottom: 28.0,
-      ),
-      child: Expanded(
-        //FIXME:, El flexible esta mal implementado
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    Widget allBanner = SizedBox(
+      //   height: 25.0,
+      child: Container(
+        transformAlignment: Alignment.center,
+        //   color: Colors.tealAccent,
+        margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+        child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          spacing: 15.0, //separacion segun el "direction" ,horizontal
+          runSpacing: 10.0, // separacion al momento de rodar
           children: [
-            Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
-            //TODO: Hacer un expanded  para cuando cambien de tamaño la pantalla?
             aroLogo,
             clickCorrect,
             myClassNow,
@@ -143,41 +154,16 @@ class _CustomAppbarState extends State<CustomAppbar> {
             search,
             comments,
             settings,
-            Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
           ],
         ),
       ),
     );
-
-    Row underLine = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 2,
-          child: SizedBox(),
-        ),
-        Expanded(
-          flex: 4,
-          child: Container(
-            color: Colors.pink.shade900,
-            height: 1.5,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: SizedBox(),
-        ),
-      ],
+    Widget allAppbar = Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [allBanner, underLine],
+      ),
     );
-
-    Column allAppbar = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [allBanner, underLine],
-    );
-
     Widget opacityContainer = Opacity(
       opacity: 0.9,
       child: Expanded(
@@ -202,7 +188,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
             allAppbar,
           ],
         ),
-        minimum: EdgeInsets.all(25.0),
+        minimum: EdgeInsets.all(15.0),
       ),
     );
 

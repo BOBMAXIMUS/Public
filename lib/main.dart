@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/book_class.dart';
-import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/custom_appbar.dart';
-import 'package:pagina_web/home_content.dart';
 
 void main() => runApp(MyApp());
 

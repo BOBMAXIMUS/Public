@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//FIXME: hacer que reciba parametros para el numero de containers, un icono y el texto
 class ProgressBar extends StatelessWidget {
   final Icon arrow = Icon(
     Icons.arrow_forward_ios_rounded,
@@ -17,93 +16,52 @@ class ProgressBar extends StatelessWidget {
   final SizedBox littleBox = SizedBox(
     width: 8.0,
   );
+
+  myContainer(IconData icon, String text) {
+    Widget banner = Container(
+      width: 125.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        shape: BoxShape.rectangle,
+        color: Colors.white,
+      ),
+      padding: myPadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(icon, color: Colors.black, size: 34.0),
+          littleBox,
+          Text(text)
+        ],
+      ),
+    );
+    return banner;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget uploadBaner = Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        shape: BoxShape.rectangle,
-        color: Colors.green.shade600,
-      ),
-      padding: myPadding,
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
-      //FIXME: El flexible esta mal implementado
-      child: Flexible(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(Icons.download_outlined, color: Colors.white, size: 34.0),
-            littleBox,
-            Text("Upload")
-          ],
-        ),
-      ),
-    );
-
-    Widget checkoutBaner = Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        shape: BoxShape.rectangle,
-        color: Colors.white,
-      ),
-      padding: myPadding,
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
-      //FIXME: El flexible esta mal implementado
-      child: Flexible(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(Icons.credit_card_outlined, color: Colors.black, size: 34.0),
-            littleBox,
-            Text("Checkout")
-          ],
-        ),
-      ),
-    );
-
-    Widget resultsBaner = Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        shape: BoxShape.rectangle,
-        color: Colors.white,
-      ),
-      padding: myPadding,
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
-      //FIXME: El flexible esta mal implementado
-      child: Flexible(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(Icons.fact_check_outlined, color: Colors.black, size: 34.0),
-            littleBox,
-            Text("Results!")
-          ],
-        ),
-      ),
-    );
-
-    Container allBanner = Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+    Widget allBanner = Container(
+      margin: EdgeInsets.only(top: 10.0),
+      child: Wrap(
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.center,
+        spacing: 20.0, //separacion segun el "direction" ,horizontal
+        runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          uploadBaner,
+          myContainer(Icons.download_outlined, "Upload"),
           arrow,
-          checkoutBaner,
+          myContainer(Icons.credit_card_outlined, "Checkout"),
           arrow,
-          resultsBaner,
+          myContainer(Icons.fact_check_outlined, "Results!")
         ],
       ),
     );
 
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(
-            top: 10.0,
-          ),
-          child: allBanner,
-        ),
-      ],
+    return Container(
+      margin: EdgeInsets.only(
+        top: 10.0,
+      ),
+      child: allBanner,
     );
   }
 }

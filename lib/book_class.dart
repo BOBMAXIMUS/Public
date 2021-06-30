@@ -26,16 +26,17 @@ class BookClass extends StatelessWidget {
               bottom: 5.0,
             ),
             child: Text(
-              "Book a class",
+              "Book a class Now",
               style: myStyle,
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-            child: Icon(
-              Icons.photo_camera_front,
-              size: 100.0,
-              color: Colors.white,
+            height: 150.0,
+            width: 250.0,
+            margin: EdgeInsets.all(5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/book_now.jpg"),
+              fit: BoxFit.contain,
             ),
           ),
           Container(
@@ -74,15 +75,12 @@ class BookClass extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(
-              top: 10.0,
-              bottom: 10.0,
-              right: 20.0,
-            ),
-            child: Icon(
-              Icons.calendar_today_outlined,
-              size: 100.0,
-              color: Colors.white,
+            height: 150.0,
+            width: 250.0,
+            margin: EdgeInsets.all(5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/book_later.jpg"),
+              fit: BoxFit.contain,
             ),
           ),
           Container(
@@ -121,15 +119,12 @@ class BookClass extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(
-              top: 10.0,
-              bottom: 10.0,
-              right: 20.0,
-            ),
-            child: Icon(
-              Icons.book_outlined,
-              size: 100.0,
-              color: Colors.white,
+            height: 150.0,
+            width: 250.0,
+            margin: EdgeInsets.all(5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/MathsInMotion.jpg"),
+              fit: BoxFit.contain,
             ),
           ),
           Container(
@@ -168,11 +163,12 @@ class BookClass extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-            child: Icon(
-              Icons.pageview_outlined,
-              size: 100.0,
-              color: Colors.white,
+            height: 150.0,
+            width: 250.0,
+            margin: EdgeInsets.all(5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/request_correction.jpg"),
+              fit: BoxFit.contain,
             ),
           ),
           Container(
@@ -197,19 +193,19 @@ class BookClass extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child: SizedBox(),
           ),
           Expanded(
             child: bookClass,
-            flex: 6,
+            flex: 7,
           ),
           Expanded(
             child: planLater,
-            flex: 4,
+            flex: 6,
           ),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: SizedBox(),
           ),
         ],
@@ -219,19 +215,19 @@ class BookClass extends StatelessWidget {
     Widget secondRow = Row(
       children: [
         Expanded(
-          flex: 3,
+          flex: 2,
           child: SizedBox(),
         ),
         Expanded(
           child: reflexSheet,
-          flex: 4,
-        ),
-        Expanded(
-          child: clicknCorrect,
           flex: 6,
         ),
         Expanded(
-          flex: 3,
+          child: clicknCorrect,
+          flex: 7,
+        ),
+        Expanded(
+          flex: 2,
           child: SizedBox(),
         ),
       ],
@@ -252,17 +248,13 @@ class BookClass extends StatelessWidget {
             ),
           ),
           Container(
+            height: 50.0,
+            width: 450.0,
             margin: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              shape: BoxShape.rectangle,
-              // color: Colors.greenAccent,
-              image: DecorationImage(
-                image: AssetImage("lib/assets/images/dificulty_bar.png"),
-                fit: BoxFit.fill,
-              ),
+            child: Image(
+              image: AssetImage("lib/assets/images/dificulty_bar.jpg"),
+              fit: BoxFit.fitWidth,
             ),
-            height: 25.0,
           ),
         ],
       ),

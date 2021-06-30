@@ -39,8 +39,8 @@ class MyActivities extends StatelessWidget {
 
   cardTileIcon(String title, String subTitle, IconData icon) {
     Widget rowIcon = Container(
-      margin: EdgeInsets.fromLTRB(10.0, 10.0, 30.0, 10.0),
-      // color: Colors.green,
+      margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+      //color: Colors.green,
       width: 216.0,
       child: Row(
         children: [
@@ -94,8 +94,6 @@ class MyActivities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Una clase la cual reciba el Titulo y el Subtitulo
-
     Widget rowRow1 = Row(
       children: [
         cardTileIcon(
@@ -118,10 +116,9 @@ class MyActivities extends StatelessWidget {
     );
 
     Container example1 = Container(
-      width: 400.0,
-      margin: EdgeInsets.all(10.0),
-      // color: Colors.red,
+      width: 350.0,
       padding: EdgeInsets.all(5.0),
+      margin: EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

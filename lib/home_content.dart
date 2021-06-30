@@ -138,7 +138,6 @@ class HomePage extends StatelessWidget {
                 shape: BoxShape.rectangle,
                 // color: Colors.tealAccent.shade700,
                 image: DecorationImage(
-                  //FIXME:Arreglar las imagenes
                   image: AssetImage("lib/assets/images/negative_do.jpeg"),
                   fit: BoxFit.cover,
                 ),

@@ -29,7 +29,6 @@ class CorrectionStack extends StatelessWidget {
         color: Colors.white,
       ),
       padding: myPadding,
-      //FIXME: implementar este row con el otro banner que tengo
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -40,6 +39,56 @@ class CorrectionStack extends StatelessWidget {
       ),
     );
     return banner;
+  }
+
+  myDataRow(Color color, String correctionID, String available, IconData urgent,
+      int level, IconData view, IconData correct) {
+    DataRow myDataRow = DataRow(
+      color: MaterialStateColor.resolveWith((states) => color),
+      cells: [
+        DataCell(
+          Container(
+            width: 24.0,
+            height: 24.0,
+          ),
+        ),
+        DataCell(
+          Container(
+            width: 24.0,
+            height: 24.0,
+          ),
+        ),
+        DataCell(
+          Text(correctionID),
+        ),
+        DataCell(
+          Text(available),
+        ),
+        DataCell(
+          Icon(
+            urgent,
+            color: Colors.red,
+          ),
+        ),
+        DataCell(
+          Text(level.toString() + "th"),
+        ),
+        DataCell(
+          Container(
+            width: 24.0,
+            height: 24.0,
+          ),
+        ),
+        DataCell(
+          Icon(view),
+        ),
+        DataCell(
+          Icon(correct),
+        ),
+      ],
+    );
+
+    return myDataRow;
   }
 
   @override
@@ -74,7 +123,6 @@ class CorrectionStack extends StatelessWidget {
       ),
     );
 
-//FIXME: Crear clase para recibir los parametros de la tabla, da sida esta pls.
     Widget dataTable = Container(
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -119,229 +167,22 @@ class CorrectionStack extends StatelessWidget {
             ),
           ],
           rows: [
-            DataRow(
-              color: MaterialStateColor.resolveWith(
-                  (states) => Colors.grey.shade300),
-              cells: [
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Text("CC0001"),
-                ),
-                DataCell(
-                  Text("12h 10mn"),
-                ),
-                DataCell(
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.red,
-                  ),
-                ),
-                DataCell(
-                  Text("12th"),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Icon(Icons.search),
-                ),
-                DataCell(
-                  Icon(Icons.tag),
-                ),
-              ],
-            ),
-            DataRow(
-              color: MaterialStateColor.resolveWith((states) => Colors.white),
-              cells: [
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Text("CC0001"),
-                ),
-                DataCell(
-                  Text("12h 10mn"),
-                ),
-                DataCell(
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.red,
-                  ),
-                ),
-                DataCell(
-                  Text("12th"),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Icon(Icons.search),
-                ),
-                DataCell(
-                  Icon(Icons.tag),
-                ),
-              ],
-            ),
-            DataRow(
-              color: MaterialStateColor.resolveWith(
-                  (states) => Colors.grey.shade300),
-              cells: [
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Text("CC0001"),
-                ),
-                DataCell(
-                  Text("12h 10mn"),
-                ),
-                DataCell(
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.red,
-                  ),
-                ),
-                DataCell(
-                  Text("12th"),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Icon(Icons.search),
-                ),
-                DataCell(
-                  Icon(Icons.tag),
-                ),
-              ],
-            ),
-            DataRow(
-              color: MaterialStateColor.resolveWith((states) => Colors.white),
-              cells: [
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Text("CC0001"),
-                ),
-                DataCell(
-                  Text("12h 10mn"),
-                ),
-                DataCell(
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.red,
-                  ),
-                ),
-                DataCell(
-                  Text("12th"),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Icon(Icons.search),
-                ),
-                DataCell(
-                  Icon(Icons.tag),
-                ),
-              ],
-            ),
-            DataRow(
-              color: MaterialStateColor.resolveWith(
-                  (states) => Colors.grey.shade300),
-              cells: [
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Text("CC0001"),
-                ),
-                DataCell(
-                  Text("12h 10mn"),
-                ),
-                DataCell(
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.red,
-                  ),
-                ),
-                DataCell(
-                  Text("12th"),
-                ),
-                DataCell(
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                ),
-                DataCell(
-                  Icon(Icons.search),
-                ),
-                DataCell(
-                  Icon(Icons.tag),
-                ),
-              ],
-            ),
+            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                Icons.info_outline, 12, Icons.search, Icons.tag),
+            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
+                12, Icons.search, Icons.tag),
+            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                Icons.info_outline, 12, Icons.search, Icons.tag),
+            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
+                12, Icons.search, Icons.tag),
+            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                Icons.info_outline, 12, Icons.search, Icons.tag),
+            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
+                12, Icons.search, Icons.tag),
+            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                Icons.info_outline, 12, Icons.search, Icons.tag),
+            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
+                12, Icons.search, Icons.tag),
           ],
         ),
       ),
