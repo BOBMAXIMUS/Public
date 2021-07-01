@@ -20,11 +20,11 @@ class CorrectionStack extends StatelessWidget {
     width: 8.0,
   );
 
-  myContainer(IconData icon, String text) {
+  myContainer(String asset, String text) {
     Widget banner = Container(
-      width: 120.0,
+      width: 140.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -32,7 +32,15 @@ class CorrectionStack extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.black, size: 34.0),
+          Container(
+            height: 50.0,
+            width: 50.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage(asset),
+              fit: BoxFit.fill,
+            ),
+          ),
           littleBox,
           Text(text)
         ],
@@ -112,13 +120,13 @@ class CorrectionStack extends StatelessWidget {
         spacing: 20.0, //separacion segun el "direction" ,horizontal
         runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          myContainer(Icons.download_outlined, "View List"),
+          myContainer("lib/assets/images/uploadFileBlack.jpg", "View List"),
           arrow,
-          myContainer(Icons.credit_card, "Estimate"),
+          myContainer("lib/assets/images/checkOut.jpg", "Estimate"),
           arrow,
-          myContainer(Icons.fact_check_outlined, "Correct"),
+          myContainer("lib/assets/images/resultBlack.jpg", "Correct"),
           arrow,
-          myContainer(Icons.credit_card, "Earnings")
+          myContainer("lib/assets/images/checkOut.jpg", "Earnings")
         ],
       ),
     );

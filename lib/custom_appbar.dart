@@ -29,21 +29,22 @@ class _CustomAppbarState extends State<CustomAppbar> {
   @override
   Widget build(BuildContext context) {
     Widget aroLogo = Container(
-      margin: EdgeInsets.only(top: 11.0),
+      margin: EdgeInsets.only(top: 0.0),
       child: InkWell(
-        onTap: () {
-          setState(() {
-            indexTap = 0;
-          });
-        },
-        child: Text(
-          "ARO",
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+          onTap: () {
+            setState(() {
+              indexTap = 0;
+            });
+          },
+          child: Container(
+            height: 50.0,
+            width: 70.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/aroLogo.jpg"),
+              fit: BoxFit.fitWidth,
+            ),
+          )),
     );
 
     Widget clickCorrect = Container(
@@ -144,8 +145,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
         child: Wrap(
           direction: Axis.horizontal,
           alignment: WrapAlignment.start,
-          spacing: 15.0, //separacion segun el "direction" ,horizontal
-          runSpacing: 10.0, // separacion al momento de rodar
+          spacing: 5.0, //separacion segun el "direction" ,horizontal
           children: [
             aroLogo,
             clickCorrect,
@@ -165,7 +165,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       ),
     );
     Widget opacityContainer = Opacity(
-      opacity: 0.9,
+      opacity: 0.8,
       child: Expanded(
         child: Container(
           color: Colors.white,
@@ -188,7 +188,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
             allAppbar,
           ],
         ),
-        minimum: EdgeInsets.all(15.0),
+        minimum: EdgeInsets.all(25.0),
       ),
     );
 

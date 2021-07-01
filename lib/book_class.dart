@@ -10,11 +10,11 @@ class BookClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget bookClass = Container(
-      height: 250.0,
+      height: 270.0,
       margin: EdgeInsets.all(5.0),
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.green.shade400,
       ),
@@ -54,11 +54,11 @@ class BookClass extends StatelessWidget {
       ),
     );
     Container planLater = Container(
-      height: 250.0,
+      height: 270.0,
       margin: EdgeInsets.all(5.0),
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.blue.shade800,
       ),
@@ -79,7 +79,7 @@ class BookClass extends StatelessWidget {
             width: 250.0,
             margin: EdgeInsets.all(5.0),
             child: Image(
-              image: AssetImage("lib/assets/images/book_later.jpg"),
+              image: AssetImage("lib/assets/images/PlanAClassForLater.jpg"),
               fit: BoxFit.contain,
             ),
           ),
@@ -98,11 +98,11 @@ class BookClass extends StatelessWidget {
       ),
     );
     Container reflexSheet = Container(
-      height: 250.0,
+      height: 270.0,
       margin: EdgeInsets.all(5.0),
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.indigo.shade900,
       ),
@@ -142,11 +142,11 @@ class BookClass extends StatelessWidget {
       ),
     );
     Container clicknCorrect = Container(
-      height: 250.0,
+      height: 270.0,
       margin: EdgeInsets.all(5.0),
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.pink.shade800,
       ),

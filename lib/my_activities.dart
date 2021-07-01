@@ -6,13 +6,12 @@ class MyActivities extends StatelessWidget {
     child: Row(
       children: [
         Container(
-          //   color: Colors.orange,
-          margin: EdgeInsets.only(left: 50.0, right: 5.0),
-          child: Icon(
-            Icons.colorize_rounded,
-            color: Colors.black,
-            size: 30.0,
-          ),
+          height: 40.0,
+          width: 40.0,
+          margin: EdgeInsets.only(top: 5.0),
+          child: Image(
+              image: AssetImage("lib/assets/images/EditInfo.jpg"),
+              fit: BoxFit.cover),
         ),
         Container(
           //  color: Colors.blue,
@@ -37,16 +36,22 @@ class MyActivities extends StatelessWidget {
   final subText = TextStyle(
       color: Colors.black54, fontSize: 13.0, fontWeight: FontWeight.w300);
 
-  cardTileIcon(String title, String subTitle, IconData icon) {
+  cardTileIcon(String title, String subTitle, String asset, Color color) {
     Widget rowIcon = Container(
       margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-      //color: Colors.green,
-      width: 216.0,
+      // color: Colors.green,
+      width: 185.0,
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: 25.0),
-            child: Icon(icon, size: 40),
+            height: 45.0,
+            width: 45.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage(asset),
+              fit: BoxFit.cover,
+              color: color,
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -96,29 +101,30 @@ class MyActivities extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget rowRow1 = Row(
       children: [
-        cardTileIcon(
-            "Terminale S", "Subtitle text", Icons.person_outline_outlined),
+        cardTileIcon("Terminale S", "Subtitle text",
+            "lib/assets/images/Profile.jpg", Colors.black),
         cardTileText("Anglais", "Subtitle text"),
       ],
     );
     Widget rowRow2 = Row(
       children: [
-        cardTileIcon(
-            "8 cours particuliers", "Subtitle text", Icons.group_add_outlined),
+        cardTileIcon("8 cours particuliers", "Subtitle text",
+            "lib/assets/images/MCNStats.jpg", Colors.black),
         cardTileText("2 heures", "Subtitle text"),
       ],
     );
     Widget rowRow3 = Row(
       children: [
-        cardTileIcon("6 corrections", "Subtitle text", Icons.search_rounded),
+        cardTileIcon("6 corrections", "Subtitle text",
+            "lib/assets/images/CNCSearch.jpg", null),
         cardTileText("2 exercices", "Subtitle text"),
       ],
     );
 
     Container example1 = Container(
-      width: 350.0,
+      width: 400.0,
       padding: EdgeInsets.all(5.0),
-      margin: EdgeInsets.all(10.0),
+      margin: EdgeInsets.all(5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -136,7 +142,7 @@ class MyActivities extends StatelessWidget {
       height: 200,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         // color: Colors.tealAccent.shade700,
         image: DecorationImage(

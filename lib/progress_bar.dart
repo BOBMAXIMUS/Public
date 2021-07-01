@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ProgressBar extends StatelessWidget {
-  final Icon arrow = Icon(
-    Icons.arrow_forward_ios_rounded,
-    color: Colors.green.shade400,
+  final Widget arrow = Container(
+    margin: EdgeInsets.only(top: 15.0),
+    child: Icon(
+      Icons.arrow_forward_ios_rounded,
+      color: Colors.green.shade400,
+      size: 30.0,
+    ),
   );
 
   final EdgeInsets myPadding = EdgeInsets.only(
@@ -17,11 +21,11 @@ class ProgressBar extends StatelessWidget {
     width: 8.0,
   );
 
-  myContainer(IconData icon, String text) {
+  myContainer(String asset, String text) {
     Widget banner = Container(
-      width: 125.0,
+      width: 135.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -29,8 +33,15 @@ class ProgressBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.black, size: 34.0),
-          littleBox,
+          Container(
+            height: 50.0,
+            width: 50.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage(asset),
+              fit: BoxFit.fill,
+            ),
+          ),
           Text(text)
         ],
       ),
@@ -48,11 +59,11 @@ class ProgressBar extends StatelessWidget {
         spacing: 20.0, //separacion segun el "direction" ,horizontal
         runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          myContainer(Icons.download_outlined, "Upload"),
+          myContainer("lib/assets/images/uploadFileBlack.jpg", "Upload"),
           arrow,
-          myContainer(Icons.credit_card_outlined, "Checkout"),
+          myContainer("lib/assets/images/checkOut.jpg", "Checkout"),
           arrow,
-          myContainer(Icons.fact_check_outlined, "Results!")
+          myContainer("lib/assets/images/resultBlack.jpg", "Results!"),
         ],
       ),
     );

@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
 
     Widget uploadFile = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
         color: Colors.indigo.shade900,
       ),
@@ -47,10 +47,14 @@ class HomePage extends StatelessWidget {
                 fontSize: 12.0,
                 color: Colors.white),
           ),
-          Icon(
-            Icons.upload_file,
-            size: 60.0,
-            color: Colors.white,
+          Container(
+            height: 100.0,
+            width: 100.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/uploadPage.jpg"),
+              fit: BoxFit.fill,
+            ),
           ),
         ],
       ),
@@ -134,7 +138,7 @@ class HomePage extends StatelessWidget {
               width: 200.0,
               height: 200.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(7),
                 shape: BoxShape.rectangle,
                 // color: Colors.tealAccent.shade700,
                 image: DecorationImage(
@@ -204,7 +208,7 @@ class HomePage extends StatelessWidget {
                 bottom: 10.0,
               ),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(7),
                 shape: BoxShape.rectangle,
                 // color: Colors.tealAccent.shade700,
                 image: DecorationImage(
