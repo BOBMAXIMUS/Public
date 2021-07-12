@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pagina_web/book_class.dart';
 import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/home_content.dart';
+import 'package:pagina_web/pages/teacher_view/main_teacher_view.dart';
+import 'package:pagina_web/pages/teacher_view/teacher_book_class.dart';
 
 class CustomAppbar extends StatefulWidget {
   @override
@@ -184,7 +186,9 @@ class _CustomAppbarState extends State<CustomAppbar> {
         child: Stack(
           children: [
             opacityContainer,
-            widgetsChildren[indexTap],
+            // widgetsChildren[indexTap],
+            // TeacherMainPage(),
+            TeacherBookClass(),
             allAppbar,
           ],
         ),

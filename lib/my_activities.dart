@@ -40,7 +40,7 @@ class MyActivities extends StatelessWidget {
     Widget rowIcon = Container(
       margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
       // color: Colors.green,
-      width: 185.0,
+      width: 198.0,
       child: Row(
         children: [
           Container(
