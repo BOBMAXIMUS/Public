@@ -4,8 +4,7 @@ import 'package:pagina_web/widgets/calendar_widget.dart';
 class TeacherBookClass extends StatelessWidget {
   Widget contentText = Container(
     height: 600.0,
-    width: 200.0,
-    color: Colors.teal,
+    width: 300.0,
     margin: EdgeInsets.only(top: 20.0, right: 15.0, left: 5.0),
     padding: EdgeInsets.all(5.0),
     child: Column(
@@ -27,25 +26,35 @@ class TeacherBookClass extends StatelessWidget {
         ),
         SizedBox(height: 250.0),
         Container(
-          width: 130.0,
-          color: Colors.pink.shade600,
+          height: 20.0,
+          width: 180.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            shape: BoxShape.rectangle,
+            color: Colors.pink.shade600,
+          ),
           margin: EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () {
               //TODO: Insert here some func xd
             },
-            child: Text("Ajouter plus d'horarisomething xd"),
+            child: Text("Ajouter plus d'horaires"),
           ),
         ),
         Container(
-          width: 130.0,
-          color: Colors.pink.shade600,
+          height: 20.0,
+          width: 180.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            shape: BoxShape.rectangle,
+            color: Colors.pink.shade600,
+          ),
           margin: EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () {
               //TODO: Insert here some func xd
             },
-            child: Text("SOME INPUT TEXT"),
+            child: Text("Sauvergarder horaires"),
           ),
         ),
       ],

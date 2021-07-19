@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'book_class.dart';
 import 'correction_stack.dart';
-import 'home_content.dart';
+import 'pages/student_view/student_click_correct_upload.dart';
 
 class AppBarMobileMode extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _AppBarMobileModeState extends State<AppBarMobileMode> {
 
   final List<Widget> widgetsChildren = [
     BookClass(),
-    HomePage(),
+    StudentClickCorrectUploadFile(),
     CorrectionStack(),
   ];
 

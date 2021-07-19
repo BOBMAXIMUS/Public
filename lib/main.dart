@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/custom_appbar_small.dart';
 import 'package:pagina_web/custom_appbar_wide.dart';
+import 'package:pagina_web/pages/teacher_view/main_teacher_view.dart';
+
+import 'pages/teacher_view/teacher_book_class.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +21,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Roboto"),
       home: screenValidation(),
+      routes: {
+        "/teacherBookClass": (context) => TeacherBookClass(),
+        "/teacherCorrectionStack": (context) => CorrectionStack(),
+      },
     );
   }
 
@@ -28,7 +36,7 @@ class _MyAppState extends State<MyApp> {
           if (constraints.maxHeight < 500) {
             return AppBarMobileMode();
           } else {
-            return CustomAppbar();
+            return CustomAppbar(0);
           }
         },
       ),

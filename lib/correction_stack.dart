@@ -99,6 +99,8 @@ class CorrectionStack extends StatelessWidget {
     return myDataRow;
   }
 
+  //TODO: Se crean otro controles para diferentes inputs?
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Widget stackText = Container(
@@ -132,70 +134,93 @@ class CorrectionStack extends StatelessWidget {
     );
 
     Widget dataTable = Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 50.0),
-      margin: EdgeInsets.only(top: 25.0, bottom: 10.0),
-      // color: Colors.indigo.shade300,
-      width: double.infinity,
-      // height: 200.0,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          columns: [
-            DataColumn(
-              label: Container(
-                child: Icon(Icons.search),
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 50.0),
+        margin: EdgeInsets.only(top: 25.0, bottom: 10.0),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(right: 20.0, top: 2.0, bottom: 2.0),
+              width: 115.0,
+              height: 13.0,
+              child: Row(
+                children: [
+                  Container(
+                    child: Icon(
+                      Icons.search,
+                      size: 12.0,
+                    ),
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 20.0,
+                    child: TextField(
+                        controller: myController, textAlign: TextAlign.center),
+                  ),
+                ],
               ),
             ),
-            DataColumn(
-              label: Container(
-                child: Icon(Icons.refresh),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                dataRowHeight: 30,
+                columnSpacing: 30,
+                columns: [
+                  DataColumn(
+                    label: Container(
+                      child: Icon(Icons.search),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Container(
+                      child: Icon(Icons.refresh),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text("Correction ID"),
+                  ),
+                  DataColumn(
+                    label: Text("Available since"),
+                  ),
+                  DataColumn(
+                    label: Text("Urgent!"),
+                  ),
+                  DataColumn(
+                    label: Text("Level"),
+                  ),
+                  DataColumn(
+                    label: Text("Invalid flag"),
+                  ),
+                  DataColumn(
+                    label: Text("View"),
+                  ),
+                  DataColumn(
+                    label: Text("Correct"),
+                  ),
+                ],
+                rows: [
+                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.white, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.white, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.white, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(Colors.white, "CC0001", "12h 10mn",
+                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                ],
               ),
             ),
-            DataColumn(
-              label: Text("Correction ID"),
-            ),
-            DataColumn(
-              label: Text("Available since"),
-            ),
-            DataColumn(
-              label: Text("Urgent!"),
-            ),
-            DataColumn(
-              label: Text("Level"),
-            ),
-            DataColumn(
-              label: Text("Invalid flag"),
-            ),
-            DataColumn(
-              label: Text("View"),
-            ),
-            DataColumn(
-              label: Text("Correct"),
-            ),
           ],
-          rows: [
-            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                Icons.info_outline, 12, Icons.search, Icons.tag),
-            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
-                12, Icons.search, Icons.tag),
-            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                Icons.info_outline, 12, Icons.search, Icons.tag),
-            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
-                12, Icons.search, Icons.tag),
-            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                Icons.info_outline, 12, Icons.search, Icons.tag),
-            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
-                12, Icons.search, Icons.tag),
-            myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                Icons.info_outline, 12, Icons.search, Icons.tag),
-            myDataRow(Colors.white, "CC0001", "12h 10mn", Icons.info_outline,
-                12, Icons.search, Icons.tag),
-          ],
-        ),
-      ),
-    );
-
+        ));
     return Padding(
       padding: const EdgeInsets.only(top: 89.0),
       child: ListView(

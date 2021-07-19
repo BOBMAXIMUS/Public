@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/correction_stack.dart';
-import 'package:pagina_web/my_activities.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_book_class.dart';
 
-class TeacherMainPage extends StatefulWidget {
+import '../../my_activities.dart';
+
+class StudentMainPage extends StatefulWidget {
   @override
-  _TeacherMainPageState createState() => _TeacherMainPageState();
+  _StudentMainPageState createState() => _StudentMainPageState();
 }
 
-class _TeacherMainPageState extends State<TeacherMainPage> {
+class _StudentMainPageState extends State<StudentMainPage> {
   final TextStyle myStyle = TextStyle(
     fontWeight: FontWeight.bold,
     color: Colors.white,
@@ -155,6 +154,51 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
         ),
       ),
     );
+    Widget mathsInMotion = Container(
+      height: 80.0,
+      width: 80.0,
+      margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(7),
+        shape: BoxShape.rectangle,
+        //    color: Colors.teal,
+      ),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            currentColor = Colors.indigo.shade900;
+            currentContent = OtherTwo("lib/assets/images/MathsInMotion.jpg",
+                "Revise tes cjapitres de maths avece des videos", 1);
+          });
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Image(
+                  image: AssetImage("lib/assets/images/MathsInMotion.jpg"),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: EdgeInsets.only(
+                  bottom: 5.0,
+                ),
+                child: Text(
+                  "Maths in\nMotion",
+                  style: myStyle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
 
     Widget rowForMain = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -162,6 +206,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
         Expanded(flex: 2, child: bookClass),
         Expanded(flex: 2, child: planLater),
         Expanded(flex: 2, child: clicknCorrect),
+        Expanded(flex: 2, child: mathsInMotion),
       ],
     );
     Widget underLine = Container(
@@ -211,61 +256,41 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       ),
       child: Center(child: allAppbar),
     );
-    Widget rigthContainer = Container(
-      margin: EdgeInsets.only(top: 23.0, left: 15.0),
-      padding: EdgeInsets.all(5.0),
-      // color: Colors.red,
-      child: Center(
+    Widget dificultyBar = Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      child: InkWell(
+        onTap: () {},
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                "STUDEN's FEED",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 12.0,
-                ),
+              padding: EdgeInsets.only(left: 130.0),
+              alignment: Alignment.topLeft,
+              child: Row(
+                children: [
+                  Icon(Icons.umbrella),
+                  Text(
+                    "Niveau de Fidelite",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 18.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
             Container(
-              //  height: 300.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                shape: BoxShape.rectangle,
-                color: Colors.grey,
+              height: 50.0,
+              width: double.infinity,
+              margin: EdgeInsets.all(5.0),
+              child: Image(
+                image: AssetImage("lib/assets/images/dificulty_bar.jpg"),
+                fit: BoxFit.cover,
               ),
-              child: MyDataTable(),
             ),
           ],
         ),
-      ),
-    );
-    Widget dificultyBar = Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        children: [
-          Container(
-            child: Text(
-              "Niveau de Fidelite",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 18.0,
-              ),
-            ),
-          ),
-          Container(
-            height: 50.0,
-            width: 450.0,
-            margin: EdgeInsets.all(5.0),
-            child: Image(
-              image: AssetImage("lib/assets/images/dificulty_bar.jpg"),
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-        ],
       ),
     );
 
@@ -273,18 +298,12 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       margin: EdgeInsets.only(bottom: 20.0),
       child: Row(
         children: [
-          Expanded(
-            flex: 2,
-            child: SizedBox(),
-          ),
+          SizedBox(width: 130.0),
           Expanded(
             child: dificultyBar,
-            flex: 3,
+            flex: 1,
           ),
-          Expanded(
-            flex: 2,
-            child: SizedBox(),
-          ),
+          SizedBox(width: 130.0),
         ],
       ),
     );
@@ -292,8 +311,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
     Row myRow = Row(
       children: [
         Expanded(flex: 1, child: SizedBox()),
-        Expanded(flex: 2, child: leftContainer),
-        rigthContainer,
+        Expanded(flex: 3, child: leftContainer),
         Expanded(flex: 1, child: SizedBox()),
       ],
     );
@@ -379,10 +397,7 @@ class OtherTwo extends StatefulWidget {
 
 class _OtherTwoState extends State<OtherTwo> {
   //FIXME: unir el appbar con esta lista y usar el index para moverse entre las diferentes pantallas
-  final List<Widget> widgetsChildren = [
-    TeacherBookClass(),
-    CorrectionStack(),
-  ];
+  final List<Widget> widgetsChildren = [];
   @override
   Widget build(BuildContext context) {
     int num = widget.route;
@@ -411,77 +426,5 @@ class _OtherTwoState extends State<OtherTwo> {
         ),
       ],
     );
-  }
-}
-
-//TODO: Modificar los valores de la tabla
-class MyDataTable extends StatelessWidget {
-  myDataRow(Color color, String correctionID, String available) {
-    DataRow myDataRow = DataRow(
-      color: MaterialStateColor.resolveWith((states) => color),
-      cells: [
-        DataCell(
-          Container(
-            width: 5.0,
-            height: 5.0,
-          ),
-        ),
-        DataCell(
-          Container(
-            width: 5.0,
-            height: 5.0,
-          ),
-        ),
-        DataCell(
-          Text(correctionID),
-        ),
-        DataCell(
-          Text(available),
-        ),
-      ],
-    );
-
-    return myDataRow;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget dataTable = Container(
-      alignment: Alignment.topLeft,
-      color: Colors.grey.shade200,
-      height: 250.0,
-      child: Expanded(
-        child: DataTable(
-          dataRowHeight: 30,
-          columnSpacing: 30,
-          columns: [
-            DataColumn(
-              label: Container(
-                child: Icon(Icons.search),
-              ),
-            ),
-            DataColumn(
-              label: Container(
-                child: Icon(Icons.refresh),
-              ),
-            ),
-            DataColumn(
-              label: Container(child: Text("Type")),
-            ),
-            DataColumn(
-              label: Container(child: Text("Since")),
-            ),
-          ],
-          rows: [
-            myDataRow(Colors.grey.shade300, "4 min", "terminate"),
-            myDataRow(Colors.white, "4 min", "terminate"),
-            myDataRow(Colors.grey.shade300, "4 min", "terminate"),
-            myDataRow(Colors.white, "4 min", "terminate"),
-          ],
-        ),
-      ),
-    );
-
-    return dataTable;
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pagina_web/progress_bar.dart';
+import 'package:pagina_web/widgets/progress_bar.dart';
 
-class HomePage extends StatelessWidget {
+class StudentClickCorrectUploadFile extends StatelessWidget {
   final TextStyle myStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 12.0,
@@ -38,25 +38,28 @@ class HomePage extends StatelessWidget {
         color: Colors.indigo.shade900,
       ),
       padding: EdgeInsets.symmetric(horizontal: 85.0, vertical: 23.0),
-      child: Column(
-        children: [
-          Text(
-            "Upload a file",
-            style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 12.0,
-                color: Colors.white),
-          ),
-          Container(
-            height: 100.0,
-            width: 100.0,
-            margin: EdgeInsets.only(top: 5.0),
-            child: Image(
-              image: AssetImage("lib/assets/images/uploadPage.jpg"),
-              fit: BoxFit.fill,
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          children: [
+            Text(
+              "Upload a file",
+              style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 12.0,
+                  color: Colors.white),
             ),
-          ),
-        ],
+            Container(
+              height: 100.0,
+              width: 100.0,
+              margin: EdgeInsets.only(top: 5.0),
+              child: Image(
+                image: AssetImage("lib/assets/images/uploadPage.jpg"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ],
+        ),
       ),
     );
 
@@ -87,10 +90,16 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.topCenter,
-            child: Text(
-              "Don'ts",
-              textAlign: TextAlign.center,
-              style: myStyle,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don'ts",
+                  textAlign: TextAlign.center,
+                  style: myStyle,
+                ),
+                Icon(Icons.cancel, color: Colors.red)
+              ],
             ),
           ),
           Container(
@@ -160,10 +169,16 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.topCenter,
-            child: Text(
-              "Do's",
-              textAlign: TextAlign.center,
-              style: myStyle,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Do's",
+                  textAlign: TextAlign.center,
+                  style: myStyle,
+                ),
+                Icon(Icons.check, color: Colors.green)
+              ],
             ),
           ),
           Container(
