@@ -26,7 +26,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         //  color: Colors.red,
       ),
@@ -68,7 +68,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.red,
       ),
@@ -113,7 +113,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         //    color: Colors.teal,
       ),
@@ -205,7 +205,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
     Widget leftContainer = Container(
       height: 300,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: currentColor,
       ),
@@ -232,7 +232,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
             Container(
               //  height: 300.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
                 color: Colors.grey,
               ),

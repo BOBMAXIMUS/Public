@@ -50,39 +50,16 @@ class _StudentDifficultyPageState extends State<StudentDifficultyPage> {
       alignment: Alignment.center,
       margin: EdgeInsets.symmetric(vertical: 10.0),
       child: InkWell(
-        onTap: () {},
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Row(
-                children: [
-                  Expanded(child: SizedBox()),
-                  Icon(Icons.umbrella),
-                  Text(
-                    "Votre niveau de fidelite",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 18.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Expanded(child: SizedBox()),
-                ],
-              ),
-            ),
-            Container(
-              height: 50.0,
-              width: double.infinity,
-              margin: EdgeInsets.all(5.0),
-              child: Image(
-                image: AssetImage("lib/assets/images/dificulty_bar.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ],
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/studentMainPage"),
+        child: Container(
+          height: 50.0,
+          width: double.infinity,
+          margin: EdgeInsets.all(5.0),
+          child: Image(
+            image: AssetImage("lib/assets/images/dificulty_bar.jpg"),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -102,14 +79,17 @@ class _StudentDifficultyPageState extends State<StudentDifficultyPage> {
       ),
     );
     Widget leftImage = Container(
-      width: 300.0,
       height: 280.0,
-      color: Colors.red,
+      width: 300.0,
+      margin: EdgeInsets.all(5.0),
+      child: Image(
+        image: AssetImage("lib/assets/images/idle_rocket.jpg"),
+        fit: BoxFit.scaleDown,
+      ),
     );
     Widget rightImage = Container(
       width: 300.0,
       height: 280.0,
-      color: Colors.teal,
       child: Column(
         children: [
           Container(
@@ -124,25 +104,6 @@ class _StudentDifficultyPageState extends State<StudentDifficultyPage> {
         ],
       ),
     );
-    Widget promoCode = Row(
-      children: [
-        Container(
-          height: 80.0,
-          width: 80.0,
-          margin:
-              EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.red,
-          ),
-          child: InkWell(
-            onTap: () {},
-            child: null,
-          ),
-        ),
-      ],
-    );
-
     Widget adjuntExamples = Container(
       margin: EdgeInsets.only(bottom: 20.0),
       child: Wrap(

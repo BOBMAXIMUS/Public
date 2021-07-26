@@ -51,7 +51,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
             height: 30.0,
             width: 180.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(13),
               shape: BoxShape.rectangle,
               color: Colors.pink.shade600,
             ),
@@ -71,7 +71,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
             height: 30.0,
             width: 180.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(13),
               shape: BoxShape.rectangle,
               color: Colors.pink.shade600,
             ),
@@ -91,13 +91,14 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
     );
     Widget myCalendar = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
       width: 150.0,
-      height: 150.0,
+      height: 200.0,
       padding: EdgeInsets.all(5.0),
+      margin: EdgeInsets.only(top: 5.0, bottom: 8),
       child: SfDateRangePicker(
         view: DateRangePickerView.month,
         monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 6),
@@ -114,13 +115,14 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
       width: 200.0,
       margin: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.green,
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/teacherMainPages"),
         child: Container(
           // color: Colors.blue,
           child: Row(
@@ -148,15 +150,16 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
 
     Widget modifierButtom = Container(
       width: 200.0,
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.only(bottom: 20.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.pink.shade600,
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/teacherBookClass"),
         child: Container(
           // color: Colors.blue,
           child: Row(
@@ -189,7 +192,6 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
     );
 
     Widget column = Container(
-      height: 600.0,
       margin: EdgeInsets.only(top: 20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

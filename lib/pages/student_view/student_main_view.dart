@@ -25,9 +25,8 @@ class _StudentMainPageState extends State<StudentMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        //  color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
@@ -67,9 +66,8 @@ class _StudentMainPageState extends State<StudentMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
@@ -78,7 +76,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
             currentContent = OtherTwo(
                 "lib/assets/images/PlanAClassForLater.jpg",
                 "Referencez vos disponibilites sur un calendrier pour planifier des cours",
-                0);
+                "/studentBookAClass");
           });
         },
         child: Column(
@@ -112,7 +110,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         //    color: Colors.teal,
       ),
@@ -123,7 +121,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
             currentContent = OtherTwo(
                 "lib/assets/images/request_correction.jpg",
                 "Corrigez des exercices et fait toi de l'argent",
-                1);
+                "/studentClickCorrectUpload");
           });
         },
         child: Column(
@@ -159,7 +157,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         //    color: Colors.teal,
       ),
@@ -167,8 +165,10 @@ class _StudentMainPageState extends State<StudentMainPage> {
         onTap: () {
           setState(() {
             currentColor = Colors.indigo.shade900;
-            currentContent = OtherTwo("lib/assets/images/MathsInMotion.jpg",
-                "Revise tes cjapitres de maths avece des videos", 1);
+            currentContent = OtherTwo(
+                "lib/assets/images/MathsInMotion.jpg",
+                "Revise tes cjapitres de maths avece des videos",
+                "/studentMathsInMotion");
           });
         },
         child: Column(
@@ -205,8 +205,8 @@ class _StudentMainPageState extends State<StudentMainPage> {
       children: [
         Expanded(flex: 2, child: bookClass),
         Expanded(flex: 2, child: planLater),
-        Expanded(flex: 2, child: clicknCorrect),
         Expanded(flex: 2, child: mathsInMotion),
+        Expanded(flex: 2, child: clicknCorrect),
       ],
     );
     Widget underLine = Container(
@@ -250,7 +250,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
     Widget leftContainer = Container(
       height: 300,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: currentColor,
       ),
@@ -259,7 +259,8 @@ class _StudentMainPageState extends State<StudentMainPage> {
     Widget dificultyBar = Container(
       margin: EdgeInsets.symmetric(vertical: 10.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/studentDifficultyBar"),
         child: Column(
           children: [
             Container(
@@ -315,11 +316,24 @@ class _StudentMainPageState extends State<StudentMainPage> {
         Expanded(flex: 1, child: SizedBox()),
       ],
     );
+    Widget welcomeText = Container(
+      margin: EdgeInsets.only(top: 40.0, bottom: 20.0),
+      alignment: Alignment.center,
+      child: Text(
+        "Welcome to ARO!",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 26,
+        ),
+      ),
+    );
+
     return Padding(
       padding: EdgeInsets.only(top: 89.0),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: [
+          welcomeText,
           myRow,
           thridRow,
           MyActivities(),
@@ -387,7 +401,7 @@ class BookClassContent extends StatelessWidget {
 class OtherTwo extends StatefulWidget {
   String assetImage;
   String text;
-  int route;
+  String route;
 
   OtherTwo(this.assetImage, this.text, this.route);
 
@@ -397,20 +411,17 @@ class OtherTwo extends StatefulWidget {
 
 class _OtherTwoState extends State<OtherTwo> {
   //FIXME: unir el appbar con esta lista y usar el index para moverse entre las diferentes pantallas
-  final List<Widget> widgetsChildren = [];
+
   @override
   Widget build(BuildContext context) {
-    int num = widget.route;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: Colors.red,
           height: 80.0,
           width: 80.0,
           child: InkWell(
-            onTap: () => widgetsChildren[num],
+            onTap: () => Navigator.pushReplacementNamed(context, widget.route),
             child: Image(
               image: AssetImage(widget.assetImage),
               fit: BoxFit.fitHeight,

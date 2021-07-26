@@ -31,7 +31,7 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -78,7 +78,7 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
       ),
     );
     Widget defaultText = Container(
-      margin: EdgeInsets.only(bottom: 5.0),
+      margin: EdgeInsets.only(bottom: 55.0, top: 30),
       child: Text(
         "Good news!\nA student has validated your quote, you can now correct it",
         textAlign: TextAlign.center,
@@ -88,7 +88,6 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
     Widget timeLeft = Container(
       alignment: Alignment.center,
       margin: EdgeInsets.only(right: 20.0),
-      color: Colors.orange,
       width: 300.0,
       height: 51.0,
       child: Row(
@@ -98,9 +97,13 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
             child: Text("Time left:"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -109,7 +112,6 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
     );
     Widget correctionID = Container(
       margin: EdgeInsets.only(right: 20.0),
-      color: Colors.orange,
       width: 300.0,
       height: 51.0,
       child: Row(
@@ -119,13 +121,27 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
             child: Text("Correction ID"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
         ],
+      ),
+    );
+
+    Widget quoteText = Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(bottom: 5.0, top: 30.0),
+      child: Text(
+        "Quote info:",
+        textAlign: TextAlign.center,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
       ),
     );
 
@@ -136,40 +152,49 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
         correctionID,
       ],
     );
-    Widget startCorrection = Container(
-      margin: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        shape: BoxShape.rectangle,
-        color: Colors.green,
-      ),
-      padding: EdgeInsets.all(5.0),
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          // color: Colors.blue,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 7.0),
-                child: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
+    Widget startCorrection = InkWell(
+      onTap: () =>
+          Navigator.pushReplacementNamed(context, "/teacherCorrectionUpload"),
+      child: Container(
+        width: 200.0,
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(bottom: 40.0, top: 20.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: Colors.green,
+        ),
+        padding: EdgeInsets.all(5.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 7.0),
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
               ),
-              Container(
-                child: Text(
-                  " Start correction",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
+            ),
+            Container(
+              child: Text(
+                " Start correction",
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+    Widget myRow2 = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(flex: 5, child: SizedBox()),
+        startCorrection,
+        Expanded(flex: 5, child: SizedBox()),
+      ],
+    );
+
     Widget total = Container(
       margin: EdgeInsets.only(bottom: 20.0),
       padding: EdgeInsets.only(left: 114.0),
@@ -196,10 +221,11 @@ class _TeacherCorrectionCorrectState extends State<TeacherCorrectionCorrect> {
           allBanner,
           defaultText,
           myRow,
+          quoteText,
           MyDataTable(),
           total,
-          startCorrection,
           warningText,
+          myRow2,
         ],
       ),
     );

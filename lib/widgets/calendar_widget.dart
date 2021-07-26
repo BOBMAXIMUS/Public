@@ -36,7 +36,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
   Widget build(BuildContext context) {
     Widget myCalendar = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -56,13 +56,14 @@ class _CustomCalendarState extends State<CustomCalendar> {
       width: 200.0,
       margin: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.green,
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/teacherBookClassConfirm"),
         child: Container(
           // color: Colors.blue,
           child: Row(

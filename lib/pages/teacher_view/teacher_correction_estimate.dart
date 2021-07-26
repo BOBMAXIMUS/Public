@@ -30,7 +30,7 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -118,7 +118,6 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
 
     Widget correctionID = Container(
       margin: EdgeInsets.only(right: 20.0),
-      color: Colors.orange,
       width: 300.0,
       height: 51.0,
       child: Row(
@@ -128,9 +127,13 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
             child: Text("Correction ID"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 20.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -138,8 +141,12 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
       ),
     );
     Widget viewCorrection = Container(
-      width: 200.0,
-      color: Colors.greenAccent,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        shape: BoxShape.rectangle,
+        color: Colors.greenAccent,
+      ),
+      width: 140.0,
       child: InkWell(
         onTap: () {},
         child: Row(
@@ -150,7 +157,7 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
               child: Icon(Icons.search, size: 25, color: Colors.white),
             ),
             Container(
-              width: 100.0,
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text("View correction"),
             ),
           ],
@@ -170,19 +177,22 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
     );
     Widget additionalsDetails = Container(
       margin: EdgeInsets.only(right: 20.0, bottom: 30.0),
-      color: Colors.orange,
-      width: 300.0,
+      width: 440.0,
       height: 51.0,
       child: Row(
         children: [
           Container(
-            width: 100.0,
+            margin: EdgeInsets.only(right: 20.0),
             child: Text("Additionals details"),
           ),
           Container(
-            color: Colors.red,
-            width: 200.0,
-            height: 50.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
+            width: 300.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -191,20 +201,23 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
     );
     Widget whatToEarn = Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(right: 20.0, bottom: 30.0),
-      color: Colors.orange,
-      width: 300.0,
+      margin: EdgeInsets.only(right: 30.0, bottom: 30.0),
+      width: 440.0,
       height: 51.0,
       child: Row(
         children: [
           Container(
-            width: 100.0,
+            width: 230.0,
             child: Text("What i can earn from this correction"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -212,19 +225,26 @@ class _CorrectionEstimateState extends State<CorrectionEstimate> {
       ),
     );
 
-    Widget validateNSeend = Container(
-      margin: EdgeInsets.only(bottom: 20.0),
-      width: 200.0,
-      height: 50.0,
-      alignment: Alignment.center,
-      color: Colors.pink,
-      child: InkWell(
-        onTap: () {},
-        child: Text("Validate and send quote"),
+    Widget validateNSeend = InkWell(
+      onTap: () =>
+          Navigator.pushReplacementNamed(context, "/teacherCorrectionCorrect"),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: Colors.pink,
+        ),
+        width: 200.0,
+        height: 50.0,
+        alignment: Alignment.center,
+        child: Text(
+          "Validate and send quote",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
     Widget defaultText = Container(
-      margin: EdgeInsets.only(bottom: 20.0),
+      margin: EdgeInsets.only(bottom: 20.0, top: 20.0),
       child: Text(
         "Please be aware that an overestimated quote can make a student search for other methods to get his correction.\n\nBe careful, quotes are regularly checked by admins to ensure that they are clear, valid an respect the terms of service.\nIf yot quotes are ever invalid, you may run the risk of having your account suspended.",
         textAlign: TextAlign.center,

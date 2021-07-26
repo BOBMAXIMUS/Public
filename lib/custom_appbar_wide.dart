@@ -15,7 +15,7 @@ import 'package:pagina_web/pages/teacher_view/teacher_correction_upload.dart';
 import 'my_activities.dart';
 
 class CustomAppbar extends StatefulWidget {
-  int index = 0;
+  Widget index;
   CustomAppbar(this.index);
   @override
   _CustomAppbarState createState() => _CustomAppbarState();
@@ -48,12 +48,8 @@ class _CustomAppbarState extends State<CustomAppbar> {
     Widget aroLogo = Container(
       margin: EdgeInsets.only(top: 0.0),
       child: InkWell(
-          onTap: () {
-            setState(() {
-              indexTap = 1;
-              widget.index = 0;
-            });
-          },
+          onTap: () =>
+              Navigator.pushReplacementNamed(context, "/teacherMainPages"),
           child: Container(
             height: 50.0,
             width: 70.0,
@@ -66,14 +62,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
     );
 
     Widget clickCorrect = Container(
-      margin: EdgeInsets.only(top: 20.0),
+      margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
       child: InkWell(
-        onTap: () {
-          setState(() {
-            indexTap = 1;
-            widget.index = 1;
-          });
-        },
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/teacherCorrectionStack"),
         child: Text(
           "CLICK&CORRECT",
           style: pinkTextStyle,
@@ -82,13 +74,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
     );
 
     Widget myClassNow = Container(
-      margin: EdgeInsets.only(top: 20.0),
+      margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
       child: InkWell(
-        onTap: () {
-          setState(() {
-            indexTap = 2;
-          });
-        },
+        onTap: () =>
+            Navigator.pushReplacementNamed(context, "/teacherMainPages"),
         child: Text(
           "MYCLASSNOW",
           style: pinkTextStyle,
@@ -97,8 +86,12 @@ class _CustomAppbarState extends State<CustomAppbar> {
     );
 
     Widget avis = Container(
-      margin: EdgeInsets.only(top: 20.0),
+      margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
       child: Text("AVIS", style: pinkTextStyle),
+    );
+    Widget teachers = Container(
+      margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
+      child: Text("PROFESSEURS", style: pinkTextStyle),
     );
 
     Widget search = Container(
@@ -141,7 +134,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
             child: SizedBox(),
           ),
           Expanded(
-            flex: 4,
+            flex: 7,
             child: Container(
               color: Colors.pink.shade900,
               height: 1.5,
@@ -167,8 +160,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
           spacing: 5.0, //separacion segun el "direction" ,horizontal
           children: [
             aroLogo,
+            SizedBox(width: 80.0),
             clickCorrect,
             myClassNow,
+            teachers,
             avis,
             search,
             comments,
@@ -204,8 +199,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
           children: [
             //FIXME: URGENTE! BUSCAR UNA MANERA DE MOVERTE ENTRE LAS DIFERENTES VISTAS DEL PROYECTO
             opacityContainer,
-            // widgetsChildren[widget.index],
-            CorrectionStack(),
+            widget.index,
             allAppbar,
           ],
         ),
@@ -213,7 +207,9 @@ class _CustomAppbarState extends State<CustomAppbar> {
       ),
     );
 
-    return backgroundImage;
+    return Scaffold(
+      body: backgroundImage,
+    );
   }
 }
 
@@ -240,9 +236,8 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        //  color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
@@ -282,9 +277,8 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
@@ -293,7 +287,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
             currentContent = OtherTwo(
                 "lib/assets/images/PlanAClassForLater.jpg",
                 "Referencez vos disponibilites sur un calendrier pour planifier des cours",
-                1);
+                "/teacherBookClass");
           });
         },
         child: Column(
@@ -327,7 +321,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         //    color: Colors.teal,
       ),
@@ -338,7 +332,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
             currentContent = OtherTwo(
                 "lib/assets/images/request_correction.jpg",
                 "Corrigez des exercices et fait toi de l'argent",
-                2);
+                "/teacherCorrectionStack");
           });
         },
         child: Column(
@@ -419,7 +413,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
     Widget leftContainer = Container(
       height: 300,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: currentColor,
       ),
@@ -446,7 +440,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
             Container(
               //  height: 300.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
                 color: Colors.grey,
               ),
@@ -583,7 +577,7 @@ class BookClassContent extends StatelessWidget {
 class OtherTwo extends StatefulWidget {
   String assetImage;
   String text;
-  int route;
+  String route;
 
   OtherTwo(this.assetImage, this.text, this.route);
 
@@ -600,15 +594,10 @@ class _OtherTwoState extends State<OtherTwo> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: Colors.red,
           height: 80.0,
           width: 80.0,
           child: InkWell(
-            onTap: () {
-              setState(() {
-                CustomAppbar(widget.route);
-              });
-            },
+            onTap: () => Navigator.pushReplacementNamed(context, widget.route),
             child: Image(
               image: AssetImage(widget.assetImage),
               fit: BoxFit.fitHeight,

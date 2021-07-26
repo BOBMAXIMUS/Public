@@ -31,7 +31,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -92,7 +92,6 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     Widget timeLeft = Container(
       alignment: Alignment.center,
       margin: EdgeInsets.only(right: 20.0),
-      color: Colors.orange,
       width: 300.0,
       height: 51.0,
       child: Row(
@@ -102,9 +101,13 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
             child: Text("Time left:"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -113,7 +116,6 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     );
     Widget correctionID = Container(
       margin: EdgeInsets.only(right: 20.0),
-      color: Colors.orange,
       width: 300.0,
       height: 51.0,
       child: Row(
@@ -123,9 +125,13 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
             child: Text("Correction ID"),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+            ),
             width: 200.0,
-            height: 50.0,
+            height: 30.0,
             child: TextField(
                 controller: myController, textAlign: TextAlign.center),
           ),
@@ -150,7 +156,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
       width: 200.0,
       margin: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.green,
       ),
@@ -199,6 +205,14 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
         ],
       ),
     );
+    Widget myRow2 = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(flex: 5, child: SizedBox()),
+        uploadFileButtom,
+        Expanded(flex: 5, child: SizedBox()),
+      ],
+    );
     Widget total = Container(
       margin: EdgeInsets.only(bottom: 20.0),
       padding: EdgeInsets.only(left: 114.0),
@@ -226,7 +240,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
           allBanner,
           myRow,
           makeSureText,
-          uploadFileButtom,
+          myRow2,
           quoteText,
           MyDataTable(),
           total,

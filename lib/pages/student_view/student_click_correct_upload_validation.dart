@@ -34,7 +34,7 @@ class _StudentClickCorrectUploadValidationState
         Container(
           // width: 200.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(13),
             shape: BoxShape.rectangle,
             color: Colors.pink.shade900,
           ),

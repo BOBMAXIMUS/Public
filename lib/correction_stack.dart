@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CorrectionStack extends StatelessWidget {
   final Widget arrow = Container(
-    margin: EdgeInsets.only(top: 5.0),
+    margin: EdgeInsets.only(top: 15.0),
     child: Icon(
       Icons.arrow_forward_ios_rounded,
       color: Colors.green.shade400,
@@ -24,7 +24,7 @@ class CorrectionStack extends StatelessWidget {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.white,
       ),
@@ -221,6 +221,43 @@ class CorrectionStack extends StatelessWidget {
             ),
           ],
         ));
+    Widget validateButtom = Container(
+      width: 200.0,
+      margin: EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        shape: BoxShape.rectangle,
+        color: Colors.green,
+      ),
+      padding: EdgeInsets.all(5.0),
+      child: InkWell(
+        onTap: () => Navigator.pushReplacementNamed(
+            context, "/teacherCorrectionEstimate"),
+        child: Container(
+          // color: Colors.blue,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(right: 7.0),
+                child: Icon(
+                  Icons.check,
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                child: Text(
+                  " Next ",
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
     return Padding(
       padding: const EdgeInsets.only(top: 89.0),
       child: ListView(
@@ -229,6 +266,7 @@ class CorrectionStack extends StatelessWidget {
           stackText,
           allBanner,
           dataTable,
+          validateButtom,
         ],
       ),
     );

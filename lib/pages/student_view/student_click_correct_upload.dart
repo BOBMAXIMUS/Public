@@ -33,13 +33,14 @@ class StudentClickCorrectUploadFile extends StatelessWidget {
 
     Widget uploadFile = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.indigo.shade900,
       ),
       padding: EdgeInsets.symmetric(horizontal: 85.0, vertical: 23.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.pushReplacementNamed(
+            context, "/studentClickCorrectValidation"),
         child: Column(
           children: [
             Text(
@@ -147,7 +148,7 @@ class StudentClickCorrectUploadFile extends StatelessWidget {
               width: 200.0,
               height: 200.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
                 // color: Colors.tealAccent.shade700,
                 image: DecorationImage(
@@ -223,7 +224,7 @@ class StudentClickCorrectUploadFile extends StatelessWidget {
                 bottom: 10.0,
               ),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
                 // color: Colors.tealAccent.shade700,
                 image: DecorationImage(

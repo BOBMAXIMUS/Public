@@ -142,7 +142,7 @@ class MyActivities extends StatelessWidget {
       height: 200,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         // color: Colors.tealAccent.shade700,
         image: DecorationImage(

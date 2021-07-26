@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/custom_appbar_small.dart';
 import 'package:pagina_web/custom_appbar_wide.dart';
-import 'package:pagina_web/pages/teacher_view/main_teacher_view.dart';
+import 'package:pagina_web/pages/student_view/student_book_class_search.dart';
+import 'package:pagina_web/pages/student_view/student_book_class_paidment.dart';
+import 'package:pagina_web/pages/student_view/student_click_correct_upload.dart';
+import 'package:pagina_web/pages/student_view/student_click_correct_upload_validation.dart';
+import 'package:pagina_web/pages/student_view/student_difficulty_page.dart';
+import 'package:pagina_web/pages/student_view/student_main_view.dart';
+import 'package:pagina_web/pages/student_view/student_maths_in_motion.dart';
+import 'package:pagina_web/pages/teacher_view/teacher_confirm_class.dart';
+import 'package:pagina_web/pages/teacher_view/teacher_correction_correct.dart';
+import 'package:pagina_web/pages/teacher_view/teacher_correction_estimate.dart';
+import 'package:pagina_web/pages/teacher_view/teacher_correction_upload.dart';
 
 import 'pages/teacher_view/teacher_book_class.dart';
 
@@ -22,8 +32,31 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(fontFamily: "Roboto"),
       home: screenValidation(),
       routes: {
-        "/teacherBookClass": (context) => TeacherBookClass(),
-        "/teacherCorrectionStack": (context) => CorrectionStack(),
+        //TEACHERS VIEWS
+        "/teacherMainPages": (context) => CustomAppbar(TeacherMainPage()),
+        "/teacherBookClass": (context) => CustomAppbar(TeacherBookClass()),
+        "/teacherCorrectionStack": (context) => CustomAppbar(CorrectionStack()),
+        "/teacherBookClassConfirm": (context) =>
+            CustomAppbar(TeacherConfirmClass()),
+        "/teacherCorrectionEstimate": (context) =>
+            CustomAppbar(CorrectionEstimate()),
+        "/teacherCorrectionCorrect": (context) =>
+            CustomAppbar(TeacherCorrectionCorrect()),
+        "/teacherCorrectionUpload": (context) =>
+            CustomAppbar(TeacherCorrectionUpload()),
+        //STUDENT VIEW
+        "/studentMainPage": (context) => CustomAppbar(StudentMainPage()),
+        "/studentMathsInMotion": (context) =>
+            CustomAppbar(StudentMathsInMotionPage()),
+        "/studentClickCorrectUpload": (context) =>
+            CustomAppbar(StudentClickCorrectUploadFile()),
+        "/studentClickCorrectValidation": (context) =>
+            CustomAppbar(StudentClickCorrectUploadValidation()),
+        "/studentDifficultyBar": (context) =>
+            CustomAppbar(StudentDifficultyPage()),
+        "/studentBookAClass": (context) => CustomAppbar(StudentBookAClassSearch()),
+        "/studentBookAClassPaidment": (context) =>
+            CustomAppbar(StudentBookClassPaidment()),
       },
     );
   }
@@ -36,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           if (constraints.maxHeight < 500) {
             return AppBarMobileMode();
           } else {
-            return CustomAppbar(0);
+            return CustomAppbar(StudentMainPage());
           }
         },
       ),

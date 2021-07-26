@@ -26,35 +26,49 @@ class TeacherBookClass extends StatelessWidget {
         ),
         SizedBox(height: 250.0),
         Container(
-          height: 20.0,
-          width: 180.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            shape: BoxShape.rectangle,
-            color: Colors.pink.shade600,
-          ),
           margin: EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () {
               //TODO: Insert here some func xd
             },
-            child: Text("Ajouter plus d'horaires"),
+            child: Container(
+              height: 40.0,
+              width: 180.0,
+              padding: EdgeInsets.only(top: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(13),
+                shape: BoxShape.rectangle,
+                color: Colors.pink.shade600,
+              ),
+              child: Text(
+                "Ajouter plus d'horaires",
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         ),
         Container(
-          height: 20.0,
-          width: 180.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            shape: BoxShape.rectangle,
-            color: Colors.pink.shade600,
-          ),
           margin: EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () {
               //TODO: Insert here some func xd
             },
-            child: Text("Sauvergarder horaires"),
+            child: Container(
+              height: 40.0,
+              width: 180.0,
+              padding: EdgeInsets.only(top: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(13),
+                shape: BoxShape.rectangle,
+                color: Colors.pink.shade600,
+              ),
+              child: Text(
+                "Sauvergarder horaires",
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         ),
       ],
