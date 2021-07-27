@@ -270,7 +270,8 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
           ),
           padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () => Navigator.pushReplacementNamed(
+                context, "/studentSearchTeacher"),
             child: Container(
               alignment: Alignment.center,
               child: Text(

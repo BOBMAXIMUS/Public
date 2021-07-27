@@ -91,7 +91,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
     );
     Widget teachers = Container(
       margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
-      child: Text("PROFESSEURS", style: pinkTextStyle),
+      child: InkWell(
+          onTap: () =>
+              Navigator.pushReplacementNamed(context, "/studentBookAClass"),
+          child: Text("PROFESSEURS", style: pinkTextStyle)),
     );
 
     Widget search = Container(

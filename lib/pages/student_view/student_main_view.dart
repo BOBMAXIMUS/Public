@@ -16,7 +16,10 @@ class _StudentMainPageState extends State<StudentMainPage> {
 
   Color currentColor = Colors.green.shade400;
 
-  Widget currentContent = BookClassContent();
+  Widget currentContent = OtherTwo(
+      "lib/assets/images/book_now.jpg",
+      "Trouve un cours particulier en mouins de 5 minutes",
+      "/studentBookAClassNow");
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,10 @@ class _StudentMainPageState extends State<StudentMainPage> {
         onTap: () {
           setState(() {
             currentColor = Colors.green.shade400;
-            currentContent = BookClassContent();
+            currentContent = OtherTwo(
+                "lib/assets/images/book_now.jpg",
+                "Trouve un cours particulier en mouins de 5 minutes",
+                "/studentBookAClassNow");
           });
         },
         child: Column(
@@ -339,61 +345,6 @@ class _StudentMainPageState extends State<StudentMainPage> {
           MyActivities(),
         ],
       ),
-    );
-  }
-}
-
-class BookClassContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 7,
-                height: 7,
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red,
-                ),
-              ),
-              //TODO: https://youtu.be/CpjfR5rG2lM   display menu
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Offline",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          // color: Colors.red,
-          height: 100.0,
-          width: 150.0,
-          child: Image(
-            image: AssetImage("lib/assets/images/book_now.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 15.0),
-          child: Text(
-            "Selectionnez le statut 'Disponible' afin d'acceder a la liste de requetes",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

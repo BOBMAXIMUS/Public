@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pagina_web/correction_stack.dart';
 import 'package:pagina_web/custom_appbar_small.dart';
 import 'package:pagina_web/custom_appbar_wide.dart';
+import 'package:pagina_web/pages/student_view/student_book_class_now.dart';
 import 'package:pagina_web/pages/student_view/student_book_class_search.dart';
 import 'package:pagina_web/pages/student_view/student_book_class_paidment.dart';
 import 'package:pagina_web/pages/student_view/student_click_correct_upload.dart';
@@ -9,6 +10,7 @@ import 'package:pagina_web/pages/student_view/student_click_correct_upload_valid
 import 'package:pagina_web/pages/student_view/student_difficulty_page.dart';
 import 'package:pagina_web/pages/student_view/student_main_view.dart';
 import 'package:pagina_web/pages/student_view/student_maths_in_motion.dart';
+import 'package:pagina_web/pages/student_view/student_search_teacher.dart';
 import 'package:pagina_web/pages/teacher_view/teacher_confirm_class.dart';
 import 'package:pagina_web/pages/teacher_view/teacher_correction_correct.dart';
 import 'package:pagina_web/pages/teacher_view/teacher_correction_estimate.dart';
@@ -54,9 +56,14 @@ class _MyAppState extends State<MyApp> {
             CustomAppbar(StudentClickCorrectUploadValidation()),
         "/studentDifficultyBar": (context) =>
             CustomAppbar(StudentDifficultyPage()),
-        "/studentBookAClass": (context) => CustomAppbar(StudentBookAClassSearch()),
+        "/studentBookAClass": (context) =>
+            CustomAppbar(StudentBookAClassSearch()),
         "/studentBookAClassPaidment": (context) =>
             CustomAppbar(StudentBookClassPaidment()),
+        "/studentBookAClassNow": (context) =>
+            CustomAppbar(StudentBookClassNow()),
+        "/studentSearchTeacher": (context) =>
+            CustomAppbar(StudentSearchTeacher()),
       },
     );
   }
