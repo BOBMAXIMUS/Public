@@ -110,9 +110,17 @@ class _StudentMathsInMotionPageState extends State<StudentMathsInMotionPage> {
               shape: BoxShape.rectangle,
               color: Colors.white,
             ),
-            width: 120.0,
+            width: 150.0,
             height: 25.0,
-            child: Text("SEARCH IN DEV"),
+            child: Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(Icons.search, size: 16, color: Colors.black),
+                  Text("SOME TEXT HERE")
+                ],
+              ),
+            ),
           ),
           Container(
             padding: EdgeInsets.only(left: 10.0, top: 7.0),

@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   syncfusion_flutter_datepicker: ^19.2.46
   intl: ^0.17.0
+  flutter_spinkit: ^5.0.0
 
 dev_dependencies:
   flutter_test:

@@ -137,7 +137,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
             child: SizedBox(),
           ),
           Expanded(
-            flex: 7,
+            flex: 16,
             child: Container(
               color: Colors.pink.shade900,
               height: 1.5,
@@ -151,28 +151,24 @@ class _CustomAppbarState extends State<CustomAppbar> {
       ),
     );
 
-    Widget allBanner = SizedBox(
-      //   height: 25.0,
-      child: Container(
-        transformAlignment: Alignment.center,
-        //   color: Colors.tealAccent,
-        margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-        child: Wrap(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.start,
-          spacing: 5.0, //separacion segun el "direction" ,horizontal
-          children: [
-            aroLogo,
-            SizedBox(width: 80.0),
-            clickCorrect,
-            myClassNow,
-            teachers,
-            avis,
-            search,
-            comments,
-            settings,
-          ],
-        ),
+    Widget allBanner = Container(
+      transformAlignment: Alignment.center,
+      //   color: Colors.tealAccent,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          //  SizedBox(width: 100),
+          Flexible(child: aroLogo),
+          Flexible(child: clickCorrect),
+          Flexible(child: myClassNow),
+          Flexible(child: teachers),
+          Flexible(child: avis),
+          Flexible(child: search),
+          Flexible(child: comments),
+          Flexible(child: settings),
+          //  SizedBox(width: 100),
+        ],
       ),
     );
     Widget allAppbar = Container(

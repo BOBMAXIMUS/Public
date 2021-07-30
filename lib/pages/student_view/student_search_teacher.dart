@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class StudentSearchTeacher extends StatelessWidget {
   @override
@@ -12,21 +13,20 @@ class StudentSearchTeacher extends StatelessWidget {
     );
     Widget reloadIcon = Container(
       margin: EdgeInsets.only(top: 60),
-      child: Icon(
-        Icons.refresh,
+      child: SpinKitRing(
         color: Colors.white,
         size: 200,
       ),
     );
     Widget stopSearchButtom = Container(
       width: 200.0,
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.fromLTRB(0, 70, 0, 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
         color: Colors.pink.shade900,
       ),
-      padding: EdgeInsets.all(5.0),
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: InkWell(
         onTap: () =>
             Navigator.pushReplacementNamed(context, "/studentMainPage"),

@@ -10,9 +10,15 @@ class _StudentBookClassNowState extends State<StudentBookClassNow> {
   @override
   Widget build(BuildContext context) {
     Widget upperText = Container(
-      margin: EdgeInsets.only(top: 30.0),
+      margin: EdgeInsets.only(top: 40.0, bottom: 20.0),
       alignment: Alignment.center,
-      child: Text("Book A Class Now!"),
+      child: Text(
+        "Book A Class Now!",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 26,
+        ),
+      ),
     );
     Widget iconContainer = Container(
       margin: EdgeInsets.only(bottom: 20.0),

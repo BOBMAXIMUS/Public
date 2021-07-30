@@ -14,7 +14,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
     fontSize: 12.0,
   );
 
-  Color currentColor = Colors.green.shade400;
+  Color currentColor = Color(0xff4CAE7D);
 
   Widget currentContent = OtherTwo(
       "lib/assets/images/book_now.jpg",
@@ -34,7 +34,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.green.shade400;
+            currentColor = Color(0xff4CAE7D);
             currentContent = OtherTwo(
                 "lib/assets/images/book_now.jpg",
                 "Trouve un cours particulier en mouins de 5 minutes",
@@ -78,7 +78,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.blue.shade800;
+            currentColor = Color(0xff2C4997);
             currentContent = OtherTwo(
                 "lib/assets/images/PlanAClassForLater.jpg",
                 "Referencez vos disponibilites sur un calendrier pour planifier des cours",
