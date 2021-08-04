@@ -17,31 +17,31 @@ class _StudentBookAClassSearchState extends State<StudentBookAClassSearch> {
             margin: EdgeInsets.symmetric(horizontal: 1.5),
             child: Icon(
               Icons.star,
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
             )),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 1.5),
             child: Icon(
               Icons.star,
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
             )),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 1.5),
             child: Icon(
               Icons.star,
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
             )),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 1.5),
             child: Icon(
               Icons.star,
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
             )),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 1.5),
             child: Icon(
               Icons.star,
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
             )),
       ],
     );
@@ -137,7 +137,7 @@ class _StudentBookAClassSearchState extends State<StudentBookAClassSearch> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
@@ -256,7 +256,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
         selectionMode: DateRangePickerSelectionMode.single,
         controller: _controller,
         onSelectionChanged: CustomCalendar._onSelectionChanged,
-        onViewChanged: viewChanged,
+        // onViewChanged: viewChanged,//FIXME: ARREGLAR ESTA VAINA
       ),
     );
     Widget validateTimeButtom = Container(
@@ -265,7 +265,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
@@ -310,9 +310,9 @@ class _CustomCalendarState extends State<CustomCalendar> {
       ),
     );
     return column;
-  }
+  } //FIXME: ARREGLAR ESTA VAINA
 
-  void viewChanged(DateRangePickerViewChangedArgs value) {
+  /* void viewChanged(DateRangePickerViewChangedArgs value) {
     _startDate = DateFormat('hh:mm a')
         .format(value.visibleDateRange.startDate)
         .toString();
@@ -321,5 +321,5 @@ class _CustomCalendarState extends State<CustomCalendar> {
     SchedulerBinding.instance.addPostFrameCallback((duration) {
       setState(() {});
     });
-  }
+  }*/
 }

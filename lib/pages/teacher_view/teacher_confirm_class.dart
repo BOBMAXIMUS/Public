@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pagina_web/widgets/calendar_widget.dart';
+import 'package:frontend/widgets/calendar_widget.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class TeacherConfirmClass extends StatefulWidget {
@@ -53,7 +53,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13),
               shape: BoxShape.rectangle,
-              color: Colors.pink.shade600,
+              color: Color(0xffB71C8C),
             ),
             margin: EdgeInsets.all(10.0),
             child: InkWell(
@@ -73,7 +73,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13),
               shape: BoxShape.rectangle,
-              color: Colors.pink.shade600,
+              color: Color(0xffB71C8C),
             ),
             margin: EdgeInsets.all(10.0),
             child: InkWell(
@@ -117,7 +117,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.green,
+        color: Color(0xff4CAE7D),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
@@ -154,7 +154,7 @@ class _TeacherConfirmClassState extends State<TeacherConfirmClass> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade600,
+        color: Color(0xffB71C8C),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(

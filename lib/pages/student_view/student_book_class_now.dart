@@ -29,7 +29,7 @@ class _StudentBookClassNowState extends State<StudentBookClassNow> {
           Image(
             image: AssetImage("lib/assets/images/book_now.jpg"),
             fit: BoxFit.fill,
-            color: Colors.green.shade600,
+            color: Color(0xff4CAE7D),
           ),
         ],
       ),
@@ -145,7 +145,7 @@ class _StudentBookClassNowState extends State<StudentBookClassNow> {
                 child: Container(
                   height: 30,
                   alignment: Alignment.center,
-                  color: Colors.green,
+                  color: Color(0xff4CAE7D),
                   child: Text(
                     "Verifier code",
                     style: TextStyle(color: Colors.white),
@@ -170,7 +170,7 @@ class _StudentBookClassNowState extends State<StudentBookClassNow> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(

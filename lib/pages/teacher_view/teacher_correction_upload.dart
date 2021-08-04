@@ -12,7 +12,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     padding: EdgeInsets.only(top: 10.0),
     child: Icon(
       Icons.arrow_forward_ios_rounded,
-      color: Colors.green.shade400,
+      color: Color(0xff4CAE7D),
     ),
   );
 
@@ -27,13 +27,13 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     width: 8.0,
   );
 
-  myContainer(String asset, String text) {
+  myContainer(String asset, String text, Color color, Color iconColor) {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.white,
+        color: color,
       ),
       padding: myPadding,
       child: Row(
@@ -46,6 +46,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
             child: Image(
               image: AssetImage(asset),
               fit: BoxFit.fill,
+              color: iconColor,
             ),
           ),
           littleBox,
@@ -62,7 +63,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
     Widget uploadText = Container(
       margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
       child: Text(
-        "Correction stack",
+        "Upload correction",
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 35.0,
@@ -79,13 +80,17 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
         spacing: 20.0, //separacion segun el "direction" ,horizontal
         runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          myContainer("lib/assets/images/uploadFileBlack.jpg", "View List"),
+          myContainer("lib/assets/images/uploadFileBlack.jpg", "View List",
+              Colors.white, Colors.black),
           arrow,
-          myContainer("lib/assets/images/checkOut.jpg", "Estimate"),
+          myContainer("lib/assets/images/checkOut.jpg", "Estimate",
+              Colors.white, Colors.black),
           arrow,
-          myContainer("lib/assets/images/resultBlack.jpg", "Correct"),
+          myContainer("lib/assets/images/resultBlack.jpg", "Correct",
+              Color(0xff4CAE7D), Colors.white),
           arrow,
-          myContainer("lib/assets/images/checkOut.jpg", "Earnings")
+          myContainer("lib/assets/images/checkOut.jpg", "Earnings",
+              Colors.white, Colors.black)
         ],
       ),
     );
@@ -158,7 +163,7 @@ class _TeacherCorrectionUploadState extends State<TeacherCorrectionUpload> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.green,
+        color: Color(0xff4CAE7D),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(

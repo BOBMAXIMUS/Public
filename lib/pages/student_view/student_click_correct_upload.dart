@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pagina_web/widgets/progress_bar.dart';
+import 'package:frontend/widgets/progress_bar.dart';
 
 class StudentClickCorrectUploadFile extends StatelessWidget {
   final TextStyle myStyle = TextStyle(
@@ -178,7 +178,7 @@ class StudentClickCorrectUploadFile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: myStyle,
                 ),
-                Icon(Icons.check, color: Colors.green)
+                Icon(Icons.check, color: Color(0xff4CAE7D))
               ],
             ),
           ),

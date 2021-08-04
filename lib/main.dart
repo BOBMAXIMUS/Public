@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/correction_stack.dart';
-import 'package:pagina_web/custom_appbar_small.dart';
-import 'package:pagina_web/custom_appbar_wide.dart';
-import 'package:pagina_web/pages/student_view/student_book_class_now.dart';
-import 'package:pagina_web/pages/student_view/student_book_class_search.dart';
-import 'package:pagina_web/pages/student_view/student_book_class_paidment.dart';
-import 'package:pagina_web/pages/student_view/student_click_correct_upload.dart';
-import 'package:pagina_web/pages/student_view/student_click_correct_upload_validation.dart';
-import 'package:pagina_web/pages/student_view/student_difficulty_page.dart';
-import 'package:pagina_web/pages/student_view/student_main_view.dart';
-import 'package:pagina_web/pages/student_view/student_maths_in_motion.dart';
-import 'package:pagina_web/pages/student_view/student_search_teacher.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_confirm_class.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_correct.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_estimate.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_upload.dart';
+import 'package:frontend/correction_stack.dart';
+import 'package:frontend/custom_appbar_small.dart';
+import 'package:frontend/custom_appbar_wide.dart';
+import 'package:frontend/pages/student_view/student_book_class_now.dart';
+import 'package:frontend/pages/student_view/student_book_class_search.dart';
+import 'package:frontend/pages/student_view/student_book_class_paidment.dart';
+import 'package:frontend/pages/student_view/student_click_correct_upload.dart';
+import 'package:frontend/pages/student_view/student_click_correct_upload_validation.dart';
+import 'package:frontend/pages/student_view/student_difficulty_page.dart';
+import 'package:frontend/pages/student_view/student_main_view.dart';
+import 'package:frontend/pages/student_view/student_maths_in_motion.dart';
+import 'package:frontend/pages/student_view/student_personal_table.dart';
+import 'package:frontend/pages/student_view/student_profile.dart';
+import 'package:frontend/pages/student_view/student_search_teacher.dart';
+import 'package:frontend/pages/teacher_view/main_teacher_view.dart';
+import 'package:frontend/pages/teacher_view/teacher_confirm_class.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_correct.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_estimate.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
 
+import 'pages/student_view/custom_student_appbar_wide.dart';
 import 'pages/teacher_view/teacher_book_class.dart';
 
 void main() => runApp(MyApp());
@@ -35,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       home: screenValidation(),
       routes: {
         //TEACHERS VIEWS
-        "/teacherMainPages": (context) => CustomAppbar(TeacherMainPage()),
+        "/teacherMainPages": (context) => CustomAppbar(TeacherMainPages()),
         "/teacherBookClass": (context) => CustomAppbar(TeacherBookClass()),
         "/teacherCorrectionStack": (context) => CustomAppbar(CorrectionStack()),
         "/teacherBookClassConfirm": (context) =>
@@ -47,23 +51,27 @@ class _MyAppState extends State<MyApp> {
         "/teacherCorrectionUpload": (context) =>
             CustomAppbar(TeacherCorrectionUpload()),
         //STUDENT VIEW
-        "/studentMainPage": (context) => CustomAppbar(StudentMainPage()),
+        "/studentMainPage": (context) => CustomStudentAppbar(StudentMainPage()),
         "/studentMathsInMotion": (context) =>
-            CustomAppbar(StudentMathsInMotionPage()),
+            CustomStudentAppbar(StudentMathsInMotionPage()),
         "/studentClickCorrectUpload": (context) =>
-            CustomAppbar(StudentClickCorrectUploadFile()),
+            CustomStudentAppbar(StudentClickCorrectUploadFile()),
         "/studentClickCorrectValidation": (context) =>
-            CustomAppbar(StudentClickCorrectUploadValidation()),
+            CustomStudentAppbar(StudentClickCorrectUploadValidation()),
         "/studentDifficultyBar": (context) =>
-            CustomAppbar(StudentDifficultyPage()),
+            CustomStudentAppbar(StudentDifficultyPage()),
         "/studentBookAClass": (context) =>
-            CustomAppbar(StudentBookAClassSearch()),
+            CustomStudentAppbar(StudentBookAClassSearch()),
         "/studentBookAClassPaidment": (context) =>
-            CustomAppbar(StudentBookClassPaidment()),
+            CustomStudentAppbar(StudentBookClassPaidment()),
         "/studentBookAClassNow": (context) =>
-            CustomAppbar(StudentBookClassNow()),
+            CustomStudentAppbar(StudentBookClassNow()),
         "/studentSearchTeacher": (context) =>
-            CustomAppbar(StudentSearchTeacher()),
+            CustomStudentAppbar(StudentSearchTeacher()),
+        "/studentPersonalTable": (context) =>
+            CustomStudentAppbar(StudentPersonalTable()),
+        "/studentProfileView": (context) =>
+            CustomStudentAppbar(StudentProfileView()),
       },
     );
   }
@@ -76,7 +84,7 @@ class _MyAppState extends State<MyApp> {
           if (constraints.maxHeight < 500) {
             return AppBarMobileMode();
           } else {
-            return CustomAppbar(StudentMainPage());
+            return CustomAppbar(TeacherMainPages());
           }
         },
       ),

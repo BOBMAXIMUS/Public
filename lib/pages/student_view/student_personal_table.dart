@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CorrectionStack extends StatelessWidget {
+class StudentPersonalTable extends StatelessWidget {
   final Widget arrow = Container(
     margin: EdgeInsets.only(top: 15.0),
     child: Icon(
       Icons.arrow_forward_ios_rounded,
       color: Color(0xff4CAE7D),
+      size: 30.0,
     ),
   );
-
   final EdgeInsets myPadding = EdgeInsets.only(
     left: 15.0,
     bottom: 2.5,
@@ -19,8 +19,7 @@ class CorrectionStack extends StatelessWidget {
   final SizedBox littleBox = SizedBox(
     width: 8.0,
   );
-
-  myContainer(String asset, String text, Color color) {
+  myContainer(String asset, String text, Color color, Color iconColor) {
     Widget banner = Container(
       width: 140.0,
       decoration: BoxDecoration(
@@ -39,6 +38,7 @@ class CorrectionStack extends StatelessWidget {
             child: Image(
               image: AssetImage(asset),
               fit: BoxFit.fill,
+              color: iconColor,
             ),
           ),
           littleBox,
@@ -49,15 +49,14 @@ class CorrectionStack extends StatelessWidget {
     return banner;
   }
 
-  myDataRow(Color color, String correctionID, String available, IconData urgent,
-      int level, IconData view, IconData correct) {
+  myDataRow(Color color, String date, String correctionID, IconData status,
+      IconData urgent, String materia, IconData view, IconData correct) {
     DataRow myDataRow = DataRow(
       color: MaterialStateColor.resolveWith((states) => color),
       cells: [
         DataCell(
           Container(
-            width: 24.0,
-            height: 24.0,
+            child: Text(date),
           ),
         ),
         DataCell(
@@ -70,7 +69,10 @@ class CorrectionStack extends StatelessWidget {
           Text(correctionID),
         ),
         DataCell(
-          Text(available),
+          Icon(
+            status,
+            color: Color(0xff4CAE7D),
+          ),
         ),
         DataCell(
           Icon(
@@ -79,7 +81,7 @@ class CorrectionStack extends StatelessWidget {
           ),
         ),
         DataCell(
-          Text(level.toString() + "th"),
+          Text(materia),
         ),
         DataCell(
           Container(
@@ -99,18 +101,17 @@ class CorrectionStack extends StatelessWidget {
     return myDataRow;
   }
 
-  //TODO: Se crean otro controles para diferentes inputs?
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    Widget stackText = Container(
-      margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
+    Widget upperText = Container(
+      margin: EdgeInsets.only(top: 40.0, bottom: 20.0),
+      alignment: Alignment.center,
       child: Text(
-        "Correction stack",
-        textAlign: TextAlign.center,
+        "Tableau de suivi",
         style: TextStyle(
-          fontSize: 35.0,
           fontWeight: FontWeight.bold,
+          fontSize: 26,
         ),
       ),
     );
@@ -122,21 +123,18 @@ class CorrectionStack extends StatelessWidget {
         spacing: 20.0, //separacion segun el "direction" ,horizontal
         runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          myContainer("lib/assets/images/uploadFileBlack.jpg", "View List",
-              Color(0xff4CAE7D)),
+          myContainer("lib/assets/images/uploadFileBlack.jpg", "View list",
+              Color(0xff4CAE7D), Colors.white),
           arrow,
-          myContainer(
-              "lib/assets/images/checkOut.jpg", "Estimate", Colors.white),
-          arrow,
-          myContainer(
-              "lib/assets/images/resultBlack.jpg", "Correct", Colors.white),
-          arrow,
-          myContainer(
-              "lib/assets/images/checkOut.jpg", "Earnings", Colors.white)
+          InkWell(
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, "/studentProfileView"),
+            child: myContainer("lib/assets/images/Profile.jpg", "Profile",
+                Colors.white, Colors.black),
+          ),
         ],
       ),
     );
-
     Widget dataTable = Container(
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -172,9 +170,7 @@ class CorrectionStack extends StatelessWidget {
                 columnSpacing: 30,
                 columns: [
                   DataColumn(
-                    label: Container(
-                      child: Icon(Icons.search),
-                    ),
+                    label: Text("Date"),
                   ),
                   DataColumn(
                     label: Container(
@@ -185,13 +181,13 @@ class CorrectionStack extends StatelessWidget {
                     label: Text("Correction ID"),
                   ),
                   DataColumn(
-                    label: Text("Available since"),
+                    label: Text("Statut"),
                   ),
                   DataColumn(
                     label: Text("Urgent!"),
                   ),
                   DataColumn(
-                    label: Text("Level"),
+                    label: Text("Matiere"),
                   ),
                   DataColumn(
                     label: Text("Invalid flag"),
@@ -200,77 +196,56 @@ class CorrectionStack extends StatelessWidget {
                     label: Text("View"),
                   ),
                   DataColumn(
-                    label: Text("Correct"),
+                    label: Text("Correction"),
                   ),
                 ],
                 rows: [
-                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.white, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.white, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.white, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.grey.shade300, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
-                  myDataRow(Colors.white, "CC0001", "12h 10mn",
-                      Icons.info_outline, 12, Icons.search, Icons.tag),
+                  myDataRow(
+                      Colors.grey.shade300,
+                      "06/22/21",
+                      "CC0001",
+                      Icons.check,
+                      Icons.info_outline,
+                      "Maths",
+                      Icons.search,
+                      Icons.tag),
+                  myDataRow(Colors.white, "06/22/21", "CC0001", Icons.check,
+                      Icons.info_outline, "Maths", Icons.search, Icons.tag),
+                  myDataRow(
+                      Colors.grey.shade300,
+                      "06/22/21",
+                      "CC0001",
+                      Icons.check,
+                      Icons.info_outline,
+                      "Maths",
+                      Icons.search,
+                      Icons.tag),
+                  myDataRow(Colors.white, "06/22/21", "CC0001", Icons.check,
+                      Icons.info_outline, "Maths", Icons.search, Icons.tag),
+                  myDataRow(
+                      Colors.grey.shade300,
+                      "06/22/21",
+                      "CC0001",
+                      Icons.check,
+                      Icons.info_outline,
+                      "Maths",
+                      Icons.search,
+                      Icons.tag),
+                  myDataRow(Colors.white, "06/22/21", "CC0001", Icons.check,
+                      Icons.info_outline, "Maths", Icons.search, Icons.tag),
                 ],
               ),
             ),
           ],
         ));
-    Widget validateButtom = Container(
-      width: 200.0,
-      margin: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(13),
-        shape: BoxShape.rectangle,
-        color: Color(0xff4CAE7D),
-      ),
-      padding: EdgeInsets.all(5.0),
-      child: InkWell(
-        onTap: () => Navigator.pushReplacementNamed(
-            context, "/teacherCorrectionEstimate"),
-        child: Container(
-          // color: Colors.blue,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 7.0),
-                child: Icon(
-                  Icons.check,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                child: Text(
-                  " Next ",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-
     return Padding(
-      padding: const EdgeInsets.only(top: 89.0),
+      padding: EdgeInsets.only(top: 89.0),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          stackText,
+          upperText,
           allBanner,
           dataTable,
-          validateButtom,
         ],
       ),
     );

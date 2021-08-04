@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/widgets/progress_bar.dart';
+import 'package:frontend/widgets/progress_bar.dart';
 
 class StudentClickCorrectUploadValidation extends StatefulWidget {
   @override
@@ -36,11 +36,12 @@ class _StudentClickCorrectUploadValidationState
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
             shape: BoxShape.rectangle,
-            color: Colors.pink.shade900,
+            color: Color(0xffB71C8C),
           ),
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () => Navigator.pushReplacementNamed(
+                context, "/studentPersonalTable"),
             child: Container(
               child: Text(
                 "Suivre ma correction",

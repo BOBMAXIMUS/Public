@@ -11,7 +11,7 @@ class AppBarMobileMode extends StatefulWidget {
 
 class _AppBarMobileModeState extends State<AppBarMobileMode> {
   final pinkTextStyle = TextStyle(
-    color: Colors.pink.shade900,
+    color: Color(0xffB71C8C),
     fontWeight: FontWeight.bold,
   );
   int indexTap = 0;
@@ -86,7 +86,7 @@ class _AppBarMobileModeState extends State<AppBarMobileMode> {
       child: Image(
         image: AssetImage("lib/assets/images/settings.jpg"),
         fit: BoxFit.fill,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -102,7 +102,7 @@ class _AppBarMobileModeState extends State<AppBarMobileMode> {
           Expanded(
             flex: 4,
             child: Container(
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
               height: 1.5,
             ),
           ),

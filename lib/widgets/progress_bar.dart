@@ -5,7 +5,7 @@ class ProgressBar extends StatelessWidget {
     margin: EdgeInsets.only(top: 15.0),
     child: Icon(
       Icons.arrow_forward_ios_rounded,
-      color: Colors.green.shade400,
+      color: Color(0xff4CAE7D),
       size: 30.0,
     ),
   );
@@ -21,13 +21,13 @@ class ProgressBar extends StatelessWidget {
     width: 8.0,
   );
 
-  myContainer(String asset, String text) {
+  myContainer(String asset, String text, Color color, Color iconColor) {
     Widget banner = Container(
-      width: 135.0,
+      width: 140.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.white,
+        color: color,
       ),
       padding: myPadding,
       child: Row(
@@ -40,8 +40,10 @@ class ProgressBar extends StatelessWidget {
             child: Image(
               image: AssetImage(asset),
               fit: BoxFit.fill,
+              color: iconColor,
             ),
           ),
+          littleBox,
           Text(text)
         ],
       ),
@@ -59,11 +61,14 @@ class ProgressBar extends StatelessWidget {
         spacing: 20.0, //separacion segun el "direction" ,horizontal
         runSpacing: 20.0, // separacion al momento de rodar
         children: [
-          myContainer("lib/assets/images/uploadFileBlack.jpg", "Upload"),
+          myContainer("lib/assets/images/uploadFileBlack.jpg", "Upload",
+              Color(0xff4CAE7D), Colors.white),
           arrow,
-          myContainer("lib/assets/images/checkOut.jpg", "Checkout"),
+          myContainer("lib/assets/images/checkOut.jpg", "Checkout",
+              Colors.white, Colors.black),
           arrow,
-          myContainer("lib/assets/images/resultBlack.jpg", "Results!"),
+          myContainer("lib/assets/images/resultBlack.jpg", "Results!",
+              Colors.white, Color(0xff4CAE7D)),
         ],
       ),
     );

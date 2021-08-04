@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/widgets/calendar_widget.dart';
+import 'package:frontend/widgets/calendar_widget.dart';
 
 class TeacherBookClass extends StatelessWidget {
   Widget contentText = Container(
@@ -38,7 +38,7 @@ class TeacherBookClass extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
-                color: Colors.pink.shade600,
+                color: Color(0xffB71C8C),
               ),
               child: Text(
                 "Ajouter plus d'horaires",
@@ -61,7 +61,7 @@ class TeacherBookClass extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
-                color: Colors.pink.shade600,
+                color: Color(0xffB71C8C),
               ),
               child: Text(
                 "Sauvergarder horaires",

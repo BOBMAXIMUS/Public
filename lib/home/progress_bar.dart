@@ -5,7 +5,7 @@ class ProgressBar extends StatelessWidget {
     margin: EdgeInsets.only(top: 15.0),
     child: Icon(
       Icons.arrow_forward_ios_rounded,
-      color: Colors.green.shade400,
+      color: Color(0xff4CAE7D),
       size: 30.0,
     ),
   );

@@ -11,7 +11,7 @@ class CustomAppbar extends StatefulWidget {
 
 class _CustomAppbarState extends State<CustomAppbar> {
   final pinkTextStyle = TextStyle(
-    color: Colors.pink.shade900,
+    color: Color(0xffB71C8C),
     fontWeight: FontWeight.bold,
   );
 
@@ -87,7 +87,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       margin: EdgeInsets.only(top: 20.0),
       child: Icon(
         Icons.search,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -98,7 +98,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       child: Image(
         image: AssetImage("assets/images/messages.jpg"),
         fit: BoxFit.fill,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -109,7 +109,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       child: Image(
         image: AssetImage("assets/images/settings.jpg"),
         fit: BoxFit.fill,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -125,7 +125,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
           Expanded(
             flex: 4,
             child: Container(
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
               height: 1.5,
             ),
           ),

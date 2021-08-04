@@ -49,7 +49,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
         selectionMode: DateRangePickerSelectionMode.single,
         controller: _controller,
         onSelectionChanged: CustomCalendar._onSelectionChanged,
-        onViewChanged: viewChanged,
+        /* onViewChanged: viewChanged,*/ //FIXME: ARREGLAR ESTA VAINA
       ),
     );
     Widget validateTimeButtom = Container(
@@ -58,7 +58,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.green,
+        color: Color(0xff4CAE7D),
       ),
       padding: EdgeInsets.all(5.0),
       child: InkWell(
@@ -118,8 +118,9 @@ class _CustomCalendarState extends State<CustomCalendar> {
     );
     return column;
   }
+//FIXME: ARREGLAR ESTA VAINA
 
-  void viewChanged(DateRangePickerViewChangedArgs value) {
+  /*void viewChanged(DateRangePickerViewChangedArgs value) {
     _startDate = DateFormat('dd, MMMM yyyy hh:mm a')
         .format(value.visibleDateRange.startDate)
         .toString();
@@ -129,5 +130,5 @@ class _CustomCalendarState extends State<CustomCalendar> {
     SchedulerBinding.instance.addPostFrameCallback((duration) {
       setState(() {});
     });
-  }
+  }*/
 }

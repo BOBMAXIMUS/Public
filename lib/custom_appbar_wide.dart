@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_web/book_class.dart';
-import 'package:pagina_web/correction_stack.dart';
-import 'package:pagina_web/pages/student_view/student_click_correct_upload.dart';
-import 'package:pagina_web/pages/student_view/student_click_correct_upload_validation.dart';
-import 'package:pagina_web/pages/student_view/student_difficulty_page.dart';
-import 'package:pagina_web/pages/student_view/student_main_view.dart';
-import 'package:pagina_web/pages/teacher_view/main_teacher_view.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_book_class.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_confirm_class.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_correct.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_estimate.dart';
-import 'package:pagina_web/pages/teacher_view/teacher_correction_upload.dart';
+import 'package:frontend/book_class.dart';
+import 'package:frontend/correction_stack.dart';
+import 'package:frontend/pages/student_view/student_click_correct_upload.dart';
+import 'package:frontend/pages/student_view/student_click_correct_upload_validation.dart';
+import 'package:frontend/pages/student_view/student_difficulty_page.dart';
+import 'package:frontend/pages/student_view/student_main_view.dart';
+import 'package:frontend/pages/teacher_view/main_teacher_view.dart';
+import 'package:frontend/pages/teacher_view/teacher_book_class.dart';
+import 'package:frontend/pages/teacher_view/teacher_confirm_class.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_correct.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_estimate.dart';
+import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
 
 import 'my_activities.dart';
 
@@ -33,7 +33,7 @@ final List<Widget> widgetsChildren = [
 class _CustomAppbarState extends State<CustomAppbar> {
   int indexTap = 0;
   final pinkTextStyle = TextStyle(
-    color: Colors.pink.shade900,
+    color: Color(0xffB71C8C),
     fontWeight: FontWeight.bold,
   );
 
@@ -101,7 +101,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       margin: EdgeInsets.only(top: 20.0),
       child: Icon(
         Icons.search,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -112,7 +112,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       child: Image(
         image: AssetImage("lib/assets/images/messages.jpg"),
         fit: BoxFit.fill,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -123,7 +123,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
       child: Image(
         image: AssetImage("lib/assets/images/settings.jpg"),
         fit: BoxFit.fill,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
     );
 
@@ -139,7 +139,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
           Expanded(
             flex: 16,
             child: Container(
-              color: Colors.pink.shade900,
+              color: Color(0xffB71C8C),
               height: 1.5,
             ),
           ),
@@ -224,7 +224,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
     fontSize: 12.0,
   );
 
-  Color currentColor = Colors.green.shade400;
+  Color currentColor = Color(0xff4CAE7D);
 
   Widget currentContent = BookClassContent();
 
@@ -241,7 +241,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.green.shade400;
+            currentColor = Color(0xff4CAE7D);
             currentContent = BookClassContent();
           });
         },
@@ -282,7 +282,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.blue.shade800;
+            currentColor = Color(0xff2C4997);
             currentContent = OtherTwo(
                 "lib/assets/images/PlanAClassForLater.jpg",
                 "Referencez vos disponibilites sur un calendrier pour planifier des cours",
@@ -327,7 +327,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.pink.shade800;
+            currentColor = Color(0xffB71C8C);
             currentContent = OtherTwo(
                 "lib/assets/images/request_correction.jpg",
                 "Corrigez des exercices et fait toi de l'argent",
@@ -428,7 +428,7 @@ class _TeacherMainPageState extends State<TeacherMainPage> {
             Container(
               margin: EdgeInsets.only(bottom: 8.0),
               child: Text(
-                "STUDEN's FEED",
+                "Feed de demandes etudiuantes",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -639,8 +639,12 @@ class MyDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget dataTable = Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        shape: BoxShape.rectangle,
+        color: Colors.grey.shade200,
+      ),
       alignment: Alignment.topLeft,
-      color: Colors.grey.shade200,
       height: 250.0,
       child: Expanded(
         child: DataTable(

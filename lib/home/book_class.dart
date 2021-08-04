@@ -17,7 +17,7 @@ class BookClass extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
-        color: Colors.green.shade400,
+        color: Color(0xff4CAE7D),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +149,7 @@ class BookClass extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade800,
+        color: Color(0xffB71C8C),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -24,7 +24,7 @@ class StudentSearchTeacher extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: InkWell(

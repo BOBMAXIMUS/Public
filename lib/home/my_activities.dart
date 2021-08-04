@@ -39,7 +39,6 @@ class MyActivities extends StatelessWidget {
   cardTileIcon(String title, String subTitle, String asset, Color color) {
     Widget rowIcon = Container(
       margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-      // color: Colors.green,
       width: 200.0,
       child: Row(
         children: [
@@ -116,7 +115,7 @@ class MyActivities extends StatelessWidget {
     Widget rowRow3 = Row(
       children: [
         cardTileIcon("6 corrections", "Subtitle text",
-            "assets/images/CNCSearch.jpg", null),
+            "assets/images/CNCSearch.jpg", Colors.white10),
         cardTileText("2 exercices", "Subtitle text"),
       ],
     );

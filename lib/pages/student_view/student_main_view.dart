@@ -123,7 +123,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.pink.shade800;
+            currentColor = Color(0xffB71C8C);
             currentContent = OtherTwo(
                 "lib/assets/images/request_correction.jpg",
                 "Corrigez des exercices et fait toi de l'argent",
@@ -165,12 +165,11 @@ class _StudentMainPageState extends State<StudentMainPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        //    color: Colors.teal,
       ),
       child: InkWell(
         onTap: () {
           setState(() {
-            currentColor = Colors.indigo.shade900;
+            currentColor = Color(0xff12133C);
             currentContent = OtherTwo(
                 "lib/assets/images/MathsInMotion.jpg",
                 "Revise tes cjapitres de maths avece des videos",

@@ -44,13 +44,14 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.pink.shade900,
+        color: Color(0xffB71C8C),
       ),
       height: 40,
       padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
       child: InkWell(
         onTap: () {},
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               margin: EdgeInsets.only(right: 10.0),
@@ -98,6 +99,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
     );
     Widget rowButtoms = Container(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           creditCardButtom,
@@ -117,19 +119,27 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
     );
     Widget rowIcons = Container(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 20,
-            height: 20,
-            color: Colors.amber,
+            height: 40.0,
+            width: 60.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+                image: AssetImage("lib/assets/images/paypal_icon.jpg"),
+                fit: BoxFit.scaleDown),
           ),
           SizedBox(width: 40),
           Container(
-            width: 20,
-            height: 20,
-            color: Colors.amber,
-          ),
+            height: 40.0,
+            width: 60.0,
+            margin: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage("lib/assets/images/applePay_icon.jpg"),
+              fit: BoxFit.fitWidth,
+            ),
+          )
         ],
       ),
     );
@@ -149,6 +159,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
       width: 500.0,
       height: 51.0,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 140.0,
@@ -194,6 +205,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
       width: 500.0,
       height: 51.0,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 140.0,
@@ -239,6 +251,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
       width: 500.0,
       height: 51.0,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 140.0,
@@ -284,6 +297,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
       width: 500.0,
       height: 51.0,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 140.0,
@@ -321,13 +335,14 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
             ),
           ),
           Flexible(
-              flex: 1,
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 30,
-                  alignment: Alignment.center,
-                  color: Color(0xff4CAE7D),
+              flex: 2,
+              child: Container(
+                margin: EdgeInsets.all(10),
+                height: 30,
+                alignment: Alignment.center,
+                color: Color(0xff4CAE7D),
+                child: InkWell(
+                  onTap: () {},
                   child: Text(
                     "Verifier code",
                     style: TextStyle(color: Colors.white),
@@ -339,16 +354,18 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
     );
     Widget allInfoField = Container(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           cardNumberField,
           expirationDateField,
           cvvField,
-          codePromoField,
+          Container(margin: EdgeInsets.all(10), child: codePromoField),
         ],
       ),
     );
     Widget registerCardInfo = Container(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
@@ -387,7 +404,7 @@ class _StudentBookClassPaidmentState extends State<StudentBookClassPaidment> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
             shape: BoxShape.rectangle,
-            color: Colors.pink.shade900,
+            color: Color(0xffB71C8C),
           ),
           padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
           child: InkWell(
