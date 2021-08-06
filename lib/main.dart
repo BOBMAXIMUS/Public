@@ -19,6 +19,7 @@ import 'package:frontend/pages/teacher_view/teacher_correction_correct.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_estimate.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
 
+import 'login/login_scaffold.dart';
 import 'pages/student_view/custom_student_appbar_wide.dart';
 import 'pages/teacher_view/teacher_book_class.dart';
 
@@ -36,8 +37,9 @@ class _MyAppState extends State<MyApp> {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Roboto"),
-      home: screenValidation(),
+      //home: screenValidation(),
       routes: {
+        '/': (context) => LoginScaffold(),
         //TEACHERS VIEWS
         "/teacherMainPages": (context) => CustomAppbar(TeacherMainPages()),
         "/teacherBookClass": (context) => CustomAppbar(TeacherBookClass()),
@@ -73,6 +75,7 @@ class _MyAppState extends State<MyApp> {
         "/studentProfileView": (context) =>
             CustomStudentAppbar(StudentProfileView()),
       },
+      initialRoute: '/',
     );
   }
 

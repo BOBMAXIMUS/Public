@@ -6,8 +6,8 @@ void main() {
   final apiClient = AroApiClient();
 
   group('Test Login', () {
-    const email = 'rjvasquez1996@gmail.com';
-    const password = '1234';
+    const email = 'josevalderrama18@gmail.com';
+    const password = 'joseJose1+';
 
     test('Fail', () async {
       const incorrectPassword = '1111';
