@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/correction_stack.dart';
 import 'package:frontend/custom_appbar_small.dart';
 import 'package:frontend/custom_appbar_wide.dart';
+import 'package:frontend/pages/all_view/services_view_login_page.dart';
 import 'package:frontend/pages/student_view/student_book_class_now.dart';
 import 'package:frontend/pages/student_view/student_book_class_search.dart';
 import 'package:frontend/pages/student_view/student_book_class_paidment.dart';
@@ -18,6 +19,7 @@ import 'package:frontend/pages/teacher_view/teacher_confirm_class.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_correct.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_estimate.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
+import 'package:frontend/pages/all_view/main_login_page.dart';
 
 import 'pages/student_view/custom_student_appbar_wide.dart';
 import 'pages/teacher_view/teacher_book_class.dart';
@@ -38,6 +40,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(fontFamily: "Roboto"),
       home: screenValidation(),
       routes: {
+        //LOGIN VIEWS
+        "/loginMainPage": (context) => MainLoginPage(),
+        "/servicesViewLoginPage": (context) => ServicesViewLoginPage(),
         //TEACHERS VIEWS
         "/teacherMainPages": (context) => CustomAppbar(TeacherMainPages()),
         "/teacherBookClass": (context) => CustomAppbar(TeacherBookClass()),
@@ -84,7 +89,8 @@ class _MyAppState extends State<MyApp> {
           if (constraints.maxHeight < 500) {
             return AppBarMobileMode();
           } else {
-            return CustomAppbar(TeacherMainPages());
+            // return CustomStudentAppbar(StudentMainPage());
+            return MainLoginPage();
           }
         },
       ),

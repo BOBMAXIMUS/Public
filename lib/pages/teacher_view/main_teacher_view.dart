@@ -28,7 +28,6 @@ class _TeacherMainPagesState extends State<TeacherMainPages> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        //  color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
@@ -70,7 +69,6 @@ class _TeacherMainPagesState extends State<TeacherMainPages> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Colors.red,
       ),
       child: InkWell(
         onTap: () {
