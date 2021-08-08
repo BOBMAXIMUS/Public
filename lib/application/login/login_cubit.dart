@@ -1,9 +1,9 @@
 import 'package:aro_repository/aro_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:frontend/auth_models/email.dart';
-import 'package:frontend/auth_models/password.dart';
-import 'login_state.dart';
+import 'package:frontend/application/auth_models/email.dart';
+import 'package:frontend/application/auth_models/password.dart';
+import '../../application/login/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(const LoginState());

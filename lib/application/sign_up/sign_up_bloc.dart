@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:aro_repository/aro_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:frontend/auth_models/confirm_password.dart';
-import 'package:frontend/auth_models/email.dart';
-import 'package:frontend/auth_models/name.dart';
-import 'package:frontend/auth_models/password.dart';
+import 'package:frontend/application/auth_models/confirm_password.dart';
+import 'package:frontend/application/auth_models/email.dart';
+import 'package:frontend/application/auth_models/name.dart';
+import 'package:frontend/application/auth_models/password.dart';
 import 'package:formz/formz.dart';
 import 'sign_up_event.dart';
-import 'sign_up_state.dart';
+import '../../application/sign_up/sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc() : super(SignUpState());

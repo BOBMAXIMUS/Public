@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:frontend/common/add_image_form.dart';
 import 'package:frontend/common/auth_text_field.dart';
-import 'package:frontend/sign_up/sign_up_bloc.dart';
-import 'package:frontend/sign_up/sign_up_event.dart';
-import 'package:frontend/sign_up/sign_up_state.dart';
+import 'package:frontend/application/sign_up/sign_up_bloc.dart';
+import 'package:frontend/application/sign_up/sign_up_event.dart';
+import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/auth_models/confirm_password.dart';
-import 'package:frontend/auth_models/password.dart';
+import 'package:frontend/application/auth_models/confirm_password.dart';
+import 'package:frontend/application/auth_models/password.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key key}) : super(key: key);

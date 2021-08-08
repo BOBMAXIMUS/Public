@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:frontend/auth_models/confirm_password.dart';
-import 'package:frontend/auth_models/email.dart';
-import 'package:frontend/auth_models/name.dart';
-import 'package:frontend/auth_models/password.dart';
+import 'package:frontend/application/auth_models/confirm_password.dart';
+import 'package:frontend/application/auth_models/email.dart';
+import 'package:frontend/application/auth_models/name.dart';
+import 'package:frontend/application/auth_models/password.dart';
 import 'package:formz/formz.dart';
 
 class SignUpState extends Equatable {
