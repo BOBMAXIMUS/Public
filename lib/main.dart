@@ -22,6 +22,7 @@ import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
 import 'login/login_scaffold.dart';
 import 'pages/student_view/custom_student_appbar_wide.dart';
 import 'pages/teacher_view/teacher_book_class.dart';
+import 'sign_up/sign_up_scaffold.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
       //home: screenValidation(),
       routes: {
         '/': (context) => LoginScaffold(),
+        '/login/signUp': (context) => SignUpScaffold(),
         //TEACHERS VIEWS
         "/teacherMainPages": (context) => CustomAppbar(TeacherMainPages()),
         "/teacherBookClass": (context) => CustomAppbar(TeacherBookClass()),

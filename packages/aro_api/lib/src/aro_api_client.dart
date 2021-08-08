@@ -6,6 +6,7 @@ import 'package:aro_api/aro_api.dart';
 
 /// Exception thrown when Login fails.
 class LoginFailure implements Exception {}
+class SignUpFailure implements Exception {}
 
 class AroApiClient {
   AroApiClient({http.Client? httpClient})
@@ -41,6 +42,39 @@ class AroApiClient {
     final userJson = json['d'];
     if (userJson.isEmpty) {
       throw LoginFailure();
+    }
+
+    print(userJson);
+    return User.fromJson(userJson);
+  }
+
+  /// SignUp `/student/signup`.
+  Future<User> signup(String name, String lastname, String email, String password, String country, String phone, String degree, String language) async {
+    final locationRequest = Uri.https(
+      _baseUrl,
+      '/student/signup',
+    );
+
+    final signupResponse = await _httpClient.put(locationRequest,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+            <String, String>{'name': name, 'lastname': lastname,'email': email, 'password': password,'country': country, 'phone': phone,'degree': degree, 'language': language}));
+
+    print('status code ${signupResponse.statusCode}');
+
+    if (signupResponse.statusCode != 200) {
+      throw SignUpFailure();
+    }
+
+    final json = jsonDecode(
+      signupResponse.body,
+    );
+
+    final userJson = json['d'];
+    if (userJson.isEmpty) {
+      throw SignUpFailure();
     }
 
     print(userJson);

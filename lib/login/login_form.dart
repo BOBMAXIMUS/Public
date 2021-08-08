@@ -61,7 +61,7 @@ class _WelcomeText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0, top: 30.0),
       child: Text(
-        'Welcome to Bloc tutorial!',
+        'Welcome to ARO!',
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: 18,

@@ -38,6 +38,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
+      ///Tomar los estados y insertar al backend
       await aro.login(email, password);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception catch (e) {
