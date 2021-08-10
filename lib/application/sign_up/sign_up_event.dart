@@ -8,17 +8,6 @@ abstract class SignUpEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ProfileImageChanged extends SignUpEvent {
-  const ProfileImageChanged({
-    @required this.image
-  });
-
-  final String image;
-
-  @override
-  List<Object> get props => [image];
-}
-
 class NameChanged extends SignUpEvent {
   const NameChanged({
     @required this.name
@@ -28,6 +17,61 @@ class NameChanged extends SignUpEvent {
 
   @override
   List<Object> get props => [name];
+}
+
+class LastNameChanged extends SignUpEvent {
+  const LastNameChanged({
+    @required this.lastName
+  });
+
+  final String lastName;
+
+  @override
+  List<Object> get props => [lastName];
+}
+
+class CountryChanged extends SignUpEvent {
+  const CountryChanged({
+    @required this.country
+  });
+
+  final String country;
+
+  @override
+  List<Object> get props => [country];
+}
+
+class PhoneChanged extends SignUpEvent {
+  const PhoneChanged({
+    @required this.phone
+  });
+
+  final String phone;
+
+  @override
+  List<Object> get props => [phone];
+}
+
+class DegreeChanged extends SignUpEvent {
+  const DegreeChanged({
+    @required this.degree
+  });
+
+  final String degree;
+
+  @override
+  List<Object> get props => [degree];
+}
+
+class LanguageChanged extends SignUpEvent {
+  const LanguageChanged({
+    @required this.language
+  });
+
+  final String language;
+
+  @override
+  List<Object> get props => [language];
 }
 
 class EmailChanged extends SignUpEvent {

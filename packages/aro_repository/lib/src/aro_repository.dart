@@ -15,8 +15,8 @@ class AroRepository {
     return user;
   }
 
-  Future<User> signup(String name, String lastname, String email, String password, String country, String phone, String degree, String language) async {
-    final user = await _aroApiClient.signup(name,lastname,email, password,country,phone,degree,language);
-    return user;
+  Future<String> signup(String name, String lastname, String email, String password, String country, String phone, String degree, String language) async {
+    final id = await _aroApiClient.signup(name,lastname,email, password,country,phone,degree,language);
+    return id;
   }
 }

@@ -49,7 +49,7 @@ class AroApiClient {
   }
 
   /// SignUp `/student/signup`.
-  Future<User> signup(String name, String lastname, String email, String password, String country, String phone, String degree, String language) async {
+  Future<String> signup(String name, String lastname, String email, String password, String country, String phone, String degree, String language) async {
     final locationRequest = Uri.https(
       _baseUrl,
       '/student/signup',
@@ -72,12 +72,10 @@ class AroApiClient {
       signupResponse.body,
     );
 
-    final userJson = json['d'];
-    if (userJson.isEmpty) {
+    final userRegisteredJson = json['d'];
+    if (userRegisteredJson.isEmpty) {
       throw SignUpFailure();
     }
-
-    print(userJson);
-    return User.fromJson(userJson);
+    return userRegisteredJson['id'];
   }
 }
