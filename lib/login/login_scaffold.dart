@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'login_cubit.dart';
+import '../application/login/login_cubit.dart';
 import 'login_form.dart';
 
 class LoginScaffold extends StatelessWidget {

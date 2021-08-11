@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/auth_text_field.dart';
-import 'login_cubit.dart';
-import 'login_state.dart';
+import '../application/login/login_cubit.dart';
+import '../application/login/login_state.dart';
 import 'package:formz/formz.dart';
 
 class LoginForm extends StatelessWidget {
@@ -61,7 +61,7 @@ class _WelcomeText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0, top: 30.0),
       child: Text(
-        'Welcome to Bloc tutorial!',
+        'Welcome to ARO!',
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: 18,
