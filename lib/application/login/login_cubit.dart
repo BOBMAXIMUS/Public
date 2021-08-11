@@ -1,9 +1,9 @@
 import 'package:aro_repository/aro_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:frontend/auth_models/email.dart';
-import 'package:frontend/auth_models/password.dart';
-import 'login_state.dart';
+import 'package:frontend/application/auth_models/email.dart';
+import 'package:frontend/application/auth_models/password.dart';
+import '../../application/login/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(const LoginState());
@@ -32,13 +32,12 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> logInWithCredentials() async {
     AroRepository aro = AroRepository();
-    const email = 'josevalderrama18@gmail.com';
-    const password = 'joseJose1+';
+    var email = state.email.value;
+    var password = state.password.value;
 
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      ///Tomar los estados y insertar al backend
       await aro.login(email, password);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception catch (e) {

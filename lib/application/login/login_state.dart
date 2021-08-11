@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:frontend/auth_models/email.dart';
-import 'package:frontend/auth_models/password.dart';
+import 'package:frontend/application/auth_models/email.dart';
+import 'package:frontend/application/auth_models/password.dart';
 
 
 class LoginState extends Equatable {

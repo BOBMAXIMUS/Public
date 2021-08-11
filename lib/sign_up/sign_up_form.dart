@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:frontend/common/add_image_form.dart';
 import 'package:frontend/common/auth_text_field.dart';
-import 'package:frontend/sign_up/sign_up_bloc.dart';
-import 'package:frontend/sign_up/sign_up_event.dart';
-import 'package:frontend/sign_up/sign_up_state.dart';
+import 'package:frontend/application/sign_up/sign_up_bloc.dart';
+import 'package:frontend/application/sign_up/sign_up_event.dart';
+import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/auth_models/confirm_password.dart';
-import 'package:frontend/auth_models/password.dart';
+import 'package:frontend/application/auth_models/confirm_password.dart';
+import 'package:frontend/application/auth_models/password.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key key}) : super(key: key);
@@ -30,9 +29,14 @@ class SignUpForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _NameInputField(),
+              _LastNameInputField(),
               _EmailInputField(),
               _PasswordInputField(),
               _ConfirmPasswordInput(),
+              _CountryInputField(),
+              _PhoneInputField(),
+              _DegreeInputField(),
+              _LanguageInputField(),
               _SignUpButton(),
             ],
           ),
@@ -63,6 +67,113 @@ class _NameInputField extends StatelessWidget {
   }
 }
 
+class _LastNameInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.lastName != current.lastName,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Last Name',
+            key: const Key('signUpForm_lastNameInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (lastName) =>
+                context.read<SignUpBloc>().add(LastNameChanged(lastName: lastName)),
+          ),
+        );
+      },
+    );
+  }
+}
+class _CountryInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.country != current.country,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Country',
+            key: const Key('signUpForm_countryInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (country) =>
+                context.read<SignUpBloc>().add(CountryChanged(country: country)),
+          ),
+        );
+      },
+    );
+  }
+}
+class _PhoneInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.phone != current.phone,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Phone',
+            key: const Key('signUpForm_phoneInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (phone) =>
+                context.read<SignUpBloc>().add(PhoneChanged(phone: phone)),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _DegreeInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.degree != current.degree,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Degree',
+            key: const Key('signUpForm_degreeInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (degree) =>
+                context.read<SignUpBloc>().add(DegreeChanged(degree: degree)),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _LanguageInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.language != current.language,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Language',
+            key: const Key('signUpForm_languageInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (language) =>
+                context.read<SignUpBloc>().add(LanguageChanged(language: language)),
+          ),
+        );
+      },
+    );
+  }
+}
 class _EmailInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -115,7 +226,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) =>
-          previous.password != current.password ||
+      previous.password != current.password ||
           previous.confirmPassword != current.confirmPassword,
       builder: (context, state) {
         return AuthTextField(
