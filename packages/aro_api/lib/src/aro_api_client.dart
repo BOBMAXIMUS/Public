@@ -7,6 +7,7 @@ import 'package:aro_api/aro_api.dart';
 /// Exception thrown when Login fails.
 class LoginFailure implements Exception {}
 class SignUpFailure implements Exception {}
+class ValidateCodeFailure implements Exception {}
 
 class AroApiClient {
   AroApiClient({http.Client? httpClient})
@@ -77,5 +78,35 @@ class AroApiClient {
       throw SignUpFailure();
     }
     return userRegisteredJson['id'];
+  }
+
+  Future<String> validatorcode(String code,String userId) async {
+    final locationRequest = Uri.https(
+      _baseUrl,
+        '/auth/validateToken',
+    );
+
+    final validateCodeResponse = await _httpClient.put(locationRequest,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+            <String, String>{'userId':userId ,'code': code}));
+
+    print('status code ${validateCodeResponse.statusCode}');
+
+    if (validateCodeResponse.statusCode != 200) {
+      throw ValidateCodeFailure();
+    }
+
+    final json = jsonDecode(
+      validateCodeResponse.body,
+    );
+
+    final validateJson = json['d'];
+    if (validateJson.isEmpty) {
+      throw ValidateCodeFailure();
+    }
+    return validateJson['id'];
   }
 }

@@ -19,4 +19,9 @@ class AroRepository {
     final id = await _aroApiClient.signup(name,lastname,email, password,country,phone,degree,language);
     return id;
   }
+
+  Future<String> validatorcode(String code,String userId) async {
+    final id = await _aroApiClient.validatorcode(code,userId);
+    return id;
+  }
 }

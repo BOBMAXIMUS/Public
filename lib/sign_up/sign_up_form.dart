@@ -20,7 +20,7 @@ class SignUpForm extends StatelessWidget {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
-            Navigator.of(context).pushNamed('/');
+            Navigator.of(context).pushNamed('/login/validator',arguments: {'userId': state.userId});
           }
         },
         child: SingleChildScrollView(
@@ -260,9 +260,7 @@ class _SignUpButton extends StatelessWidget {
             child: Text('Sign Up'),
             disabledColor: Colors.blueAccent.withOpacity(0.6),
             color: Colors.blueAccent,
-            onPressed: state.status.isValidated
-                ? () => context.read<SignUpBloc>().add(FormSubmitted())
-                : null,
+            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted());
           ),
         );
       },

@@ -177,21 +177,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
     } else if (event is FormSubmitted) {
       AroRepository aro = AroRepository();
-      if (!state.status.isValidated) return;
+     if (!state.status.isValidated) return;
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {
-        ///Tomar los estados y insertar al backend
         String id = await aro.signup(
-            "ricardo3",
-            "vasquez3",
-            "rjvasque33z1996@gmail.com",
-            "Ricardo+123",
+            "ricardo13",
+            "vasque1z3",
+            "rjvasqu1e33z1996@gmail.com",
+            "Ricard1o+123",
             "France",
             "+5493413393425",
             "Terminale",
             "fr");
-        print(id);
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
+        yield state.copyWith(status: FormzStatus.submissionSuccess,userId: id);
       } on Exception {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
