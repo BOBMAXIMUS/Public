@@ -20,8 +20,11 @@ class AroRepository {
     return id;
   }
 
-  Future<String> validatorcode(String code,String userId) async {
-    final id = await _aroApiClient.validatorcode(code,userId);
-    return id;
+   validatoremail(String userId) async {
+    await _aroApiClient.validatoremail(userId);
+  }
+
+   validatorcode(String code,String userId) async {
+     await _aroApiClient.validatorcode(code,userId);
   }
 }

@@ -8,6 +8,7 @@ import 'package:aro_api/aro_api.dart';
 class LoginFailure implements Exception {}
 class SignUpFailure implements Exception {}
 class ValidateCodeFailure implements Exception {}
+class ValidateEmailFailure implements Exception {}
 
 class AroApiClient {
   AroApiClient({http.Client? httpClient})
@@ -80,13 +81,13 @@ class AroApiClient {
     return userRegisteredJson['id'];
   }
 
-  Future<String> validatorcode(String code,String userId) async {
+  validatorcode(String code,String userId) async {
     final locationRequest = Uri.https(
       _baseUrl,
         '/auth/validateToken',
     );
 
-    final validateCodeResponse = await _httpClient.put(locationRequest,
+    final validateCodeResponse = await _httpClient.post(locationRequest,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -103,10 +104,41 @@ class AroApiClient {
       validateCodeResponse.body,
     );
 
-    final validateJson = json['d'];
-    if (validateJson.isEmpty) {
-      throw ValidateCodeFailure();
+    final validateJson = json['s'];
+
+    if(validateJson == false){
+      throw ValidateEmailFailure();
     }
-    return validateJson['id'];
   }
+
+   validatoremail(String userId) async {
+    final locationRequest = Uri.https(
+      _baseUrl,
+      '/auth/validateEmail',
+    );
+
+    final validateCodeResponse = await _httpClient.post(locationRequest,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+            <String, String>{'userId':userId}));
+
+    print('status code ${validateCodeResponse.statusCode}');
+
+    if (validateCodeResponse.statusCode != 200) {
+      throw ValidateEmailFailure();
+    }
+
+    final json = jsonDecode(
+      validateCodeResponse.body,
+    );
+
+    final validateJson = json['s'];
+
+    if(validateJson == false){
+      throw ValidateEmailFailure();
+    }
+  }
+
 }

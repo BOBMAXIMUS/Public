@@ -11,8 +11,8 @@ class ValidatorSignUpBloc extends Cubit<ValidatorSignUpState> {
 
   void codeChanged(String value,String userId) {
     final code = Code.dirty(value);
-    if(code.value.toString().length > 3){
-      codeSend(code.toString(),userId);
+    if(code.value.toString().length > 5){
+      codeSend(code.value,userId);
     }else {
       emit(state.copyWith(
         code: code,
@@ -25,7 +25,7 @@ class ValidatorSignUpBloc extends Cubit<ValidatorSignUpState> {
   }
 
 
-  Future<void> codeSend(String codeSend,userId) async {
+  Future<void> codeSend(codeSend,userId) async {
     AroRepository aro = AroRepository();
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {

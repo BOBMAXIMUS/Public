@@ -177,19 +177,33 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
     } else if (event is FormSubmitted) {
       AroRepository aro = AroRepository();
-     if (!state.status.isValidated) return;
-      yield state.copyWith(status: FormzStatus.submissionInProgress);
+      if (!state.status.isValidated) return;
+      var name =state.name.value;
+      var lastName =state.lastName.value;
+      var email =state.email.value;
+      var password =state.password.value;
+      var country =state.country.value;
+      var phone =state.phone.value;
+      var degree =state.degree.value;
+      var language =state.language.value;
       try {
-        String id = await aro.signup(
-            "ricardo13",
-            "vasque1z3",
-            "rjvasqu1e33z1996@gmail.com",
-            "Ricard1o+123",
-            "France",
-            "+5493413393425",
-            "Terminale",
-            "fr");
+       String id = await aro.signup(
+            name,
+            lastName,
+            email,
+            password,
+            country,
+            phone,
+            degree,
+            language);
+      if(id.isNotEmpty) {
+        await aro.validatoremail(id);
         yield state.copyWith(status: FormzStatus.submissionSuccess,userId: id);
+      }
+      else{
+        yield state.copyWith(status: FormzStatus.submissionFailure);
+      }
+
       } on Exception {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
