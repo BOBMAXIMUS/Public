@@ -260,7 +260,7 @@ class _SignUpButton extends StatelessWidget {
             child: Text('Sign Up'),
             disabledColor: Colors.blueAccent.withOpacity(0.6),
             color: Colors.blueAccent,
-            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted());
+            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())
           ),
         );
       },
