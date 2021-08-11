@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
             return AppBarMobileMode();
           } else {
             // return CustomStudentAppbar(StudentMainPage());
-            return MainLoginPage();
+            return ServicesViewLoginPage();
           }
         },
       ),

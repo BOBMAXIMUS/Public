@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:frontend/widgets/create_account_field.dart';
 
-class MainLoginPage extends StatelessWidget {
+class MainLoginPage extends StatefulWidget {
+  @override
+  _MainLoginPageState createState() => _MainLoginPageState();
+}
+
+class _MainLoginPageState extends State<MainLoginPage> {
   Widget customButtom(
       BuildContext context,
       String navigatorRoute,
@@ -31,11 +37,46 @@ class MainLoginPage extends StatelessWidget {
     );
   }
 
+  Widget createAccountButtom(Color textColor, String insideText,
+      Color backgroundColor, Color borderColor, Widget content) {
+    return Container(
+      width: 200.0,
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: backgroundColor,
+          border: Border.all(color: borderColor)),
+      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+      child: InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: content,
+              );
+            },
+            barrierDismissible: true,
+          );
+        },
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            insideText,
+            style: TextStyle(color: textColor),
+          ),
+        ),
+      ),
+    );
+  }
+
   final TextStyle myStyle = TextStyle(
     fontWeight: FontWeight.bold,
     color: Colors.white,
     fontSize: 18.0,
   );
+
   Widget teacherInfo(String image, String text) {
     return Container(
       margin: EdgeInsets.all(5.0),
@@ -124,8 +165,8 @@ class MainLoginPage extends StatelessWidget {
             width: 250.0,
             margin: EdgeInsets.all(5.0),
             child: Image(
-              image: AssetImage("lib/assets/images/book_now.jpg"),
-              fit: BoxFit.contain,
+              image: AssetImage("lib/assets/images/myClassNowIcon.jpg"),
+              fit: BoxFit.scaleDown,
             ),
           ),
           Container(
@@ -265,8 +306,8 @@ class MainLoginPage extends StatelessWidget {
             width: 250.0,
             margin: EdgeInsets.all(5.0),
             child: Image(
-              image: AssetImage("lib/assets/images/request_correction.jpg"),
-              fit: BoxFit.contain,
+              image: AssetImage("lib/assets/images/clickCorrectIcon.jpg"),
+              fit: BoxFit.scaleDown,
             ),
           ),
           Container(
@@ -351,7 +392,10 @@ class MainLoginPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
-                color: Colors.deepOrange,
+                image: DecorationImage(
+                  image: AssetImage("lib/assets/images/welcomeBackground.jpg"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -388,10 +432,14 @@ revolution pedagogique.
                     ),
                   ),
                 ),
-                customButtom(context, "null", Color(0xffB71C8C), "Connection",
-                    Colors.white24, Color(0xffB71C8C)),
-                customButtom(context, "null", Colors.white, "Creer un compte",
-                    Color(0xffB71C8C), Color(0xffB71C8C)),
+                createAccountButtom(Color(0xffB71C8C), "Connection",
+                    Colors.white24, Color(0xffB71C8C), loginAccountFiled()),
+                createAccountButtom(
+                    Colors.white,
+                    "Creer un compte",
+                    Color(0xffB71C8C),
+                    Color(0xffB71C8C),
+                    CreateAccountWidget()),
               ],
             ),
           ),
@@ -403,13 +451,14 @@ revolution pedagogique.
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
-              child: teacherInfo("lib/assets/images/book_now.jpg", "Diplomes")),
+              child:
+                  teacherInfo("lib/assets/images/diplomeIcon.jpg", "Diplomes")),
           Flexible(
               child: teacherInfo(
-                  "lib/assets/images/book_now.jpg", "Experimentes")),
+                  "lib/assets/images/experiencesIcon.jpg", "Experimentes")),
           Flexible(
-              child:
-                  teacherInfo("lib/assets/images/book_now.jpg", "Pedagogues"))
+              child: teacherInfo(
+                  "lib/assets/images/pedagoguesIcon.jpg", "Pedagogues"))
         ],
       ),
     );
@@ -424,8 +473,8 @@ revolution pedagogique.
                 "Voir les avis", Colors.white24, Color(0xffB71C8C)),
           ),
           Container(
-            child: customButtom(context, "null", Colors.white, "Connection",
-                Color(0xffB71C8C), Color(0xffB71C8C)),
+            child: createAccountButtom(Colors.white, "Creer un compte",
+                Color(0xffB71C8C), Color(0xffB71C8C), CreateAccountWidget()),
           ),
         ],
       ),
@@ -462,13 +511,12 @@ revolution pedagogique.
                     secondRow,
                     Container(
                       margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                      child: customButtom(
-                          context,
-                          "null",
+                      child: createAccountButtom(
                           Colors.white,
                           "Creer un compte",
                           Color(0xffB71C8C),
-                          Color(0xffB71C8C)),
+                          Color(0xffB71C8C),
+                          CreateAccountWidget()),
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 10.0),
@@ -505,4 +553,141 @@ revolution pedagogique.
       body: backgroundImage,
     );
   }
+}
+
+Widget loginAccountFiled() {
+  final _myMailController = TextEditingController();
+  final _myPasswordController = TextEditingController();
+
+  Widget _titleText = Container(
+    child: Text(''''
+         ARO
+    Login
+  '''),
+  );
+  Widget _rowButtoms = Container(
+    margin: EdgeInsets.only(top: 10.0),
+    child: Row(
+      children: [
+        Container(
+          width: 200.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              border: Border.all(color: Color(0xffB71C8C))),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Use Facebook",
+                style: TextStyle(color: Color(0xffB71C8C)),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          width: 200.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              border: Border.all(color: Color(0xffB71C8C))),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Use Google",
+                style: TextStyle(color: Color(0xffB71C8C)),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+  Widget _allTextField = Container(
+    child: Column(
+      children: [
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myMailController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Adresse mail"),
+          ),
+        ),
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myPasswordController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Password"),
+          ),
+        ),
+      ],
+    ),
+  );
+  Widget _loginButtom = Container(
+    width: 200.0,
+    margin: EdgeInsets.symmetric(vertical: 10.0),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        shape: BoxShape.rectangle,
+        color: Colors.white,
+        border: Border.all(color: Color(0xffB71C8C))),
+    padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+    child: InkWell(
+      onTap: () {},
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          "Login",
+          style: TextStyle(color: Color(0xffB71C8C)),
+        ),
+      ),
+    ),
+  );
+  Widget _forgottenPasswordText = Container(
+    child: InkWell(
+      onTap: () {},
+      child: Container(
+        child: Text(
+          "Fogotten password?",
+          style: TextStyle(color: Colors.white38),
+        ),
+      ),
+    ),
+  );
+
+  return Container(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _titleText,
+        _rowButtoms,
+        _allTextField,
+        _loginButtom,
+        _forgottenPasswordText,
+      ],
+    ),
+  );
 }

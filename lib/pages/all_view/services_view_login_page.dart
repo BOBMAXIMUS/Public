@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/widgets/create_account_field.dart';
 
 class ServicesViewLoginPage extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
   }
 
   Widget currentContent = OtherTwo(
-      "lib/assets/images/book_now.jpg",
+      "lib/assets/images/myClassNowIcon.jpg",
       TextSpan(
         children: [
           TextSpan(
@@ -92,6 +93,40 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
     );
   }
 
+  Widget createAccountButtom(Color textColor, String insideText,
+      Color backgroundColor, Color borderColor, Widget content) {
+    return Container(
+      width: 200.0,
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: backgroundColor,
+          border: Border.all(color: borderColor)),
+      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+      child: InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: content,
+              );
+            },
+            barrierDismissible: true,
+          );
+        },
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            insideText,
+            style: TextStyle(color: textColor),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget bookClass = Container(
@@ -107,7 +142,7 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
           setState(() {
             currentColor = Color(0xff4CAE7D);
             currentContent = OtherTwo(
-                "lib/assets/images/book_now.jpg",
+                "lib/assets/images/myClassNowIcon.jpg",
                 TextSpan(
                   children: [
                     normalTextSpan("Vouspermet de trouver ou de donner des "),
@@ -125,7 +160,7 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
               flex: 1,
               child: Container(
                 child: Image(
-                  image: AssetImage("lib/assets/images/book_now.jpg"),
+                  image: AssetImage("lib/assets/images/myClassNowIcon.jpg"),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -229,8 +264,9 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
               flex: 1,
               child: Container(
                 child: Image(
-                  image: AssetImage("lib/assets/images/request_correction.jpg"),
+                  image: AssetImage("lib/assets/images/clickCorrectIcon.jpg"),
                   fit: BoxFit.contain,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -392,7 +428,10 @@ class _ServicesViewLoginPageState extends State<ServicesViewLoginPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
                 shape: BoxShape.rectangle,
-                color: Colors.deepOrange,
+                image: DecorationImage(
+                  image: AssetImage("lib/assets/images/welcomeBackground.jpg"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -429,10 +468,10 @@ revolution pedagogique.
                     ),
                   ),
                 ),
-                customButtom(context, "null", Color(0xffB71C8C), "Connection",
-                    Colors.white24, Color(0xffB71C8C)),
-                customButtom(context, "null", Colors.white, "Creer un compte",
-                    Color(0xffB71C8C), Color(0xffB71C8C)),
+                createAccountButtom(Color(0xffB71C8C), "Login", Colors.white24,
+                    Color(0xffB71C8C), loginAccountFiled()),
+                createAccountButtom(Colors.white, "Sign-up", Color(0xffB71C8C),
+                    Color(0xffB71C8C), CreateAccountWidget()),
               ],
             ),
           ),
@@ -468,13 +507,8 @@ revolution pedagogique.
                       ),
                     ),
                     orderContainer,
-                    customButtom(
-                        context,
-                        "null",
-                        Colors.white,
-                        "Creer un compte",
-                        Color(0xffB71C8C),
-                        Color(0xffB71C8C)),
+                    customButtom(context, "null", Colors.white, "Voir les avis",
+                        Color(0xffB71C8C), Color(0xffB71C8C)),
                   ],
                 ),
               ],
@@ -517,7 +551,7 @@ class _OtherTwoState extends State<OtherTwo> {
             onTap: () => Navigator.pushReplacementNamed(context, widget.route),
             child: Image(
               image: AssetImage(widget.assetImage),
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.scaleDown,
             ),
           ),
         ),
@@ -530,4 +564,146 @@ class _OtherTwoState extends State<OtherTwo> {
       ],
     );
   }
+}
+
+//TODO: hacer el login
+Widget loginAccountFiled() {
+  final _myMailController = TextEditingController();
+  final _myPasswordController = TextEditingController();
+
+  Widget _titleText = Container(
+    child: Text(''''
+         ARO
+    Login
+  '''),
+  );
+  Widget _rowButtoms = Container(
+    margin: EdgeInsets.only(top: 10.0),
+    child: Row(
+      children: [
+        Container(
+          width: 200.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              border: Border.all(color: Color(0xffB71C8C))),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+          child: InkWell(
+            //TODO: func here
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Use Facebook",
+                style: TextStyle(color: Color(0xffB71C8C)),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          width: 200.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              border: Border.all(color: Color(0xffB71C8C))),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+          child: InkWell(
+            //TODO: func here
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Use Google",
+                style: TextStyle(color: Color(0xffB71C8C)),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+  Widget _allTextField = Container(
+    child: Column(
+      children: [
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myMailController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Adresse mail"),
+          ),
+        ),
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myPasswordController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Password"),
+          ),
+        ),
+      ],
+    ),
+  );
+  Widget _loginButtom = Container(
+    width: 200.0,
+    margin: EdgeInsets.symmetric(vertical: 10.0),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        shape: BoxShape.rectangle,
+        color: Colors.white,
+        border: Border.all(color: Color(0xffB71C8C))),
+    padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+    child: InkWell(
+      //TODO: func here
+      onTap: () {},
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          "Login",
+          style: TextStyle(color: Color(0xffB71C8C)),
+        ),
+      ),
+    ),
+  );
+  Widget _forgottenPasswordText = Container(
+    child: InkWell(
+      //TODO: func here
+      onTap: () {},
+      child: Container(
+        child: Text(
+          "Fogotten password?",
+          style: TextStyle(color: Colors.white38),
+        ),
+      ),
+    ),
+  );
+
+  return Container(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _titleText,
+        _rowButtoms,
+        _allTextField,
+        _loginButtom,
+        _forgottenPasswordText,
+      ],
+    ),
+  );
 }
