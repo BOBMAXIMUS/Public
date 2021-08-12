@@ -1,18 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/application/login/login_cubit.dart';
-import 'package:frontend/application/login/login_state.dart';
 import 'package:frontend/widgets/create_account_field.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/common/auth_text_field.dart';
-import 'package:formz/formz.dart';
-import 'package:frontend/application/login/login_cubit.dart';
-import 'package:frontend/application/login/login_state.dart';
 
 class MainLoginPage extends StatefulWidget {
-  const MainLoginPage({Key key}) : super(key: key);
   @override
   _MainLoginPageState createState() => _MainLoginPageState();
 }
@@ -59,7 +49,7 @@ class _MainLoginPageState extends State<MainLoginPage> {
           border: Border.all(color: borderColor)),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed('/login/signUp'),
+        onTap: () => Navigator.of(context).pushNamed('/'),
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -432,12 +422,8 @@ revolution pedagogique.
                     ),
                   ),
                 ),
-                createAccountButtom(
-                    Color(0xffB71C8C),
-                    "Connection",
-                    Colors.white24,
-                    Color(0xffB71C8C),
-                    loginAccountFiled(context)),
+                createAccountButtom(Color(0xffB71C8C), "Connection",
+                    Colors.white24, Color(0xffB71C8C), loginAccountFiled()),
                 createAccountButtom(
                     Colors.white,
                     "Creer un compte",
@@ -456,7 +442,7 @@ revolution pedagogique.
         children: [
           Flexible(
               child:
-                  teacherInfo("lib/assets/images/diplomeIcon.jpg", "Diplomes")),
+              teacherInfo("lib/assets/images/diplomeIcon.jpg", "Diplomes")),
           Flexible(
               child: teacherInfo(
                   "lib/assets/images/experiencesIcon.jpg", "Experimentes")),
@@ -493,111 +479,80 @@ revolution pedagogique.
       ),
       child: SafeArea(
         child: Stack(
-          children: [],
+          children: [
+            opacityContainer,
+            ListView(
+              children: [
+                Column(
+                  children: [
+                    welcomeRow,
+                    Container(
+                      margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
+                      child: Text(
+                        "Nos services",
+                        style: TextStyle(
+                          color: Color(0xff12133C),
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    firstRow,
+                    secondRow,
+                    Container(
+                      margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                      child: createAccountButtom(
+                          Colors.white,
+                          "Creer un compte",
+                          Color(0xffB71C8C),
+                          Color(0xffB71C8C),
+                          CreateAccountWidget()),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                        "Les professerurs ARO sont :",
+                        style: TextStyle(
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    teacherExperiences,
+                    Container(
+                      child: Text(
+                        "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    myRowButtoms,
+                  ],
+                ),
+              ],
+            )
+          ],
         ),
         minimum: EdgeInsets.all(25.0),
       ),
     );
-
-    return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
-        if (state.status.isSubmissionFailure) {
-          print('submission failure');
-        } else if (state.status.isSubmissionSuccess) {
-          print('success');
-          Navigator.of(context).pushNamed('/teacherMainPages');
-        }
-      },
-      builder: (context, state) => Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("lib/assets/images/purple_paper.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Scaffold(
-            body: SafeArea(
-              child: Stack(
-                children: [
-                  opacityContainer,
-                  ListView(
-                    children: [
-                      Column(
-                        children: [
-                          welcomeRow,
-                          Container(
-                            margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
-                            child: Text(
-                              "Nos services",
-                              style: TextStyle(
-                                color: Color(0xff12133C),
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          firstRow,
-                          secondRow,
-                          Container(
-                            margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                            child: createAccountButtom(
-                                Colors.white,
-                                "Creer un compte",
-                                Color(0xffB71C8C),
-                                Color(0xffB71C8C),
-                                CreateAccountWidget()),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 10.0),
-                            child: Text(
-                              "Les professerurs ARO sont :",
-                              style: TextStyle(
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          teacherExperiences,
-                          Container(
-                            child: Text(
-                              "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          myRowButtoms,
-                        ],
-                      ),
-                    ],
-                  ),
-                  state.status.isSubmissionInProgress
-                      ? Positioned(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : Container(),
-                ],
-              ),
-              minimum: EdgeInsets.all(25.0),
-            ),
-          )),
+    return Scaffold(
+      body: backgroundImage,
     );
   }
 }
 
-Widget loginAccountFiled(BuildContext context) {
+Widget loginAccountFiled() {
   final _myMailController = TextEditingController();
   final _myPasswordController = TextEditingController();
 
   Widget _titleText = Container(
     child: Text(''''
          ARO
-    Connection
+    Login
   '''),
   );
   Widget _rowButtoms = Container(
@@ -606,7 +561,7 @@ Widget loginAccountFiled(BuildContext context) {
       children: [
         Container(
           width: 200.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          margin: EdgeInsets.symmetric(vertical: 10.0),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13),
               shape: BoxShape.rectangle,
@@ -618,7 +573,7 @@ Widget loginAccountFiled(BuildContext context) {
             child: Container(
               alignment: Alignment.center,
               child: Text(
-                "Utiliser Facebook",
+                "Use Facebook",
                 style: TextStyle(color: Color(0xffB71C8C)),
               ),
             ),
@@ -638,7 +593,7 @@ Widget loginAccountFiled(BuildContext context) {
             child: Container(
               alignment: Alignment.center,
               child: Text(
-                "Utiliser Google",
+                "Use Google",
                 style: TextStyle(color: Color(0xffB71C8C)),
               ),
             ),
@@ -647,22 +602,47 @@ Widget loginAccountFiled(BuildContext context) {
       ],
     ),
   );
-  Widget allTextField = Container(
+  Widget _allTextField = Container(
     child: Column(
-      mainAxisSize: MainAxisSize.min,
       children: [
-        EmailInputField(),
-        PasswordInputField(),
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myMailController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Adresse mail"),
+          ),
+        ),
+        Container(
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(13),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+          ),
+          height: 30.0,
+          child: TextField(
+            controller: _myPasswordController,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(hintText: "Password"),
+          ),
+        ),
       ],
     ),
   );
   Widget _loginButtom = Container(
     width: 200.0,
-    margin: EdgeInsets.symmetric(vertical: 12.0),
+    margin: EdgeInsets.symmetric(vertical: 10.0),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
         shape: BoxShape.rectangle,
-        color: Color(0xffB71C8C),
+        color: Colors.white,
         border: Border.all(color: Color(0xffB71C8C))),
     padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
     child: InkWell(
@@ -670,8 +650,8 @@ Widget loginAccountFiled(BuildContext context) {
       child: Container(
         alignment: Alignment.center,
         child: Text(
-          "Continuer",
-          style: TextStyle(color: Colors.white),
+          "Login",
+          style: TextStyle(color: Color(0xffB71C8C)),
         ),
       ),
     ),
@@ -680,41 +660,10 @@ Widget loginAccountFiled(BuildContext context) {
     child: InkWell(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.only(top: 5.0),
         child: Text(
           "Fogotten password?",
-          style: TextStyle(color: Colors.black, fontSize: 10),
+          style: TextStyle(color: Colors.white38),
         ),
-      ),
-    ),
-  );
-  Widget _goBackButtom = Container(
-    child: InkWell(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Row(
-        children: [
-          Container(
-            child: Text(
-              "<",
-              style: TextStyle(
-                color: Color(0xffB71C8C),
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Container(
-            child: Text(
-              "Go back",
-              style: TextStyle(
-                color: Color(0xffB71C8C),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          )
-        ],
       ),
     ),
   );
@@ -724,128 +673,11 @@ Widget loginAccountFiled(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         _titleText,
-        _goBackButtom,
         _rowButtoms,
-        allTextField,
-        LoginButton(),
+        _allTextField,
+        _loginButtom,
         _forgottenPasswordText,
       ],
     ),
   );
-}
-
-class EmailInputField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) {
-        return Container(
-          margin: EdgeInsets.only(bottom: 10.0, top: 20.0),
-          constraints: BoxConstraints(maxWidth: double.infinity),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            shape: BoxShape.rectangle,
-            color: Colors.white,
-            border: Border.all(color: Color(0xffB71C8C)),
-          ),
-          height: 30.0,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 30.0,
-                width: 30.0,
-                margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
-                child: Image(
-                  image: AssetImage("lib/assets/images/mailIcon.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              AuthTextField(
-                hint: 'Email',
-                key: const Key('loginForm_emailInput_textField'),
-                keyboardType: TextInputType.emailAddress,
-                error: '',
-                onChanged: (email) =>
-                    context.read<LoginCubit>().emailChanged(email),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-class PasswordInputField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) {
-        return Container(
-          constraints: BoxConstraints(maxWidth: double.infinity),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            shape: BoxShape.rectangle,
-            color: Colors.white,
-            border: Border.all(color: Color(0xffB71C8C)),
-          ),
-          height: 30.0,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 30.0,
-                width: 30.0,
-                margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
-                child: Image(
-                  image: AssetImage("lib/assets/images/passwordIcon.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(bottom: 3.0),
-                width: 200,
-                child: AuthTextField(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  hint: 'Password',
-                  isPasswordField: true,
-                  key: const Key('loginForm_passwordInput_textField'),
-                  keyboardType: TextInputType.text,
-                  error: '',
-                  onChanged: (password) =>
-                      context.read<LoginCubit>().passwordChanged(password),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-class LoginButton extends StatelessWidget {
-  const LoginButton({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
-        return Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Text('Login'),
-            disabledColor: Colors.blueAccent.withOpacity(0.6),
-            color: Colors.blueAccent,
-            onPressed: () => Navigator.of(context).pushNamed('/'),
-          ),
-        );
-      },
-    );
-  }
 }

@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(fontFamily: "Roboto"),
       //home: screenValidation(),
       routes: {
-        '/': (context) => MainLoginPage(), //LoginScaffold(),
+        '/': (context) => LoginScaffold(), //LoginScaffold(),
         '/login/signUp': (context) => SignUpScaffold(),
         //LOGIN VIEWS
         "/loginMainPage": (context) => MainLoginPage(),
@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
         "/studentProfileView": (context) =>
             CustomStudentAppbar(StudentProfileView()),
       },
-      initialRoute: '/',
+      initialRoute: '/loginMainPage',
     );
   }
 
