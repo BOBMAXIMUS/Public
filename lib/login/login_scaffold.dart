@@ -21,7 +21,7 @@ class LoginScaffold extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           create: (_) => LoginCubit(),
-          child: MainLoginPage(), //LoginForm(),
+          child: LoginForm(),
         ),
       ),
     );

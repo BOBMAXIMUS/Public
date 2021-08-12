@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(fontFamily: "Roboto"),
       //home: screenValidation(),
       routes: {
-        '/': (context) => LoginScaffold(),
+        '/': (context) => MainLoginPage(), //LoginScaffold(),
         '/login/signUp': (context) => SignUpScaffold(),
         //LOGIN VIEWS
         "/loginMainPage": (context) => MainLoginPage(),

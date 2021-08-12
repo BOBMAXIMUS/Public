@@ -59,17 +59,7 @@ class _MainLoginPageState extends State<MainLoginPage> {
           border: Border.all(color: borderColor)),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                content: content,
-              );
-            },
-            barrierDismissible: true,
-          );
-        },
+        onTap: () => Navigator.of(context).pushNamed('/login/signUp'),
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -525,74 +515,76 @@ revolution pedagogique.
               fit: BoxFit.cover,
             ),
           ),
-          child: SafeArea(
-            child: Stack(
-              children: [
-                opacityContainer,
-                ListView(
-                  children: [
-                    Column(
-                      children: [
-                        welcomeRow,
-                        Container(
-                          margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
-                          child: Text(
-                            "Nos services",
-                            style: TextStyle(
-                              color: Color(0xff12133C),
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.bold,
+          child: Scaffold(
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  opacityContainer,
+                  ListView(
+                    children: [
+                      Column(
+                        children: [
+                          welcomeRow,
+                          Container(
+                            margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
+                            child: Text(
+                              "Nos services",
+                              style: TextStyle(
+                                color: Color(0xff12133C),
+                                fontSize: 35.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        firstRow,
-                        secondRow,
-                        Container(
-                          margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                          child: createAccountButtom(
-                              Colors.white,
-                              "Creer un compte",
-                              Color(0xffB71C8C),
-                              Color(0xffB71C8C),
-                              CreateAccountWidget()),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10.0),
-                          child: Text(
-                            "Les professerurs ARO sont :",
-                            style: TextStyle(
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.bold,
+                          firstRow,
+                          secondRow,
+                          Container(
+                            margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                            child: createAccountButtom(
+                                Colors.white,
+                                "Creer un compte",
+                                Color(0xffB71C8C),
+                                Color(0xffB71C8C),
+                                CreateAccountWidget()),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10.0),
+                            child: Text(
+                              "Les professerurs ARO sont :",
+                              style: TextStyle(
+                                fontSize: 35.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        teacherExperiences,
-                        Container(
-                          child: Text(
-                            "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
+                          teacherExperiences,
+                          Container(
+                            child: Text(
+                              "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                        myRowButtoms,
-                      ],
-                    ),
-                  ],
-                ),
-                state.status.isSubmissionInProgress
-                    ? Positioned(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : Container(),
-              ],
+                          myRowButtoms,
+                        ],
+                      ),
+                    ],
+                  ),
+                  state.status.isSubmissionInProgress
+                      ? Positioned(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
+                      : Container(),
+                ],
+              ),
+              minimum: EdgeInsets.all(25.0),
             ),
-            minimum: EdgeInsets.all(25.0),
           )),
     );
   }
@@ -850,9 +842,7 @@ class LoginButton extends StatelessWidget {
             child: Text('Login'),
             disabledColor: Colors.blueAccent.withOpacity(0.6),
             color: Colors.blueAccent,
-            onPressed: state.status.isValidated
-                ? () => context.read<LoginCubit>().logInWithCredentials()
-                : null,
+            onPressed: () => Navigator.of(context).pushNamed('/'),
           ),
         );
       },
