@@ -21,35 +21,35 @@ class LoginForm extends StatelessWidget {
           }
         },
         builder: (context, state) => Stack(
-          children: [
-            Positioned.fill(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(38.0, 0, 38.0, 8.0),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      _WelcomeText(),
-                      _EmailInputField(),
-                      _PasswordInputField(),
-                      _LoginButton(),
-                      _SignUpButton(),
-                    ],
+              children: [
+                Positioned.fill(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(38.0, 0, 38.0, 8.0),
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _WelcomeText(),
+                          _EmailInputField(),
+                          _PasswordInputField(),
+                          _LoginButton(),
+                          _SignUpButton(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            state.status.isSubmissionInProgress
-                ? Positioned(
-              child: Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(),
-              ),
-            ) : Container(),
-          ],
-        )
-    );
+                state.status.isSubmissionInProgress
+                    ? Positioned(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Container(),
+              ],
+            ));
   }
 }
 
@@ -63,10 +63,7 @@ class _WelcomeText extends StatelessWidget {
       child: Text(
         'Welcome to ARO!',
         textAlign: TextAlign.center,
-        style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold
-        ),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }
