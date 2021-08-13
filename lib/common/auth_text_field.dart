@@ -23,17 +23,9 @@ class AuthTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UnderlineInputBorder border = UnderlineInputBorder(
-        borderSide: new BorderSide(
-            color: Colors.blueAccent,
-            width: 2
-        )
-    );
+        borderSide: new BorderSide(color: Colors.blueAccent, width: 2));
     UnderlineInputBorder errorBorder = UnderlineInputBorder(
-        borderSide: new BorderSide(
-            color: Colors.redAccent,
-            width: 2
-        )
-    );
+        borderSide: new BorderSide(color: Colors.redAccent, width: 2));
     return Padding(
       padding: padding,
       child: TextFormField(

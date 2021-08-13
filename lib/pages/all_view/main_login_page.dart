@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:frontend/login/login_form.dart';
+import 'package:frontend/login/login_scaffold.dart';
 import 'package:frontend/widgets/create_account_field.dart';
 
 class MainLoginPage extends StatefulWidget {
@@ -37,6 +39,48 @@ class _MainLoginPageState extends State<MainLoginPage> {
     );
   }
 
+  Widget loginAccountButtom(Color textColor, String insideText,
+      Color backgroundColor, Color borderColor, Widget content) {
+    return Container(
+      width: 200.0,
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: backgroundColor,
+          border: Border.all(color: borderColor)),
+      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+      child: InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.transparent,
+                contentPadding: EdgeInsets.all(0),
+                content: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(13),
+                      shape: BoxShape.rectangle,
+                      color: Colors.white,
+                    ),
+                    child: content),
+              );
+            },
+            barrierDismissible: true,
+          );
+        },
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            insideText,
+            style: TextStyle(color: textColor),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget createAccountButtom(Color textColor, String insideText,
       Color backgroundColor, Color borderColor, Widget content) {
     return Container(
@@ -49,7 +93,18 @@ class _MainLoginPageState extends State<MainLoginPage> {
           border: Border.all(color: borderColor)),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed('/'),
+        onTap: () /*=> Navigator.of(context).pushNamed('/login/signUp'),*/
+            {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: content,
+              );
+            },
+            barrierDismissible: true,
+          );
+        },
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -422,8 +477,8 @@ revolution pedagogique.
                     ),
                   ),
                 ),
-                createAccountButtom(Color(0xffB71C8C), "Connection",
-                    Colors.white24, Color(0xffB71C8C), loginAccountFiled()),
+                loginAccountButtom(Color(0xffB71C8C), "Connection",
+                    Colors.white24, Color(0xffB71C8C), LoginScaffold()),
                 createAccountButtom(
                     Colors.white,
                     "Creer un compte",
@@ -442,7 +497,7 @@ revolution pedagogique.
         children: [
           Flexible(
               child:
-              teacherInfo("lib/assets/images/diplomeIcon.jpg", "Diplomes")),
+                  teacherInfo("lib/assets/images/diplomeIcon.jpg", "Diplomes")),
           Flexible(
               child: teacherInfo(
                   "lib/assets/images/experiencesIcon.jpg", "Experimentes")),
