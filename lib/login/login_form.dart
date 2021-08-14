@@ -17,7 +17,12 @@ class LoginForm extends StatelessWidget {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
-            Navigator.of(context).pushNamed('/teacherMainPages');
+            if( state.user.profile == 'teacher') {
+              Navigator.of(context).pushNamed('/teacherMainPages');
+            }
+            else{
+              Navigator.of(context).pushNamed('/studentMainPage');
+            }
           }
         },
         builder: (context, state) => Stack(

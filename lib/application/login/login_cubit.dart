@@ -1,3 +1,4 @@
+import 'package:aro_api/aro_api.dart';
 import 'package:aro_repository/aro_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -38,8 +39,8 @@ class LoginCubit extends Cubit<LoginState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await aro.login(email, password);
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      User user = await aro.login(email, password);
+      emit(state.copyWith(status: FormzStatus.submissionSuccess,user: user));
     } on Exception catch (e) {
       emit(state.copyWith(status: FormzStatus.submissionFailure, error: e.toString()));
     }
