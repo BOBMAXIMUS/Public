@@ -11,6 +11,7 @@ import 'package:frontend/application/auth_models/phone.dart';
 import 'package:frontend/application/auth_models/degree.dart';
 import 'package:frontend/application/auth_models/language.dart';
 import 'package:formz/formz.dart';
+import 'package:frontend/application/auth_models/type_user.dart';
 import 'sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 
@@ -32,6 +33,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           name,
           state.lastName,
+          state.typeUser,
           state.country,
           state.phone,
           state.degree,
@@ -48,6 +50,24 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           lastName,
+          state.typeUser,
+          state.email,
+          state.country,
+          state.phone,
+          state.degree,
+          state.language,
+          state.password,
+          state.confirmPassword,
+        ]),
+      );
+    }else if (event is TypeUserChanged) {
+      final typeUser = TypeUser.dirty(event.typeUser);
+      yield state.copyWith(
+        typeUser: typeUser.valid ? typeUser : TypeUser.pure(),
+        status: Formz.validate([
+          state.name,
+          state.lastName,
+          typeUser,
           state.email,
           state.country,
           state.phone,
@@ -64,6 +84,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           country,
           state.phone,
@@ -80,6 +101,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           phone,
@@ -96,6 +118,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -112,6 +135,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -128,6 +152,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           email,
           state.country,
           state.phone,
@@ -148,6 +173,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -166,6 +192,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -185,6 +212,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       var country =state.country.value;
       var phone =state.phone.value;
       var degree =state.degree.value;
+      var typeUser = state.typeUser.value;
       var language =state.language.value;
       try {
        String id = await aro.signup(
@@ -195,7 +223,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             country,
             phone,
             degree,
-            language);
+            language,
+           typeUser);
       if(id.isNotEmpty) {
         await aro.validatoremail(id);
         yield state.copyWith(status: FormzStatus.submissionSuccess,userId: id);

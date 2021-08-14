@@ -9,6 +9,7 @@ import 'package:frontend/application/auth_models/phone.dart';
 import 'package:frontend/application/auth_models/degree.dart';
 import 'package:frontend/application/auth_models/language.dart';
 import 'package:formz/formz.dart';
+import 'package:frontend/application/auth_models/type_user.dart';
 
 class SignUpState extends Equatable {
   const SignUpState({
@@ -22,6 +23,7 @@ class SignUpState extends Equatable {
     this.password = const Password.pure(),
     this.confirmPassword = const ConfirmPassword.pure(),
     this.status = FormzStatus.pure,
+    this.typeUser = const TypeUser.pure() ,
     this.userId = ''
   });
 
@@ -36,6 +38,7 @@ class SignUpState extends Equatable {
   final ConfirmPassword confirmPassword;
   final FormzStatus status;
   final String userId;
+  final TypeUser typeUser;
 
   @override
   List<Object> get props => [
@@ -49,7 +52,8 @@ class SignUpState extends Equatable {
     password,
     confirmPassword,
     status,
-    userId
+    userId,
+    typeUser
   ];
 
   SignUpState copyWith({
@@ -63,7 +67,8 @@ class SignUpState extends Equatable {
     Password password,
     ConfirmPassword confirmPassword,
     FormzStatus status,
-    String userId
+    String userId,
+    TypeUser typeUser
   }) {
     return SignUpState(
       name: name ?? this.name,
@@ -76,7 +81,8 @@ class SignUpState extends Equatable {
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
       status: status ?? this.status,
-        userId: userId ?? this.userId
+        userId: userId ?? this.userId,
+        typeUser: typeUser ?? this.typeUser
     );
   }
 }

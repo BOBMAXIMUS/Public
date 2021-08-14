@@ -37,6 +37,7 @@ class SignUpForm extends StatelessWidget {
               _PhoneInputField(),
               _DegreeInputField(),
               _LanguageInputField(),
+              _TypeUserInputField(),
               _SignUpButton(),
             ],
           ),
@@ -88,6 +89,29 @@ class _LastNameInputField extends StatelessWidget {
     );
   }
 }
+
+class _TypeUserInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.typeUser != current.typeUser,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Type User',
+            key: const Key('signUpForm_typeUserInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (typeUser) =>
+                context.read<SignUpBloc>().add(TypeUserChanged(typeUser: typeUser)),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _CountryInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
