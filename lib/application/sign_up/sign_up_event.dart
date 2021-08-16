@@ -30,6 +30,17 @@ class LastNameChanged extends SignUpEvent {
   List<Object> get props => [lastName];
 }
 
+class TypeUserChanged extends SignUpEvent {
+  const TypeUserChanged({
+    @required this.typeUser
+  });
+
+  final String typeUser;
+
+  @override
+  List<Object> get props => [typeUser];
+}
+
 class CountryChanged extends SignUpEvent {
   const CountryChanged({
     @required this.country
