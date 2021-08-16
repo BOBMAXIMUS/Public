@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:frontend/login/login_form.dart';
 import 'package:frontend/login/login_scaffold.dart';
+import 'package:frontend/sign_up/sign_up_scaffold.dart';
 import 'package:frontend/widgets/create_account_field.dart';
 
 class MainLoginPage extends StatefulWidget {
@@ -479,12 +480,8 @@ revolution pedagogique.
                 ),
                 loginAccountButtom(Color(0xffB71C8C), "Connection",
                     Colors.white24, Color(0xffB71C8C), LoginScaffold()),
-                createAccountButtom(
-                    Colors.white,
-                    "Creer un compte",
-                    Color(0xffB71C8C),
-                    Color(0xffB71C8C),
-                    CreateAccountWidget()),
+                createAccountButtom(Colors.white, "Creer un compte",
+                    Color(0xffB71C8C), Color(0xffB71C8C), SignUpScaffold()),
               ],
             ),
           ),
@@ -519,7 +516,7 @@ revolution pedagogique.
           ),
           Container(
             child: createAccountButtom(Colors.white, "Creer un compte",
-                Color(0xffB71C8C), Color(0xffB71C8C), CreateAccountWidget()),
+                Color(0xffB71C8C), Color(0xffB71C8C), SignUpScaffold()),
           ),
         ],
       ),
@@ -536,58 +533,61 @@ revolution pedagogique.
         child: Stack(
           children: [
             opacityContainer,
-            ListView(
-              children: [
-                Column(
-                  children: [
-                    welcomeRow,
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
-                      child: Text(
-                        "Nos services",
-                        style: TextStyle(
-                          color: Color(0xff12133C),
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: ListView(
+                children: [
+                  Column(
+                    children: [
+                      welcomeRow,
+                      Container(
+                        margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
+                        child: Text(
+                          "Nos services",
+                          style: TextStyle(
+                            color: Color(0xff12133C),
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    firstRow,
-                    secondRow,
-                    Container(
-                      margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                      child: createAccountButtom(
-                          Colors.white,
-                          "Creer un compte",
-                          Color(0xffB71C8C),
-                          Color(0xffB71C8C),
-                          CreateAccountWidget()),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        "Les professerurs ARO sont :",
-                        style: TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
+                      firstRow,
+                      secondRow,
+                      Container(
+                        margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                        child: createAccountButtom(
+                            Colors.white,
+                            "Creer un compte",
+                            Color(0xffB71C8C),
+                            Color(0xffB71C8C),
+                            SignUpScaffold()),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10.0),
+                        child: Text(
+                          "Les professerurs ARO sont :",
+                          style: TextStyle(
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    teacherExperiences,
-                    Container(
-                      child: Text(
-                        "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
+                      teacherExperiences,
+                      Container(
+                        child: Text(
+                          "Le diplome ,les connaissances at la pedagogie des preofesseurs ont etes verifies par notre equipe.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                    myRowButtoms,
-                  ],
-                ),
-              ],
+                      myRowButtoms,
+                    ],
+                  ),
+                ],
+              ),
             )
           ],
         ),

@@ -6,6 +6,9 @@ import '../application/login/login_cubit.dart';
 import '../application/login/login_state.dart';
 import 'package:formz/formz.dart';
 
+final double fieldWidth = 300;
+final double fieldheight = 45;
+
 class LoginForm extends StatelessWidget {
   const LoginForm({Key key}) : super(key: key);
 
@@ -28,7 +31,6 @@ class LoginForm extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _WelcomeText(),
-                    _GoBackButton(),
                     _RowButtons(),
                     _EmailInputField(),
                     _PasswordInputField(),
@@ -54,11 +56,23 @@ class _WelcomeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30.0, top: 30.0),
-      child: Text(
-        'Welcome to ARO!',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'ARO',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 64, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          Text(
+            'Connection',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+          )
+        ],
       ),
     );
   }
@@ -70,30 +84,11 @@ class _EmailInputField extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return AuthTextField(
-          padding: EdgeInsets.symmetric(horizontal: 50.0),
-          hint: 'Email',
-          key: const Key('loginForm_emailInput_textField'),
-          keyboardType: TextInputType.emailAddress,
-          error: '',
-          onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
-        );
-      },
-    );
-  }
-}
-
-class _PasswordInputField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 10.0, top: 20.0),
+              margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
               constraints: BoxConstraints(maxWidth: double.infinity),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
@@ -101,7 +96,7 @@ class _PasswordInputField extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(color: Color(0xffB71C8C)),
               ),
-              height: 30.0,
+              height: fieldheight,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -116,46 +111,12 @@ class _PasswordInputField extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(bottom: 3.0),
-                    width: 200,
+                    width: fieldWidth,
                     child: TextField(
-                     // controller: widget.mailController,
                       textAlign: TextAlign.start,
                       decoration: InputDecoration(hintText: "Adresse mail"),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              constraints: BoxConstraints(maxWidth: double.infinity),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C)),
-              ),
-              height: 30.0,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
-                    child: Image(
-                      image: AssetImage("lib/assets/images/passwordIcon.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 3.0),
-                    width: 200,
-                    child: TextField(
-                      //controller: widget.passwordController,
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Password"),
-                      onChanged: (password) =>
-                          context.read<LoginCubit>().passwordChanged(password),
+                      onChanged: (email) =>
+                          context.read<LoginCubit>().emailChanged(email),
                     ),
                   ),
                 ],
@@ -163,32 +124,6 @@ class _PasswordInputField extends StatelessWidget {
             ),
           ],
         );
-       /* return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 30.0,
-              width: 30.0,
-              child: Image(
-                image: AssetImage("lib/assets/images/mailIcon.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              width: 200,
-              child: AuthTextField(
-                padding: EdgeInsets.all(0),
-                hint: 'Password',
-                isPasswordField: true,
-                key: const Key('loginForm_passwordInput_textField'),
-                keyboardType: TextInputType.text,
-                error: '',
-                onChanged: (password) =>
-                    context.read<LoginCubit>().passwordChanged(password),
-              ),
-            ),
-          ],
-        );*/
       },
     );
   }
@@ -203,9 +138,9 @@ class _LoginButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 20, bottom: 20.0),
           child: CupertinoButton(
-            padding: EdgeInsets.all(2.5),
+            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
             child: Text(
               "Continue",
               style: TextStyle(color: Colors.white),
@@ -229,51 +164,68 @@ class _RowButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 175.0,
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C))),
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Use Facebook",
-                  style: TextStyle(color: Color(0xffB71C8C)),
+      child: Container(
+        width: 400,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _GoBackButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Container(
+                    width: 175.0,
+                    margin:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13),
+                        shape: BoxShape.rectangle,
+                        color: Colors.white,
+                        border: Border.all(color: Color(0xffB71C8C))),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Use Facebook",
+                          style: TextStyle(color: Color(0xffB71C8C)),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Container(
-            width: 175.0,
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C))),
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Use Google",
-                  style: TextStyle(color: Color(0xffB71C8C)),
+                Flexible(
+                  child: Container(
+                    width: 175.0,
+                    margin:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13),
+                        shape: BoxShape.rectangle,
+                        color: Colors.white,
+                        border: Border.all(color: Color(0xffB71C8C))),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Use Google",
+                          style: TextStyle(color: Color(0xffB71C8C)),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -283,6 +235,7 @@ class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 20.0),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -311,6 +264,58 @@ class _GoBackButton extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _PasswordInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              constraints: BoxConstraints(maxWidth: double.infinity),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                border: Border.all(color: Color(0xffB71C8C)),
+              ),
+              height: fieldheight,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    height: 30.0,
+                    width: 30.0,
+                    margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
+                    child: Image(
+                      image: AssetImage("lib/assets/images/passwordIcon.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 3.0),
+                    width: fieldWidth,
+                    child: TextField(
+                      obscureText: true,
+                      textAlign: TextAlign.start,
+                      decoration: InputDecoration(hintText: "Password"),
+                      onChanged: (password) =>
+                          context.read<LoginCubit>().passwordChanged(password),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
