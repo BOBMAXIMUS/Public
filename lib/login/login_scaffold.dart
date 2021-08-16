@@ -9,16 +9,11 @@ class LoginScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text('Login'),
-      ),
-      body: SafeArea(
-        child: BlocProvider(
-          create: (_) => LoginCubit(),
-          child: LoginForm(),
-        ),
+    return Container(
+      width: 500.0,
+      child: BlocProvider(
+        create: (_) => LoginCubit(),
+        child: LoginForm(),
       ),
     );
   }

@@ -11,9 +11,7 @@ class CustomStudentAppbar extends StatefulWidget {
 
 class _CustomAppbarState extends State<CustomStudentAppbar> {
   final pinkTextStyle = TextStyle(
-    color: Color(0xffB71C8C),
-    fontWeight: FontWeight.bold,
-  );
+      color: Color(0xffB71C8C), fontWeight: FontWeight.bold, fontSize: 11);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +21,8 @@ class _CustomAppbarState extends State<CustomStudentAppbar> {
           onTap: () =>
               Navigator.pushReplacementNamed(context, "/studentMainPage"),
           child: Container(
-            height: 50.0,
-            width: 70.0,
+            height: 40.0,
+            width: 50.0,
             margin: EdgeInsets.only(top: 5.0),
             child: Image(
               image: AssetImage("lib/assets/images/aroLogo.jpg"),
@@ -78,26 +76,26 @@ class _CustomAppbarState extends State<CustomStudentAppbar> {
     );
 
     Widget comments = Container(
-      height: 50.0,
+      height: 40.0,
       width: 50.0,
-      margin: EdgeInsets.only(top: 5.0),
+      margin: EdgeInsets.only(top: 20.0),
       child: Image(
         image: AssetImage("lib/assets/images/messages.jpg"),
-        fit: BoxFit.fill,
+        fit: BoxFit.fitHeight,
         color: Color(0xffB71C8C),
       ),
     );
 
     Widget settings = Container(
-      height: 50.0,
+      height: 40.0,
       width: 50.0,
-      margin: EdgeInsets.only(top: 5.0),
+      margin: EdgeInsets.only(top: 20.0),
       child: InkWell(
         onTap: () =>
             Navigator.pushReplacementNamed(context, "/studentPersonalTable"),
         child: Image(
           image: AssetImage("lib/assets/images/settings.jpg"),
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
           color: Color(0xffB71C8C),
         ),
       ),
@@ -109,48 +107,42 @@ class _CustomAppbarState extends State<CustomStudentAppbar> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 2,
-            child: SizedBox(),
-          ),
-          Expanded(
-            flex: 16,
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
               color: Color(0xffB71C8C),
               height: 1.5,
             ),
-          ),
-          Expanded(
-            flex: 2,
-            child: SizedBox(),
           ),
         ],
       ),
     );
 
     Widget allBanner = Container(
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       transformAlignment: Alignment.center,
-      //   color: Colors.tealAccent,
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //  SizedBox(width: 100),
-          Flexible(child: aroLogo),
-          Flexible(child: clickCorrect),
-          Flexible(child: myClassNow),
-          Flexible(child: teachers),
-          Flexible(child: avis),
-          Flexible(child: search),
-          Flexible(child: comments),
-          Flexible(child: settings),
-          //  SizedBox(width: 100),
-        ],
-      ),
-    );
-    Widget allAppbar = Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [allBanner, underLine],
+      child: LimitedBox(
+        maxWidth: MediaQuery.of(context).size.width * 0.6,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Flexible(child: aroLogo),
+                Flexible(child: clickCorrect),
+                Flexible(child: myClassNow),
+                Flexible(child: teachers),
+                Flexible(child: avis),
+                Flexible(child: search),
+                Flexible(child: comments),
+                Flexible(child: settings),
+              ],
+            ),
+            Flexible(child: underLine),
+          ],
+        ),
       ),
     );
     Widget opacityContainer = Opacity(
@@ -171,12 +163,7 @@ class _CustomAppbarState extends State<CustomStudentAppbar> {
       ),
       child: SafeArea(
         child: Stack(
-          children: [
-            //FIXME: URGENTE! BUSCAR UNA MANERA DE MOVERTE ENTRE LAS DIFERENTES VISTAS DEL PROYECTO
-            opacityContainer,
-            widget.index,
-            allAppbar,
-          ],
+          children: [opacityContainer, widget.index, allBanner],
         ),
         minimum: EdgeInsets.all(25.0),
       ),

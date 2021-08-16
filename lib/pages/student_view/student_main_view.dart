@@ -17,7 +17,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
   Color currentColor = Color(0xff4CAE7D);
 
   Widget currentContent = OtherTwo(
-      "lib/assets/images/book_now.jpg",
+      "lib/assets/images/myClassNowIcon.jpg",
       "Trouve un cours particulier en mouins de 5 minutes",
       "/studentBookAClassNow");
 
@@ -36,7 +36,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
           setState(() {
             currentColor = Color(0xff4CAE7D);
             currentContent = OtherTwo(
-                "lib/assets/images/book_now.jpg",
+                "lib/assets/images/myClassNowIcon.jpg",
                 "Trouve un cours particulier en mouins de 5 minutes",
                 "/studentBookAClassNow");
           });
@@ -48,8 +48,9 @@ class _StudentMainPageState extends State<StudentMainPage> {
               flex: 1,
               child: Container(
                 child: Image(
-                  image: AssetImage("lib/assets/images/book_now.jpg"),
-                  fit: BoxFit.fill,
+                  image: AssetImage("lib/assets/images/myClassNowIcon.jpg"),
+                  fit: BoxFit.scaleDown,
+                  height: 80,
                 ),
               ),
             ),
@@ -112,7 +113,7 @@ class _StudentMainPageState extends State<StudentMainPage> {
       ),
     );
     Widget clicknCorrect = Container(
-      height: 80.0,
+      height: 70.0,
       width: 80.0,
       margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 5.0),
       decoration: BoxDecoration(
@@ -137,8 +138,8 @@ class _StudentMainPageState extends State<StudentMainPage> {
               flex: 1,
               child: Container(
                 child: Image(
-                  image: AssetImage("lib/assets/images/request_correction.jpg"),
-                  fit: BoxFit.contain,
+                  image: AssetImage("lib/assets/images/clickCorrectIcon.jpg"),
+                  fit: BoxFit.scaleDown,
                 ),
               ),
             ),
@@ -267,11 +268,12 @@ class _StudentMainPageState extends State<StudentMainPage> {
         onTap: () =>
             Navigator.pushReplacementNamed(context, "/studentDifficultyBar"),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 130.0),
-              alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(left: 50.0),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(Icons.umbrella),
                   Text(
@@ -281,7 +283,6 @@ class _StudentMainPageState extends State<StudentMainPage> {
                       color: Colors.black,
                       fontSize: 18.0,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -368,13 +369,13 @@ class _OtherTwoState extends State<OtherTwo> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          height: 80.0,
-          width: 80.0,
+          height: 100.0,
+          width: 100.0,
           child: InkWell(
             onTap: () => Navigator.pushReplacementNamed(context, widget.route),
             child: Image(
               image: AssetImage(widget.assetImage),
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.scaleDown,
             ),
           ),
         ),
