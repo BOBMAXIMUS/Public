@@ -10,9 +10,10 @@ class User {
     required this.email,
     required this.country,
     required this.phone,
-    required this.subjects,
+    //required this.subjects,
     required this.token,
     required this.profile,
+    required this.validatedEmail,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -22,8 +23,9 @@ class User {
   final String email;
   final String country;
   final String phone;
-  final List<String> subjects;
   final String token;
+  //final List<String> subjects;
+  final bool validatedEmail;
   // puede ser enum luego
   final String profile;
 }

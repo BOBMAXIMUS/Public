@@ -11,6 +11,7 @@ import 'package:frontend/application/auth_models/phone.dart';
 import 'package:frontend/application/auth_models/degree.dart';
 import 'package:frontend/application/auth_models/language.dart';
 import 'package:formz/formz.dart';
+import 'package:frontend/application/auth_models/type_user.dart';
 import 'sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 
@@ -32,6 +33,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           name,
           state.lastName,
+          state.typeUser,
           state.country,
           state.phone,
           state.degree,
@@ -48,6 +50,24 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           lastName,
+          state.typeUser,
+          state.email,
+          state.country,
+          state.phone,
+          state.degree,
+          state.language,
+          state.password,
+          state.confirmPassword,
+        ]),
+      );
+    }else if (event is TypeUserChanged) {
+      final typeUser = TypeUser.dirty(event.typeUser);
+      yield state.copyWith(
+        typeUser: typeUser.valid ? typeUser : TypeUser.pure(),
+        status: Formz.validate([
+          state.name,
+          state.lastName,
+          typeUser,
           state.email,
           state.country,
           state.phone,
@@ -64,6 +84,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           country,
           state.phone,
@@ -80,6 +101,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           phone,
@@ -96,6 +118,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -112,6 +135,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -128,6 +152,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           email,
           state.country,
           state.phone,
@@ -148,6 +173,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -166,6 +192,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status: Formz.validate([
           state.name,
           state.lastName,
+          state.typeUser,
           state.email,
           state.country,
           state.phone,
@@ -178,20 +205,34 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     } else if (event is FormSubmitted) {
       AroRepository aro = AroRepository();
       if (!state.status.isValidated) return;
-      yield state.copyWith(status: FormzStatus.submissionInProgress);
+      var name =state.name.value;
+      var lastName =state.lastName.value;
+      var email =state.email.value;
+      var password =state.password.value;
+      var country =state.country.value;
+      var phone =state.phone.value;
+      var degree =state.degree.value;
+      var typeUser = state.typeUser.value;
+      var language =state.language.value;
       try {
-        ///Tomar los estados y insertar al backend
-        String id = await aro.signup(
-            "ricardo3",
-            "vasquez3",
-            "rjvasque33z1996@gmail.com",
-            "Ricardo+123",
-            "France",
-            "+5493413393425",
-            "Terminale",
-            "fr");
-        print(id);
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
+       String id = await aro.signup(
+            name,
+            lastName,
+            email,
+            password,
+            country,
+            phone,
+            degree,
+            language,
+           typeUser);
+      if(id.isNotEmpty) {
+        await aro.validatoremail(id);
+        yield state.copyWith(status: FormzStatus.submissionSuccess,userId: id);
+      }
+      else{
+        yield state.copyWith(status: FormzStatus.submissionFailure);
+      }
+
       } on Exception {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }

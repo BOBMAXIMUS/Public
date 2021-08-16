@@ -60,7 +60,7 @@ class SignUpForm extends StatelessWidget {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
-            Navigator.of(context).pushNamed('/');
+            Navigator.of(context).pushNamed('/login/validator',arguments: {'userId': state.userId});
           }
         },
         child: Column(
@@ -1112,6 +1112,29 @@ class _LastNameInputField extends StatelessWidget {
   }
 }
 
+
+class _TypeUserInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.typeUser != current.typeUser,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Type User',
+            key: const Key('signUpForm_typeUserInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (typeUser) =>
+                context.read<SignUpBloc>().add(TypeUserChanged(typeUser: typeUser)),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _CountryInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -1266,9 +1289,7 @@ class _SignUpButton extends StatelessWidget {
             child: Text('Sign Up'),
             disabledColor: Colors.blueAccent.withOpacity(0.6),
             color: Colors.blueAccent,
-            onPressed: state.status.isValidated
-                ? () => context.read<SignUpBloc>().add(FormSubmitted())
-                : null,
+            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())
           ),
         );
       },
