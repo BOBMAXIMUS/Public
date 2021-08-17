@@ -40,10 +40,10 @@ class SignUpForm extends StatelessWidget {
           border: Border.all(color: Color(0xffB71C8C))),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () {
+        onTap:() => context.read<SignUpBloc>().add(FormSubmitted()), /*() {
           Navigator.pop(context);
           myDialog(NameNumberField(), context);
-        },
+        },*/
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -55,12 +55,22 @@ class SignUpForm extends StatelessWidget {
     );
 
     return BlocListener<SignUpBloc, SignUpState>(
-        listener: (context, state) {
+        listener: (context, state){
           if (state.status.isSubmissionFailure) {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
-            Navigator.of(context).pushNamed('/login/validator',arguments: {'userId': state.userId});
+            //TODO
+            // page number view
+            if(state.userId == '1'){
+              Navigator.pop(context);
+              print(state.email);
+              myDialog(NameNumberField(), context);
+            }
+            else{
+              Navigator.of(context).pushNamed('/login/validator',
+                  arguments: {'userId': state.userId});
+            }
           }
         },
         child: Column(
@@ -130,14 +140,14 @@ class _RowButtons extends StatelessWidget {
                   child: Container(
                     width: 175.0,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
                       child: Container(
@@ -154,14 +164,14 @@ class _RowButtons extends StatelessWidget {
                   child: Container(
                     width: 175.0,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
                       child: Container(
@@ -597,10 +607,7 @@ class _StudentState extends State<Student> {
           border: Border.all(color: Color(0xffB71C8C))),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          myDialog(ValidateEmail());
-        },
+        onTap: () => context.read<SignUpBloc>().add(FormSubmitted()),
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -748,7 +755,7 @@ class _TeacherState extends State<Teacher> {
                     child: TextField(
                       textAlign: TextAlign.start,
                       decoration:
-                          InputDecoration(hintText: "Main Taught subject"),
+                      InputDecoration(hintText: "Main Taught subject"),
                     ),
                   ),
                 ],
@@ -877,10 +884,7 @@ class _TeacherState extends State<Teacher> {
           border: Border.all(color: Color(0xffB71C8C))),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          myDialog(ValidateEmail());
-        },
+        onTap: () => context.read<SignUpBloc>().add(FormSubmitted()),
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -1049,12 +1053,12 @@ class _EmailInputField extends StatelessWidget {
                     child: TextField(
                       textAlign: TextAlign.start,
                       decoration:
-                          InputDecoration(hintText: "Password verification"),
+                      InputDecoration(hintText: "Password verification"),
                       keyboardType: TextInputType.text,
                       onChanged: (confirmPassword) => context
                           .read<SignUpBloc>()
                           .add(ConfirmPasswordChanged(
-                              confirmPassword: confirmPassword)),
+                          confirmPassword: confirmPassword)),
                     ),
                   ),
                 ],
@@ -1112,7 +1116,6 @@ class _LastNameInputField extends StatelessWidget {
   }
 }
 
-
 class _TypeUserInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -1126,8 +1129,9 @@ class _TypeUserInputField extends StatelessWidget {
             key: const Key('signUpForm_typeUserInput_textField'),
             isRequiredField: true,
             keyboardType: TextInputType.text,
-            onChanged: (typeUser) =>
-                context.read<SignUpBloc>().add(TypeUserChanged(typeUser: typeUser)),
+            onChanged: (typeUser) => context
+                .read<SignUpBloc>()
+                .add(TypeUserChanged(typeUser: typeUser)),
           ),
         );
       },
@@ -1255,7 +1259,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) =>
-          previous.password != current.password ||
+      previous.password != current.password ||
           previous.confirmPassword != current.confirmPassword,
       builder: (context, state) {
         return AuthTextField(
@@ -1285,12 +1289,11 @@ class _SignUpButton extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.only(top: 20),
           child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Text('Sign Up'),
-            disabledColor: Colors.blueAccent.withOpacity(0.6),
-            color: Colors.blueAccent,
-            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())
-          ),
+              padding: EdgeInsets.zero,
+              child: Text('Sign Up'),
+              disabledColor: Colors.blueAccent.withOpacity(0.6),
+              color: Colors.blueAccent,
+              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())),
         );
       },
     );
