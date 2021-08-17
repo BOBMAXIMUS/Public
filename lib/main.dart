@@ -45,7 +45,6 @@ class _MyAppState extends State<MyApp> {
       //home: screenValidation(),
       routes: {
         '/': (context) => LoginScaffold(), //LoginScaffold(),
-        '/signuptwo': (context) => SignUpFormNewTwo(),
         '/login/signUp': (context) => SignUpScaffold(),
         '/login/validator': (context) => ValidatorSignUpScaffold(),
         //LOGIN VIEWS

@@ -164,9 +164,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
     } else if (event is PasswordChanged) {
       final password = Password.dirty(event.password);
-      if(password.value.length == 1){
-        yield state.copyWith(status: FormzStatus.submissionInProgress);
-      }
       final confirm = ConfirmPassword.dirty(
         password: password.value,
         value: state.confirmPassword?.value,
@@ -206,9 +203,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ]),
       );
     } else if (event is FormSubmitted) {
-
-      yield state.copyWith(status: FormzStatus.submissionSuccess);
-      return;
+      if(state.email.valid && state.viewnumber == 1) {
+        yield state.copyWith(status: FormzStatus.submissionSuccess,viewnumber: 2);
+        return;
+      }else{
+        yield state.copyWith(status: FormzStatus.submissionSuccess);
+        return;
+      }
       AroRepository aro = AroRepository();
       //if (!state.status.isValidated) return;
       var name =state.name.value;

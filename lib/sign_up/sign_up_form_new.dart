@@ -29,7 +29,7 @@ class SignUpFormNew extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state.status.isSubmissionSuccess) {
+          if (state.viewnumber == 2) {
             return SignUpFormNewTwo();
           }
           else{
