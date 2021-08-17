@@ -19,6 +19,7 @@ import 'package:frontend/pages/teacher_view/teacher_confirm_class.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_correct.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_estimate.dart';
 import 'package:frontend/pages/teacher_view/teacher_correction_upload.dart';
+import 'package:frontend/sign_up/sign_up_form_two.dart';
 import 'package:frontend/validator_sign_up_widget/validator_sign_up_scaffold.dart';
 import 'package:frontend/pages/all_view/main_login_page.dart';
 
