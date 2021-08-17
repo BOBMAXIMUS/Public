@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
         "/studentProfileView": (context) =>
             CustomStudentAppbar(StudentProfileView()),
       },
-      initialRoute: '/loginMainPage',
+      initialRoute: '/teacherMainPages', // '/loginMainPage'
     );
   }
 

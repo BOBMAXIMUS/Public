@@ -1032,7 +1032,7 @@ class _ValidateEmailState extends State<ValidateEmail> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
           shape: BoxShape.rectangle,
-          color: Colors.white,
+          color: Color(0xffB71C8C),
           border: Border.all(color: Color(0xffB71C8C))),
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: InkWell(
@@ -1044,29 +1044,123 @@ class _ValidateEmailState extends State<ValidateEmail> {
           alignment: Alignment.center,
           child: Text(
             "Finish!",
-            style: TextStyle(color: Color(0xffB71C8C)),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
     );
     Widget _contentText = Container(
-      child: Text(''''Your account gas sucessfully been
-      created.
-      Before procceeding, please verify your
-      email adress by clicking the link sent to
-      emailadress@provider.place'''),
+      child: Text(
+        "\n\nYour account has sucessfully been\ncreated.\n\nBefore procceeding, please verify your\nemail adress by clicking the link sent to\nemailadress@provider.place",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black),
+      ),
     );
 
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _titleText,
-          _contentText,
-          //TODO: Cambiar el current content aqui
+          _WelcomeText(),
+          Flexible(child: _contentText),
+          Flexible(child: _ConfirmMailInputField()),
           _continueButtom,
         ],
       ),
+    );
+  }
+}
+
+class _WelcomeText extends StatelessWidget {
+  const _WelcomeText({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'ARO',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 64, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          Text(
+            'Create an account',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _ConfirmMailInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          constraints: BoxConstraints(maxWidth: double.infinity),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+            border: Border.all(color: Color(0xffB71C8C)),
+          ),
+          height: 50,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.only(bottom: 3.0, left: 5.0),
+                width: 100,
+                child: TextField(
+                  textAlign: TextAlign.start,
+                  decoration: InputDecoration(
+                    counterText: "",
+                    hintText: "CODE HERE",
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    shape: BoxShape.rectangle,
+                    color: Color(0xffB71C8C),
+                    border: Border.all(color: Color(0xffB71C8C))),
+                child: InkWell(
+                  //TODO:some func here
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.refresh,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

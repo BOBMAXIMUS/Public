@@ -8,6 +8,7 @@ import 'package:formz/formz.dart';
 
 final double fieldWidth = 300;
 final double fieldheight = 45;
+final double buttonsWidth = 200;
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key key}) : super(key: key);
@@ -40,7 +41,6 @@ class LoginForm extends StatelessWidget {
                     _PasswordInputField(),
                     _LoginButton(),
                   ],
-
                 ),
                 state.status.isSubmissionInProgress
                     ? Positioned(
@@ -119,7 +119,14 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Adresse mail"),
+                      decoration: InputDecoration(
+                        hintText: "Adresse mail",
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
                       onChanged: (email) =>
                           context.read<LoginCubit>().emailChanged(email),
                     ),
@@ -170,7 +177,6 @@ class _RowButtons extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
       child: Container(
-        width: 400,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -181,7 +187,8 @@ class _RowButtons extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                    width: 175.0,
+                    width: buttonsWidth,
+                    height: 48,
                     margin:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
@@ -190,22 +197,39 @@ class _RowButtons extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Facebook",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                            child: Image(
+                              image: AssetImage(
+                                  "lib/assets/images/facebookIcon.jpg"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          Text(
+                            "Use Facebook",
+                            style: TextStyle(
+                              color: Color(0xffB71C8C),
+                            ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
                 Flexible(
                   child: Container(
-                    width: 175.0,
+                    width: buttonsWidth,
+                    height: 48,
                     margin:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
@@ -214,15 +238,31 @@ class _RowButtons extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Google",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                            child: Image(
+                              image: AssetImage(
+                                  "lib/assets/images/googleIcon.jpg"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          Text(
+                            "Use Google",
+                            style: TextStyle(
+                              color: Color(0xffB71C8C),
+                            ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -240,7 +280,7 @@ class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20.0),
+      padding: EdgeInsets.only(left: 53.0),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -310,7 +350,14 @@ class _PasswordInputField extends StatelessWidget {
                     child: TextField(
                       obscureText: true,
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Password"),
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
                       onChanged: (password) =>
                           context.read<LoginCubit>().passwordChanged(password),
                     ),

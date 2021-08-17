@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/correction_stack.dart';
 import 'package:frontend/my_activities.dart';
 import 'package:frontend/pages/teacher_view/teacher_book_class.dart';
+import 'package:frontend/widgets/dropdown_widget.dart';
 
 class TeacherMainPages extends StatefulWidget {
   @override
@@ -186,6 +187,7 @@ class _TeacherMainPagesState extends State<TeacherMainPages> {
     );
     Widget allAppbar = Container(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(flex: 1, child: rowForMain),
@@ -193,7 +195,7 @@ class _TeacherMainPagesState extends State<TeacherMainPages> {
           Expanded(
             flex: 2,
             child: Container(
-              margin: EdgeInsets.only(top: 20.0),
+              margin: EdgeInsets.only(top: 5.0),
               child: currentContent,
             ),
           )
@@ -309,15 +311,24 @@ class _TeacherMainPagesState extends State<TeacherMainPages> {
   }
 }
 
-class BookClassContent extends StatelessWidget {
+class BookClassContent extends StatefulWidget {
+  @override
+  _BookClassContentState createState() => _BookClassContentState();
+}
+
+class _BookClassContentState extends State<BookClassContent> {
+  var _items = ["Offline", "Online"];
+  var _selected = "Offline";
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 10.0),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
@@ -329,25 +340,41 @@ class BookClassContent extends StatelessWidget {
                   color: Colors.red,
                 ),
               ),
-              //TODO: https://youtu.be/CpjfR5rG2lM   display menu
               Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Offline",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                width: 80,
+                height: 50,
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+                  value: _selected,
+                  items: _items
+                      .map((label) => DropdownMenuItem(
+                            child: Text(label),
+                            value: label,
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selected = value;
+                    });
+                  },
                 ),
               ),
             ],
           ),
         ),
         Container(
-          // color: Colors.red,
-          height: 100.0,
+          height: 80.0,
           width: 150.0,
           child: Image(
-            image: AssetImage("lib/assets/images/book_now.jpg"),
-            fit: BoxFit.cover,
+            image: AssetImage("lib/assets/images/book_now_simple.jpg"),
+            fit: BoxFit.fitHeight,
           ),
         ),
         Container(
@@ -357,6 +384,7 @@ class BookClassContent extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
       ],
@@ -389,7 +417,6 @@ class _OtherTwoState extends State<OtherTwo> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: Colors.red,
           height: 80.0,
           width: 80.0,
           child: InkWell(

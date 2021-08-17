@@ -10,9 +10,11 @@ import 'package:frontend/application/auth_models/confirm_password.dart';
 import 'package:frontend/application/auth_models/password.dart';
 import 'package:frontend/sign_up/sign_up_scaffold.dart';
 import 'package:frontend/widgets/create_account_field.dart';
+import 'package:frontend/widgets/dropdown_widget.dart';
 
 final double fieldWidth = 300;
-final double fieldheight = 45;
+final double fieldheight = 48;
+final double buttonsWidth = 200;
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key key}) : super(key: key);
@@ -60,7 +62,8 @@ class SignUpForm extends StatelessWidget {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
-            Navigator.of(context).pushNamed('/login/validator',arguments: {'userId': state.userId});
+            Navigator.of(context).pushNamed('/login/validator',
+                arguments: {'userId': state.userId});
           }
         },
         child: Column(
@@ -117,7 +120,6 @@ class _RowButtons extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
       child: Container(
-        width: 400,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -128,7 +130,8 @@ class _RowButtons extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                    width: 175.0,
+                    width: buttonsWidth,
+                    height: 48,
                     margin:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
@@ -137,22 +140,39 @@ class _RowButtons extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Facebook",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                            child: Image(
+                              image: AssetImage(
+                                  "lib/assets/images/facebookIcon.jpg"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          Text(
+                            "Use Facebook",
+                            style: TextStyle(
+                              color: Color(0xffB71C8C),
+                            ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
                 Flexible(
                   child: Container(
-                    width: 175.0,
+                    width: buttonsWidth,
+                    height: 48,
                     margin:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
@@ -161,15 +181,31 @@ class _RowButtons extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Google",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                            child: Image(
+                              image: AssetImage(
+                                  "lib/assets/images/googleIcon.jpg"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          Text(
+                            "Use Google",
+                            style: TextStyle(
+                              color: Color(0xffB71C8C),
+                            ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -187,7 +223,7 @@ class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20.0),
+      padding: EdgeInsets.only(left: 53.0),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -272,7 +308,14 @@ class _NameNumberFieldState extends State<NameNumberField> {
                   width: fieldWidth,
                   child: TextField(
                     textAlign: TextAlign.start,
-                    decoration: InputDecoration(hintText: "First name"),
+                    decoration: InputDecoration(
+                      hintText: "First name",
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
                     onChanged: (name) =>
                         context.read<SignUpBloc>().add(NameChanged(name: name)),
                   ),
@@ -308,7 +351,14 @@ class _NameNumberFieldState extends State<NameNumberField> {
                   width: fieldWidth,
                   child: TextField(
                     textAlign: TextAlign.start,
-                    decoration: InputDecoration(hintText: "Last name"),
+                    decoration: InputDecoration(
+                      hintText: "Last name",
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
                     onChanged: (lastName) => context
                         .read<SignUpBloc>()
                         .add(LastNameChanged(lastName: lastName)),
@@ -344,7 +394,14 @@ class _NameNumberFieldState extends State<NameNumberField> {
                   width: fieldWidth,
                   child: TextField(
                     textAlign: TextAlign.start,
-                    decoration: InputDecoration(hintText: "Phone number"),
+                    decoration: InputDecoration(
+                      hintText: "Phone number",
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
                     onChanged: (phone) => context
                         .read<SignUpBloc>()
                         .add(PhoneChanged(phone: phone)),
@@ -475,13 +532,7 @@ class _StudentState extends State<Student> {
                   Container(
                     padding: EdgeInsets.only(bottom: 3.0),
                     width: fieldWidth,
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "School grade"),
-                      onChanged: (degree) => context
-                          .read<SignUpBloc>()
-                          .add(DegreeChanged(degree: degree)),
-                    ),
+                    child: DropDownMenu("School grade"),
                   ),
                 ],
               ),
@@ -707,13 +758,8 @@ class _TeacherState extends State<Teacher> {
                   Container(
                     padding: EdgeInsets.only(bottom: 3.0),
                     width: fieldWidth,
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                          hintText: "Teaching level (in grades)"),
-                      onChanged: (degree) => context
-                          .read<SignUpBloc>()
-                          .add(DegreeChanged(degree: degree)),
+                    child: DropDownMenu(
+                      "Teaching level (in grades)",
                     ),
                   ),
                 ],
@@ -745,10 +791,8 @@ class _TeacherState extends State<Teacher> {
                   Container(
                     padding: EdgeInsets.only(bottom: 3.0),
                     width: fieldWidth,
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration:
-                          InputDecoration(hintText: "Main Taught subject"),
+                    child: DropDownMenu(
+                      "Main Taught subject",
                     ),
                   ),
                 ],
@@ -758,11 +802,11 @@ class _TeacherState extends State<Teacher> {
         ),
       );
       Widget _disclaimerText = Container(
-        margin: EdgeInsets.only(top: 10.0),
+        margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Text(
           "You'll be able to add more subjects to teach to your account once it is validated by our admin team.",
           style: TextStyle(
-            fontSize: 8,
+            fontSize: 10,
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
@@ -973,7 +1017,14 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Adresse mail"),
+                      decoration: InputDecoration(
+                        hintText: "Adresse mail",
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
                       onChanged: (email) => context
                           .read<SignUpBloc>()
                           .add(EmailChanged(email: email)),
@@ -1010,7 +1061,14 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Password"),
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
                       keyboardType: TextInputType.text,
                       onChanged: (password) => context
                           .read<SignUpBloc>()
@@ -1048,8 +1106,14 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration:
-                          InputDecoration(hintText: "Password verification"),
+                      decoration: InputDecoration(
+                        hintText: "Password verification",
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
                       keyboardType: TextInputType.text,
                       onChanged: (confirmPassword) => context
                           .read<SignUpBloc>()
@@ -1112,7 +1176,6 @@ class _LastNameInputField extends StatelessWidget {
   }
 }
 
-
 class _TypeUserInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -1126,8 +1189,9 @@ class _TypeUserInputField extends StatelessWidget {
             key: const Key('signUpForm_typeUserInput_textField'),
             isRequiredField: true,
             keyboardType: TextInputType.text,
-            onChanged: (typeUser) =>
-                context.read<SignUpBloc>().add(TypeUserChanged(typeUser: typeUser)),
+            onChanged: (typeUser) => context
+                .read<SignUpBloc>()
+                .add(TypeUserChanged(typeUser: typeUser)),
           ),
         );
       },
@@ -1285,12 +1349,11 @@ class _SignUpButton extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.only(top: 20),
           child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Text('Sign Up'),
-            disabledColor: Colors.blueAccent.withOpacity(0.6),
-            color: Colors.blueAccent,
-            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())
-          ),
+              padding: EdgeInsets.zero,
+              child: Text('Sign Up'),
+              disabledColor: Colors.blueAccent.withOpacity(0.6),
+              color: Colors.blueAccent,
+              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())),
         );
       },
     );

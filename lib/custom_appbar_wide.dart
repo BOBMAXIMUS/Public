@@ -21,15 +21,6 @@ class CustomAppbar extends StatefulWidget {
   _CustomAppbarState createState() => _CustomAppbarState();
 }
 
-final List<Widget> widgetsChildren = [
-  //  BookClass(),
-  //  HomePage(),
-  //   CorrectionStack(),
-  TeacherMainPage(),
-  CorrectionStack(),
-  TeacherBookClass(),
-];
-
 class _CustomAppbarState extends State<CustomAppbar> {
   int indexTap = 0;
   final pinkTextStyle = TextStyle(
@@ -153,21 +144,18 @@ class _CustomAppbarState extends State<CustomAppbar> {
 
     Widget allBanner = Container(
       transformAlignment: Alignment.center,
-      //   color: Colors.tealAccent,
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          //  SizedBox(width: 100),
-          Flexible(child: aroLogo),
-          Flexible(child: clickCorrect),
-          Flexible(child: myClassNow),
-          Flexible(child: teachers),
-          Flexible(child: avis),
-          Flexible(child: search),
-          Flexible(child: comments),
-          Flexible(child: settings),
-          //  SizedBox(width: 100),
+          aroLogo,
+          clickCorrect,
+          myClassNow,
+          teachers,
+          avis,
+          search,
+          comments,
+          settings,
         ],
       ),
     );
