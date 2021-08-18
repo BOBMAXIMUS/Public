@@ -6,13 +6,11 @@ import 'package:frontend/application/sign_up/sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/application/auth_models/confirm_password.dart';
-import 'package:frontend/application/auth_models/password.dart';
-import 'package:frontend/sign_up/sign_up_scaffold.dart';
-import 'package:frontend/widgets/create_account_field.dart';
+import 'package:frontend/sign_up/sign_up_form_new.dart';
 
 final double fieldWidth = 300;
-final double fieldheight = 45;
+final double fieldheight = 48;
+final double buttonsWidth = 200;
 
 class SignUpFormNewTwo extends StatelessWidget {
   const SignUpFormNewTwo({Key key}) : super(key: key);
@@ -21,29 +19,31 @@ class SignUpFormNewTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
         buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) =>
-            Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+        builder: (context, state) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _PasswordInputField(),
-                //_LoginButton(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _WelcomeText(),
+                    _GoBackButton(),
+                    _NameInputField(),
+                    _LastNameInputField(),
+                    _PhoneInputField(),
+                    _LoginButton(),
+                  ],
+                ),
+                state.status.isSubmissionInProgress
+                    ? Positioned(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Container(),
               ],
-
-            ),
-            state.status.isSubmissionInProgress
-                ? Positioned(
-              child: Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(),
-              ),
-            )
-                : Container(),
-          ],
-        ));
+            ));
   }
 }
 
@@ -64,7 +64,7 @@ class _WelcomeText extends StatelessWidget {
                 fontSize: 64, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Text(
-            'Connection',
+            'Create an account',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
@@ -75,75 +75,21 @@ class _WelcomeText extends StatelessWidget {
   }
 }
 
-class _EmailInputField extends StatelessWidget {
+class _NameInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
-              constraints: BoxConstraints(maxWidth: double.infinity),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C)),
-              ),
-              height: fieldheight,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
-                    child: Image(
-                      image: AssetImage("lib/assets/images/mailIcon.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 3.0),
-                    width: fieldWidth,
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(hintText: "Adresse mail"),
-
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  const _LoginButton({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+      buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 20.0),
-          child: CupertinoButton(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
-            child: Text(
-              "Continue",
-              style: TextStyle(color: Colors.white),
-            ),
-            disabledColor: Color(0xffB71C8C).withOpacity(0.6),
-            color: Color(0xffB71C8C),
-              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Name',
+            key: const Key('signUpForm_nameInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (name) =>
+                context.read<SignUpBloc>().add(NameChanged(name: name)),
           ),
         );
       },
@@ -151,76 +97,47 @@ class _LoginButton extends StatelessWidget {
   }
 }
 
-class _RowButtons extends StatelessWidget {
-  const _RowButtons({Key key}) : super(key: key);
-
+class _LastNameInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0),
-      child: Container(
-        width: 400,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _GoBackButton(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: Container(
-                    width: 175.0,
-                    margin:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(13),
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xffB71C8C))),
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Facebook",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: Container(
-                    width: 175.0,
-                    margin:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(13),
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xffB71C8C))),
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Use Google",
-                          style: TextStyle(color: Color(0xffB71C8C)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.lastName != current.lastName,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Last Name',
+            key: const Key('signUpForm_lastNameInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (lastName) => context
+                .read<SignUpBloc>()
+                .add(LastNameChanged(lastName: lastName)),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PhoneInputField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.phone != current.phone,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: AuthTextField(
+            hint: 'Phone',
+            key: const Key('signUpForm_phoneInput_textField'),
+            isRequiredField: true,
+            keyboardType: TextInputType.text,
+            onChanged: (phone) =>
+                context.read<SignUpBloc>().add(PhoneChanged(phone: phone)),
+          ),
+        );
+      },
     );
   }
 }
@@ -228,11 +145,25 @@ class _RowButtons extends StatelessWidget {
 class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    myDialog(Widget content) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: content,
+          );
+        },
+        barrierDismissible: false,
+      );
+    }
+
+    BuildContext dialogContext;
     return Container(
-      margin: EdgeInsets.only(left: 20.0),
+      padding: EdgeInsets.only(left: 53.0),
       child: InkWell(
         onTap: () {
-          Navigator.pop(context);
+          Navigator.pop(dialogContext);
+          myDialog(SignUpFormNew());
         },
         child: Row(
           children: [
@@ -262,53 +193,24 @@ class _GoBackButton extends StatelessWidget {
   }
 }
 
-class _PasswordInputField extends StatelessWidget {
+class _LoginButton extends StatelessWidget {
+  const _LoginButton({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 10.0),
-              constraints: BoxConstraints(maxWidth: double.infinity),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C)),
+        return Padding(
+          padding: EdgeInsets.only(top: 20, bottom: 20.0),
+          child: CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+              child: Text(
+                "Continue",
+                style: TextStyle(color: Colors.white),
               ),
-              height: fieldheight,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.fromLTRB(7, 5, 5, 5),
-                    child: Image(
-                      image: AssetImage("lib/assets/images/passwordIcon.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 3.0),
-                    width: fieldWidth,
-                    child: TextField(
-                      obscureText: true,
-                      textAlign: TextAlign.start,
-                      onChanged: (password) => context
-                          .read<SignUpBloc>()
-                          .add(PasswordChanged(password: password)),
-                      decoration: InputDecoration(hintText: "Password"),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+              disabledColor: Color(0xffB71C8C).withOpacity(0.6),
+              color: Color(0xffB71C8C),
+              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())),
         );
       },
     );
