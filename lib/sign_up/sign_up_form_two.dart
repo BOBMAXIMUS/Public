@@ -7,6 +7,7 @@ import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/sign_up/sign_up_form_new.dart';
+import 'package:frontend/sign_up/sign_up_scaffold.dart';
 
 final double fieldWidth = 300;
 final double fieldheight = 48;
@@ -145,7 +146,7 @@ class _PhoneInputField extends StatelessWidget {
 class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    myDialog(Widget content) {
+    myDialog(Widget content, BuildContext context) {
       return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -157,13 +158,12 @@ class _GoBackButton extends StatelessWidget {
       );
     }
 
-    BuildContext dialogContext;
     return Container(
       padding: EdgeInsets.only(left: 53.0),
       child: InkWell(
         onTap: () {
-          Navigator.pop(dialogContext);
-          myDialog(SignUpFormNew());
+          Navigator.pop(context);
+          myDialog(SignUpScaffold(), context);
         },
         child: Row(
           children: [
