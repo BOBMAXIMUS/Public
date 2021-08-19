@@ -60,7 +60,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           state.confirmPassword,
         ]),
       );
-    }else if (event is TypeUserChanged) {
+    } else if (event is TypeUserChanged) {
       final typeUser = TypeUser.dirty(event.typeUser);
       yield state.copyWith(
         typeUser: typeUser.valid ? typeUser : TypeUser.pure(),
@@ -203,31 +203,29 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ]),
       );
     } else if (event is FormSubmitted) {
-      if(state.email.valid && state.viewnumber == 1) {
-        yield state.copyWith(status: FormzStatus.submissionSuccess,viewnumber: 2);
-        return;
-      }else{
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
-        return;
+      if (state.email.valid && state.password.valid &&
+          state.confirmPassword.valid && state.viewnumber == 1) {
+        yield state.copyWith(viewnumber: 2);
+      } else
+      if (state.name.valid && state.lastName.valid && state.phone.valid &&
+          state.viewnumber == 2) {
+        yield state.copyWith(viewnumber: 3);
       }
+      else {
+        print("llego");
       AroRepository aro = AroRepository();
-      //if (!state.status.isValidated) return;
-      var name =state.name.value;
-      var lastName =state.lastName.value;
-      var email =state.email.value;
-      var password =state.password.value;
-      var country =state.country.value;
-      var phone =state.phone.value;
-      var degree =state.degree.value;
-      var typeUser = state.typeUser.value;
-      var language =state.language.value;
-      if(state.password.valid && state.email.valid){
-
-        yield state.copyWith(status: FormzStatus.submissionSuccess,userId: '1');
-        return;
-      }
       try {
-        String id = await aro.signup("ricardo2", "vasquez2", "rjvasquez1a996@gmail.com", "Ricardoa+123", "France", "+5493413393425", "Terminale", "fr","student");
+        String id = await aro.signup(
+            "ricardo12",
+            "vasquez12",
+            "r11a9961@gmail.com",
+            "Ricoa+121231",
+            "France",
+            "+5493413393425",
+            "Terminale",
+            "fr",
+            "student");
+        print(id);
 /*       String id = await aro.signup(
             name,
             lastName,
@@ -237,18 +235,21 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             phone,
             degree,
             language,
-           typeUser);*/
-      if(id.isNotEmpty) {
-        await aro.validatoremail(id);
-        yield state.copyWith(status: FormzStatus.submissionSuccess,userId: id);
-      }
-      else{
-        yield state.copyWith(status: FormzStatus.submissionFailure);
-      }
+           typeUser);
+           */
+        yield state.copyWith(
+            status: FormzStatus.submissionSuccess, userId: id);
+/*        if (id.isNotEmpty) {
+          await aro.validatoremail(id);
 
+        }
+        else {
+          yield state.copyWith(status: FormzStatus.submissionFailure);
+        }*/
       } on Exception {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
     }
+  }
   }
 }

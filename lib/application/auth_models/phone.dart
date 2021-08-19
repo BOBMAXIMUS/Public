@@ -7,7 +7,7 @@ class Phone extends FormzInput<String, phoneError> {
   const Phone.dirty([String value = '']) : super.dirty(value);
 
   static final RegExp _phoneRegExp = RegExp(
-    r'^\+[1-9]{1}[0-9]{3,14}$',
+    '[0-9]{4}',
   );
 
   @override

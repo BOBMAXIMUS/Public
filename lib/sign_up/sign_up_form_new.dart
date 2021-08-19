@@ -5,6 +5,8 @@ import 'package:frontend/application/sign_up/sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/sign_up/sign_up_form_four.dart';
+import 'package:frontend/sign_up/sign_up_form_three_student_view.dart';
 import 'package:frontend/sign_up/sign_up_form_two.dart';
 
 final double fieldWidth = 300;
@@ -16,41 +18,95 @@ class SignUpFormNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpBloc, SignUpState>(listener: (context, state) {
-      if (state.status.isSubmissionFailure) {
-        print('submission failure');
-      } else if (state.status.isSubmissionSuccess) {
-        print('success');
-      }
-    }, builder: (context, state) {
-      if (state.viewnumber == 2) {
-        return SignUpFormNewTwo();
-      } else {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+
+    Widget _continueButtom = Container(
+      width: 200.0,
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          shape: BoxShape.rectangle,
+          color: Color(0xffB71C8C),
+          border: Border.all(color: Color(0xffB71C8C))),
+      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+      child: InkWell(
+        onTap:() => context.read<SignUpBloc>().add(FormSubmitted()),
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            "Continue",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    );
+
+    return BlocConsumer<SignUpBloc, SignUpState>(
+        listener: (context, state) {
+          if (state.status.isSubmissionFailure) {
+            print('submission failure');
+          } else if (state.status.isSubmissionSuccess) {
+            print('success');
+          }
+        },
+        builder: (context, state) {
+          if (state.viewnumber == 2) {
+            return SignUpFormNewTwo();
+          }else
+          if (state.viewnumber == 3) {
+            return SignUpFormNewStudentView();
+          }else if(state.viewnumber == 4){
+            return SignUpFormNewTeacherView();
+          }
+          else{
+            return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _WelcomeText(),
-                _RowButtons(),
-                _EmailInputField(),
-                _LoginButton(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _WelcomeText(),
+                    _RowButtons(),
+                    _EmailInputField(),
+                    _continueButtom,
+                  ],
+                ),
               ],
-            ),
-            state.status.isSubmissionInProgress
-                ? Positioned(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : Container(),
-          ],
-        );
-      }
-    });
+            );
+          }
+        }
+
+
+    );
+  }
+}
+
+
+class _WelcomeText extends StatelessWidget {
+  const _WelcomeText({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'ARO',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 64, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          Text(
+            'Create an account',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -90,14 +146,7 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                        hintText: "Adresse mail",
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                      ),
+                      decoration: InputDecoration(hintText: "Adresse mail"),
                       onChanged: (email) => context
                           .read<SignUpBloc>()
                           .add(EmailChanged(email: email)),
@@ -134,14 +183,7 @@ class _EmailInputField extends StatelessWidget {
                     width: fieldWidth,
                     child: TextField(
                       textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                      ),
+                      decoration: InputDecoration(hintText: "Password"),
                       keyboardType: TextInputType.text,
                       onChanged: (password) => context
                           .read<SignUpBloc>()
@@ -204,59 +246,6 @@ class _EmailInputField extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
-  const _LoginButton({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
-        return Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 20.0),
-          child: CupertinoButton(
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
-              child: Text(
-                "Continue",
-                style: TextStyle(color: Colors.white),
-              ),
-              disabledColor: Color(0xffB71C8C).withOpacity(0.6),
-              color: Color(0xffB71C8C),
-              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())),
-        );
-      },
-    );
-  }
-}
-
-class _WelcomeText extends StatelessWidget {
-  const _WelcomeText({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'ARO',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 64, fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-          Text(
-            'Create an account',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
-          )
-        ],
-      ),
-    );
-  }
-}
-
 class _RowButtons extends StatelessWidget {
   const _RowButtons({Key key}) : super(key: key);
 
@@ -265,6 +254,7 @@ class _RowButtons extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
       child: Container(
+        width: 400,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -275,82 +265,48 @@ class _RowButtons extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                    width: buttonsWidth,
-                    height: 48,
+                    width: 175.0,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: 30.0,
-                            width: 30.0,
-                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
-                            child: Image(
-                              image: AssetImage(
-                                  "lib/assets/images/facebookIcon.jpg"),
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                          Text(
-                            "Use Facebook",
-                            style: TextStyle(
-                              color: Color(0xffB71C8C),
-                            ),
-                            maxLines: 1,
-                          ),
-                        ],
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Use Facebook",
+                          style: TextStyle(color: Color(0xffB71C8C)),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Flexible(
                   child: Container(
-                    width: buttonsWidth,
-                    height: 48,
+                    width: 175.0,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         border: Border.all(color: Color(0xffB71C8C))),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
                     child: InkWell(
                       onTap: () {},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 30.0,
-                            width: 30.0,
-                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
-                            child: Image(
-                              image: AssetImage(
-                                  "lib/assets/images/googleIcon.jpg"),
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                          Text(
-                            "Use Google",
-                            style: TextStyle(
-                              color: Color(0xffB71C8C),
-                            ),
-                            maxLines: 1,
-                          ),
-                        ],
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Use Google",
+                          style: TextStyle(color: Color(0xffB71C8C)),
+                        ),
                       ),
                     ),
                   ),
@@ -368,7 +324,7 @@ class _GoBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 53.0),
+      margin: EdgeInsets.only(left: 20.0),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -400,3 +356,4 @@ class _GoBackButton extends StatelessWidget {
     );
   }
 }
+
