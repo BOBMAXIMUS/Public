@@ -56,8 +56,8 @@ class AroApiClient {
       _baseUrl,
       '/student/signup',
     );
-    print('aqui si');
-    final signupResponse = await _httpClient.patch(locationRequest,
+
+    final signupResponse = await _httpClient.put(locationRequest,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

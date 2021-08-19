@@ -3,7 +3,7 @@ import 'package:formz/formz.dart';
 enum TypeUserError { empty, invalid }
 
 class TypeUser extends FormzInput<String, TypeUserError> {
-  const TypeUser.pure([String value = '']) : super.pure(value);
+  const TypeUser.pure([String value = 'student']) : super.pure(value);
   const TypeUser.dirty([String value = '']) : super.dirty(value);
 
   static final RegExp _lastnameRegExp = RegExp(

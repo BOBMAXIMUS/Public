@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/application/sign_up/sign_up_bloc.dart';
+import 'package:frontend/application/sign_up/sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,7 @@ final double fieldWidth = 300;
 final double fieldheight = 48;
 final double buttonsWidth = 200;
 
-class SignUpFormNewTeacherView extends StatelessWidget {
+class SignUpFormSendCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
@@ -73,11 +74,7 @@ class _WelcomeText extends StatelessWidget {
 class _ConfirmMailInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context).settings.arguments as Map;
-    String userId = '';
-    if (arguments != null) userId = arguments['userId'];
-    return BlocBuilder<ValidatorSignUpBloc, ValidatorSignUpState>(
-      buildWhen: (previous, current) => previous.code != current.code,
+    return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -114,7 +111,7 @@ class _ConfirmMailInputField extends StatelessWidget {
                       maxLength: 6,
                       onChanged: (code) => context
                           .read<ValidatorSignUpBloc>()
-                          .codeChanged(code, userId),
+                          .codeChanged(code,state.userId),
                     ),
                   ),
                   Container(
@@ -191,7 +188,7 @@ class _LoginButton extends StatelessWidget {
               ),
               disabledColor: Color(0xffB71C8C).withOpacity(0.6),
               color: Color(0xffB71C8C),
-              onPressed: () => Navigator.pop(context)),
+              onPressed: () => context.read<SignUpBloc>().add(FormSubmitted())),
         );
       },
     );

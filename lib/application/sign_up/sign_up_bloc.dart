@@ -203,6 +203,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ]),
       );
     } else if (event is FormSubmitted) {
+      AroRepository aro = AroRepository();
       if (state.email.valid && state.password.valid &&
           state.confirmPassword.valid && state.viewnumber == 1) {
         yield state.copyWith(viewnumber: 2);
@@ -210,42 +211,32 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       if (state.name.valid && state.lastName.valid && state.phone.valid &&
           state.viewnumber == 2) {
         yield state.copyWith(viewnumber: 3);
-      }
-      else {
-        print("llego");
-      AroRepository aro = AroRepository();
-      try {
+      }else
+      if (
+          state.viewnumber == 3) {
         String id = await aro.signup(
-            "ricardo12",
-            "vasquez12",
-            "r11a9961@gmail.com",
-            "Ricoa+121231",
+            state.name.value,
+            state.lastName.value,
+            state.email.value,
+            state.password.value,
             "France",
-            "+5493413393425",
+            state.phone.value,
             "Terminale",
             "fr",
-            "student");
-        print(id);
-/*       String id = await aro.signup(
-            name,
-            lastName,
-            email,
-            password,
-            country,
-            phone,
-            degree,
-            language,
-           typeUser);
-           */
+            state.typeUser.value);
+        await aro.validatoremail(id);
+        yield state.copyWith(viewnumber: 4,userId: id);
+      }
+      else {
+        try {
+        if (state.userId.isNotEmpty) {
+          await aro.validatorcode('',state.userId);
         yield state.copyWith(
-            status: FormzStatus.submissionSuccess, userId: id);
-/*        if (id.isNotEmpty) {
-          await aro.validatoremail(id);
-
+            status: FormzStatus.submissionSuccess);
         }
         else {
           yield state.copyWith(status: FormzStatus.submissionFailure);
-        }*/
+        }
       } on Exception {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }

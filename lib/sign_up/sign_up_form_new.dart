@@ -46,6 +46,7 @@ class SignUpFormNew extends StatelessWidget {
             print('submission failure');
           } else if (state.status.isSubmissionSuccess) {
             print('success');
+            Navigator.pop(context);
           }
         },
         builder: (context, state) {
@@ -55,7 +56,7 @@ class SignUpFormNew extends StatelessWidget {
           if (state.viewnumber == 3) {
             return SignUpFormNewStudentView();
           }else if(state.viewnumber == 4){
-            return SignUpFormNewTeacherView();
+            return SignUpFormSendCode();
           }
           else{
             return Column(

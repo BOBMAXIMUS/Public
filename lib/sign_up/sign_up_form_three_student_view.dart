@@ -163,105 +163,43 @@ class _StudentGradeInputField extends StatelessWidget {
 }
 
 class _GoToButtons extends StatelessWidget {
+  const _GoToButtons({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    myDialog(Widget content) {
-      return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: content,
-          );
-        },
-        barrierDismissible: false,
-      );
-    }
-
-    BuildContext dialogContext;
-
-    return Container(
-      margin: EdgeInsets.only(top: 10.0),
-      child: Row(
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.only(top: 20, bottom: 20.0),
+          child:  Row(
+          mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: 200.0,
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                shape: BoxShape.rectangle,
-                color: Color(0xffB71C8C),
-                border: Border.all(color: Color(0xffB71C8C))),
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(dialogContext);
-                myDialog(SignUpFormNewStudentView());
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.only(right: 5.0),
-                    child: Image(
-                      image: AssetImage("lib/assets/images/studentHat.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Student",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
+          CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+              child: Text(
+                "Studint",
+                style: TextStyle(color: Colors.white),
               ),
-            ),
-          ),
-          Container(
-            width: 200.0,
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB71C8C))),
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(dialogContext);
-                myDialog(SignUpFormNewTeacherView());
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.only(right: 5.0),
-                    child: Image(
-                      image: AssetImage("lib/assets/images/teacherRobe.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Teacher",
-                      style: TextStyle(color: Color(0xffB71C8C)),
-                    ),
-                  ),
-                ],
+              disabledColor: Color(0xffB71C8C).withOpacity(0.6),
+              color: Color(0xffB71C8C),
+              onPressed: () => context.read<SignUpBloc>().add(TypeUserChanged(typeUser: 'student'))),
+/*          CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+              child: Text(
+                "teacher",
+                style: TextStyle(color: Colors.white),
               ),
-            ),
-          ),
-        ],
-      ),
+              disabledColor: Color(0xffB71C8C).withOpacity(0.6),
+              color: Color(0xffB71C8C),
+              onPressed: () => context.read<SignUpBloc>().add(TypeUserChanged(typeUser: 'teacher')))*/
+        ]),
+        );
+      },
     );
   }
 }
+
 
 class _LoginButton extends StatelessWidget {
   const _LoginButton({Key key}) : super(key: key);
