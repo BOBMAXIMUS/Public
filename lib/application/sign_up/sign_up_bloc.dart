@@ -230,7 +230,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       else {
         try {
         if (state.userId.isNotEmpty) {
-          await aro.validatorcode('',state.userId);
+          await aro.validatorcode(state.code,state.userId);
         yield state.copyWith(
             status: FormzStatus.submissionSuccess);
         }

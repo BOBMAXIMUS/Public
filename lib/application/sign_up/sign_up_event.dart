@@ -63,6 +63,18 @@ class PhoneChanged extends SignUpEvent {
   List<Object> get props => [phone];
 }
 
+class CodeChanged extends SignUpEvent {
+  const CodeChanged({
+    @required this.code
+  });
+
+  final String code;
+
+  @override
+  List<Object> get props => [code];
+}
+
+
 class DegreeChanged extends SignUpEvent {
   const DegreeChanged({
     @required this.degree

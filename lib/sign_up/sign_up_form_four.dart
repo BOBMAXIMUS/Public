@@ -5,8 +5,6 @@ import 'package:frontend/application/sign_up/sign_up_event.dart';
 import 'package:frontend/application/sign_up/sign_up_state.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/application/validator_sign_up/validator_sign_up_bloc.dart';
-import 'package:frontend/application/validator_sign_up/validator_sign_up_state.dart';
 
 final double fieldWidth = 300;
 final double fieldheight = 48;
@@ -110,8 +108,8 @@ class _ConfirmMailInputField extends StatelessWidget {
                       keyboardType: TextInputType.text,
                       maxLength: 6,
                       onChanged: (code) => context
-                          .read<ValidatorSignUpBloc>()
-                          .codeChanged(code,state.userId),
+                          .read<SignUpBloc>()
+                          .add(CodeChanged(code:code)),
                     ),
                   ),
                   Container(

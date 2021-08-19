@@ -25,7 +25,8 @@ class SignUpState extends Equatable {
     this.status = FormzStatus.pure,
     this.typeUser = const TypeUser.pure() ,
     this.userId = '',
-    this.viewnumber = 1
+    this.viewnumber = 1,
+    this.code = ''
   });
 
   final Name name;
@@ -41,6 +42,7 @@ class SignUpState extends Equatable {
   final String userId;
   final TypeUser typeUser;
   final int viewnumber;
+  final String code;
 
   @override
   List<Object> get props => [
@@ -56,7 +58,8 @@ class SignUpState extends Equatable {
     status,
     userId,
     typeUser,
-    viewnumber
+    viewnumber,
+    code,
   ];
 
   SignUpState copyWith({
@@ -72,7 +75,7 @@ class SignUpState extends Equatable {
     FormzStatus status,
     String userId,
     TypeUser typeUser,
-    int viewnumber
+    int viewnumber,
   }) {
     return SignUpState(
       name: name ?? this.name,
@@ -87,7 +90,8 @@ class SignUpState extends Equatable {
       status: status ?? this.status,
         userId: userId ?? this.userId,
         typeUser: typeUser ?? this.typeUser,
-        viewnumber: viewnumber ?? this.viewnumber
+        viewnumber: viewnumber ?? this.viewnumber,
+        code: code ?? this.code,
     );
   }
 }
